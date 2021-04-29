@@ -1,7 +1,7 @@
 <template>
   <div class="clock">
     <span>{{ currentDate }} | {{ myTimer() }}</span>
-    <!-- <span id="txt">{{ startTime() }}</span> -->
+    <!-- <span id="clock">{{ startTime() }}</span> -->
   </div>
 </template>
 
@@ -17,9 +17,6 @@ export default {
     myTimer() {
       return new Date().toLocaleTimeString()
     },
-    // time() {
-    //   return setInterval(this.currentTime, 1000)
-    // },
     // startTime() {
     //   const today = new Date()
     //   let h = today.getHours()
@@ -35,7 +32,8 @@ export default {
     //   }
     //   m = this.checkTime(m)
     //   s = this.checkTime(s)
-    //   document.getElementById('txt').innerHTML = h + ':' + m + ':' + s + session
+    //   document.getElementById('clock').innerHTML =
+    //     h + ':' + m + ':' + s + session
     //   setTimeout(this.startTime, 1000)
     // },
     // checkTime(i) {
