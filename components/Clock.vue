@@ -1,7 +1,6 @@
 <template>
   <div class="clock">
-    <span>{{ currentDate }} | {{ myTimer() }}</span>
-    <!-- <span id="clock">{{ startTime() }}</span> -->
+    <span>{{ currentDate }} | {{ timer }}{{ clock() }}</span>
   </div>
 </template>
 
@@ -11,37 +10,27 @@ export default {
   data() {
     return {
       currentDate: new Date().toDateString(),
+      timer: '',
     }
   },
   methods: {
     myTimer() {
       return new Date().toLocaleTimeString()
     },
-    // startTime() {
-    //   const today = new Date()
-    //   let h = today.getHours()
-    //   let m = today.getMinutes()
-    //   let s = today.getSeconds()
-    //   let session = 'AM'
-    //   if (h === 0) {
-    //     h = 12
-    //   }
-    //   if (h > 12) {
-    //     h = h - 12
-    //     session = 'PM'
-    //   }
-    //   m = this.checkTime(m)
-    //   s = this.checkTime(s)
-    //   document.getElementById('clock').innerHTML =
-    //     h + ':' + m + ':' + s + session
-    //   setTimeout(this.startTime, 1000)
-    // },
-    // checkTime(i) {
-    //   if (i < 10) {
-    //     i = '0' + i
-    //   }
-    //   return i
-    // },
+    clock() {
+      let h = new Date().getHours()
+      let m = new Date().getMinutes()
+      let session = 'am'
+      if (h > 12) {
+        h = h - 12
+        session = 'pm'
+      }
+      h = h < 10 ? '0' + h : h
+      m = m < 10 ? '0' + m : m
+      const formatedText = h + ':' + m + session + ' ' + 'IST'
+      this.timer = formatedText
+      setTimeout(this.clock, 1000)
+    },
   },
 }
 </script>
