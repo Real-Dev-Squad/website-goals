@@ -1,6 +1,6 @@
 <template>
   <div class="clock">
-    <span>{{ currentDate }} | {{ timer }}{{ clock() }}</span>
+    <div class="dateTime">{{ currentDate }} | {{ timer }}{{ clock() }}</div>
   </div>
 </template>
 
@@ -36,16 +36,31 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@600&display=swap');
+
 .clock {
-  background-color: rgb(243, 42, 109);
+  background-color: #e30062;
   float: right;
-  padding: 2px 8px;
-  box-shadow: -1px 2px 2px black;
+  box-shadow: -1px 3px 4px #1d1283;
+  display: block;
+  justify-content: center;
 }
-span {
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
+.dateTime {
+  color: #ffffff;
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
   text-align: center;
+  padding: 4px 34px;
+}
+
+@media screen and (max-width: 600px) {
+  .clock {
+    box-shadow: -1px 2px 2px #1d1283;
+  }
+  .dateTime {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
 }
 </style>
