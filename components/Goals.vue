@@ -99,6 +99,9 @@ export default {
   bottom: -50px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+.tag {
+  margin: auto;
+}
 .tag button {
   background-color: #6f6dfd;
   color: #ffffff;
@@ -142,6 +145,9 @@ export default {
     height: 28px;
     margin-left: 20px;
     bottom: -30px;
+  }
+  .tag {
+    margin: initial;
   }
   .tag button {
     font-size: 14px;
