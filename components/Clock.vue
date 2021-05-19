@@ -60,7 +60,7 @@ export default {
   }
   .dateTime {
     font-size: 10px;
-    padding: 1px 4px;
+    padding: 2px 6px;
   }
 }
 </style>

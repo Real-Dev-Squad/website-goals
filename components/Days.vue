@@ -4,7 +4,7 @@
       <img src="~/assets/ankur.png" alt="userpic" />
       <h1>Your goals</h1>
     </div>
-    <div class="dayDiv">
+    <div class="days">
       <div class="dayBox">
         <div class="day">Mon</div>
         <button class="complete"></button>
@@ -75,7 +75,7 @@ export default {
   color: #e30062;
   padding-left: 5px;
 }
-.dayDiv {
+.days {
   background-color: #f8f8f8;
   display: flex;
   justify-content: space-around;
@@ -120,5 +120,48 @@ export default {
   border: 3px dashed #606060;
   border-radius: 50%;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 600px) {
+  .weekBox {
+    width: 95%;
+    margin-top: 50px;
+  }
+  .heading {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+  }
+  .heading img {
+    width: 59px;
+    height: 59px;
+    border: 4px solid #e30062;
+  }
+  .heading h1 {
+    font-size: 35px;
+    line-height: 16px;
+  }
+  .days {
+    padding: 12px 2px;
+  }
+  .day {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .complete {
+    width: 34px;
+    height: 34px;
+    border: 3px solid #025300;
+  }
+  .inprogress {
+    width: 34px;
+    height: 34px;
+    border: 2px dashed #e6a500;
+  }
+  .incomplete {
+    width: 34px;
+    height: 34px;
+    border: 2px dashed #606060;
+  }
 }
 </style>

@@ -99,9 +99,6 @@ export default {
   bottom: -50px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-.tag {
-  margin: auto;
-}
 .tag button {
   background-color: #6f6dfd;
   color: #ffffff;
@@ -110,5 +107,45 @@ export default {
   border: none;
   outline: none;
   border-radius: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .goalsContainer {
+    width: 95%;
+  }
+  .goalsContainer .heading {
+    font-size: 35px;
+    line-height: 16px;
+  }
+  .goalsItem {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 12px;
+  }
+  .box {
+    width: 50px;
+    height: 50px;
+  }
+  .goalsHeading {
+    width: 100%;
+  }
+  .goalsHeading h1 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .video iframe {
+    width: 140px;
+    height: 80px;
+  }
+  .video img {
+    width: 28px;
+    height: 28px;
+    margin-left: 20px;
+    bottom: -30px;
+  }
+  .tag button {
+    font-size: 14px;
+    padding: 2px 22px;
+  }
 }
 </style>
