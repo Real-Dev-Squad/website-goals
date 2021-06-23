@@ -1,6 +1,6 @@
 <template>
   <div class="clock">
-    <div class="dateTime">{{ currentDate }} | {{ timer }}{{ clock() }}</div>
+    <div class="date-time">{{ currentDate }} | {{ timer }}{{ clock() }}</div>
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
   display: block;
   justify-content: center;
 }
-.dateTime {
+.date-time {
   color: #ffffff;
   font-family: 'Saira Semi Condensed', sans-serif;
   font-size: 21px;
@@ -56,11 +56,13 @@ export default {
 
 @media screen and (max-width: 600px) {
   .clock {
-    box-shadow: -1px 2px 2px #1d1283;
+    float: none;
+    width: 100%;
   }
-  .dateTime {
-    font-size: 10px;
-    padding: 2px 6px;
+  .date-time {
+    font-size: 18px;
+    padding: 7px 6px;
+    letter-spacing: 0.5px;
   }
 }
 </style>

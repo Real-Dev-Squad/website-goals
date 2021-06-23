@@ -46,4 +46,9 @@ h1 {
   text-shadow: 0px 4px 4px #041187;
   margin: 450px 0 200px 0;
 }
+@media screen and (max-width: 600px) {
+  h1 {
+    display: none;
+  }
+}
 </style>
