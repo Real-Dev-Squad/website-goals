@@ -4,8 +4,8 @@
     <h1 class="no-of-goals">0/2</h1>
     <div class="goals">
       <div class="goals-item">
-        <div class="box1">
-          <div class="box"></div>
+        <div class="goals-task">
+          <div class="checkbox"></div>
           <h1>Watch first 20 min of Event Loop video</h1>
         </div>
         <div class="video">
@@ -24,8 +24,8 @@
       </div>
       <br />
       <div class="goals-item">
-        <div class="box1">
-          <div class="box"></div>
+        <div class="goals-task">
+          <div class="checkbox"></div>
           <h1>Learn Heaps</h1>
         </div>
         <button>Self</button>
@@ -73,24 +73,24 @@ export default {
   background-color: #f8f8f8;
   padding: 25px 30px;
 }
-.box1 {
+.goals-task {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 65%;
 }
-.box {
+.checkbox {
   width: 70px;
   height: 70px;
   background-color: #c4c4c4;
 }
-.box1 h1 {
+.goals-task h1 {
   color: rgba(6, 6, 6, 0.75);
   font-family: 'Roboto', sans-serif;
-  font-size: 2.9vw;
+  font-size: 36px;
   line-height: 40px;
   letter-spacing: 0.1em;
-  width: 35vw;
+  width: 80%;
 }
 .video {
   display: flex;
@@ -116,6 +116,17 @@ export default {
   border-radius: 20px;
 }
 
+@media screen and (min-width: 599px) and (max-width: 768px) {
+  .goals-task h1 {
+    font-size: 20px;
+    width: 80%;
+    line-height: 25px;
+  }
+  .checkbox {
+    width: 47px;
+    height: 47px;
+  }
+}
 @media screen and (max-width: 600px) {
   .goals-container {
     width: 90%;
@@ -141,15 +152,15 @@ export default {
     align-items: center;
     padding: 10px 12px;
   }
-  .box {
+  .checkbox {
     width: 37px;
     height: 40px;
   }
-  .box1 {
+  .goals-task {
     width: 100%;
     justify-content: flex-start;
   }
-  .box1 h1 {
+  .goals-task h1 {
     font-size: 16px;
     line-height: 18px;
     width: 70%;
