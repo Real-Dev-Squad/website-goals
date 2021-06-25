@@ -41,16 +41,12 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
 .goals-container {
   max-width: 1000px;
   margin: auto;
 }
 .goals-container .heading {
   font-family: 'Saira Semi Condensed', sans-serif;
-  font-weight: 800;
   font-size: 48px;
   line-height: 76px;
   padding-left: 10px;

@@ -10,7 +10,7 @@
             />
           </a>
         </div>
-        <div class="hamburger-menu" @click="changeIt(isClicked)">
+        <div class="hamburger-menu" @click="toggleClicked(isClicked)">
           <span></span>
           <span></span>
           <span></span>
@@ -49,7 +49,7 @@ export default {
     }
   },
   methods: {
-    changeIt(value) {
+    toggleClicked(value) {
       this.isClicked = !value
     },
   },

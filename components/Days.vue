@@ -6,33 +6,9 @@
     </div>
     <h2 class="week-heading">This week</h2>
     <div class="days">
-      <div class="day-box">
-        <div class="day">Mon</div>
+      <div v-for="day in days" :key="day.id" class="day-box">
+        <div class="day">{{ day.name }}</div>
         <button class="complete"></button>
-      </div>
-      <div class="day-box">
-        <div class="day">Tue</div>
-        <button class="complete"></button>
-      </div>
-      <div class="day-box">
-        <div class="day">Wed</div>
-        <button class="complete"></button>
-      </div>
-      <div class="day-box">
-        <div class="day">Thu</div>
-        <button class="complete"></button>
-      </div>
-      <div class="day-box">
-        <div class="day">Fri</div>
-        <button class="inprogress"></button>
-      </div>
-      <div class="day-box">
-        <div class="day">Sat</div>
-        <button class="incomplete"></button>
-      </div>
-      <div class="day-box">
-        <div class="day">Sun</div>
-        <button class="incomplete"></button>
       </div>
     </div>
   </div>
@@ -41,13 +17,23 @@
 <script>
 export default {
   name: 'Days',
+  data() {
+    return {
+      days: [
+        { id: 1, name: 'Mon' },
+        { id: 2, name: 'Tue' },
+        { id: 3, name: 'Wed' },
+        { id: 4, name: 'Thurs' },
+        { id: 5, name: 'Fri' },
+        { id: 6, name: 'Sat' },
+        { id: 7, name: 'Sun' },
+      ],
+    }
+  },
 }
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
 .week-box {
   max-width: 1000px;
   margin: auto;
@@ -109,7 +95,7 @@ export default {
   border-radius: 50%;
   box-sizing: border-box;
 }
-.inprogress {
+.day-box:nth-child(5) button {
   width: 54px;
   height: 54px;
   background-color: #fff6a6;
@@ -117,7 +103,15 @@ export default {
   border-radius: 50%;
   box-sizing: border-box;
 }
-.incomplete {
+.day-box:nth-child(6) button {
+  width: 54px;
+  height: 54px;
+  background: #efefef;
+  border: 3px dashed #606060;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.day-box:last-child button {
   width: 54px;
   height: 54px;
   background: #efefef;
@@ -178,12 +172,17 @@ export default {
     height: 14px;
     border: 2px solid #025300;
   }
-  .inprogress {
+  .day-box:nth-child(5) button {
     width: 14px;
     height: 14px;
     border: 2px dashed #e6a500;
   }
-  .incomplete {
+  .day-box:nth-child(6) button {
+    width: 14px;
+    height: 14px;
+    border: 2px dashed #606060;
+  }
+  .day-box:last-child button {
     width: 14px;
     height: 14px;
     border: 2px dashed #606060;

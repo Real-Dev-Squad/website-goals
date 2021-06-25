@@ -36,8 +36,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@600&display=swap');
-
 .clock {
   background-color: #e30062;
   float: right;
@@ -48,8 +46,8 @@ export default {
 .date-time {
   color: #ffffff;
   font-family: 'Saira Semi Condensed', sans-serif;
-  font-size: 21px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: lighter;
   text-align: center;
   padding: 4px 34px;
 }

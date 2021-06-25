@@ -27,7 +27,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 html,
 body {
   margin: 0;
