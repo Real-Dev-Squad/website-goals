@@ -5,7 +5,7 @@
     <div class="goals">
       <div class="goals-item">
         <div class="goals-task">
-          <div class="checkbox"></div>
+          <input type="checkbox" class="checkbox" />
           <h1>Watch first 20 min of Event Loop video</h1>
         </div>
         <div class="video">
@@ -25,7 +25,7 @@
       <br />
       <div class="goals-item">
         <div class="goals-task">
-          <div class="checkbox"></div>
+          <input type="checkbox" class="checkbox" />
           <h1>Learn Heaps</h1>
         </div>
         <button>Self</button>
@@ -75,10 +75,27 @@ export default {
   align-items: center;
   width: 65%;
 }
-.checkbox {
+.goals-task .checkbox {
   width: 70px;
   height: 70px;
   background-color: #c4c4c4;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.goals-task .checkbox:checked {
+  background-color: transparent;
+  border: 1px solid #c4c4c4;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+    inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+}
+.goals-task .checkbox:checked:after {
+  content: '\2714';
+  font-size: 54px;
+  position: relative;
+  top: -5px;
+  left: 12px;
+  color: blue;
 }
 .goals-task h1 {
   color: rgba(6, 6, 6, 0.75);
@@ -118,9 +135,14 @@ export default {
     width: 80%;
     line-height: 25px;
   }
-  .checkbox {
+  .goals-task .checkbox {
     width: 47px;
     height: 47px;
+  }
+  .goals-task .checkbox:checked:after {
+    font-size: 40px;
+    top: -6px;
+    left: 8px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -148,13 +170,18 @@ export default {
     align-items: center;
     padding: 10px 12px;
   }
-  .checkbox {
-    width: 37px;
-    height: 40px;
-  }
   .goals-task {
     width: 100%;
     justify-content: flex-start;
+  }
+  .goals-task .checkbox {
+    width: 40px;
+    height: 40px;
+  }
+  .goals-task .checkbox:checked:after {
+    font-size: 34px;
+    top: -5px;
+    left: 6px;
   }
   .goals-task h1 {
     font-size: 16px;
