@@ -5,7 +5,10 @@
     <div class="goals">
       <div class="goals-item">
         <div class="goals-task">
-          <input type="checkbox" class="checkbox" />
+          <input id="checkbox1" type="checkbox" />
+          <label for="checkbox1">
+            <div class="tick">&#10004;</div>
+          </label>
           <h1>Watch first 20 min of Event Loop video</h1>
         </div>
         <div class="video">
@@ -25,7 +28,10 @@
       <br />
       <div class="goals-item">
         <div class="goals-task">
-          <input type="checkbox" class="checkbox" />
+          <input id="checkbox2" type="checkbox" />
+          <label for="checkbox2">
+            <div class="tick">&#10004;</div>
+          </label>
           <h1>Learn Heaps</h1>
         </div>
         <button>Self</button>
@@ -69,33 +75,99 @@ export default {
   background-color: #f8f8f8;
   padding: 25px 30px;
 }
+.goals-item:hover {
+  transform: scale(1.005);
+  transition: all 0.5s;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
 .goals-task {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 65%;
 }
-.goals-task .checkbox {
+.goals-task input[type='checkbox'] {
+  position: absolute;
+  left: -1000px;
+}
+.goals-task label {
   width: 70px;
   height: 70px;
-  background-color: #c4c4c4;
-  -webkit-appearance: none;
+  background: #c4c4c4;
+  -webkit-transition: 400ms 100ms ease-out;
+  -o-transition: 400ms 100ms ease-out;
+  transition: 400ms 100ms ease-out;
   cursor: pointer;
 }
-.goals-task .checkbox:checked {
-  background-color: transparent;
-  border: 1px solid #c4c4c4;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
-    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
-    inset 15px 10px -12px rgba(255, 255, 255, 0.1);
-}
-.goals-task .checkbox:checked:after {
-  content: '\2714';
-  font-size: 54px;
+.tick {
   position: relative;
-  top: -5px;
-  left: 12px;
-  color: blue;
+  font-size: 60px;
+  color: green;
+  text-align: center;
+  top: -10px;
+  display: none;
+}
+.goals-task input[type='checkbox']:checked + label {
+  background: transparent;
+  border: 3px solid green;
+}
+.goals-task input[type='checkbox']:checked + label .tick {
+  /* -webkit-transform: scale(1); */
+  /* -ms-transform: scale(1); */
+  transform: scale(1);
+  display: block;
+}
+.goals-task input[type='checkbox']:focus + label {
+  /* -webkit-animation-name: checkbox-pop; */
+  animation-name: checkbox-pop;
+  /* -webkit-animation-duration: 400ms; */
+  animation-duration: 400ms;
+  /* -webkit-animation-iteration-count: 1; */
+  animation-iteration-count: 1;
+  /* -webkit-animation-timing-function: linear; */
+  animation-timing-function: linear;
+}
+
+@-webkit-keyframes checkbox-pop {
+  0% {
+    /* -webkit-transform: scale(1); */
+    transform: scale(1);
+  }
+
+  33% {
+    /* -webkit-transform: scale(0.9); */
+    transform: scale(0.9);
+  }
+
+  66% {
+    /* -webkit-transform: scale(1.1); */
+    transform: scale(1.1);
+  }
+
+  100% {
+    tranform: scale(1);
+  }
+}
+
+@keyframes checkbox-pop {
+  0% {
+    /* -webkit-transform: scale(1); */
+    transform: scale(1);
+  }
+
+  33% {
+    /* -webkit-transform: scale(0.9); */
+    transform: scale(0.9);
+  }
+
+  66% {
+    /* -webkit-transform: scale(1.1); */
+    transform: scale(1.1);
+  }
+
+  100% {
+    tranform: scale(1);
+  }
 }
 .goals-task h1 {
   color: rgba(6, 6, 6, 0.75);
@@ -130,19 +202,18 @@ export default {
 }
 
 @media screen and (min-width: 599px) and (max-width: 768px) {
+  .goals-task label {
+    width: 47px;
+    height: 47px;
+  }
+  .tick {
+    font-size: 45px;
+    top: -12px;
+  }
   .goals-task h1 {
     font-size: 20px;
     width: 80%;
     line-height: 25px;
-  }
-  .goals-task .checkbox {
-    width: 47px;
-    height: 47px;
-  }
-  .goals-task .checkbox:checked:after {
-    font-size: 40px;
-    top: -6px;
-    left: 8px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -174,14 +245,16 @@ export default {
     width: 100%;
     justify-content: flex-start;
   }
-  .goals-task .checkbox {
+  .goals-task input[type='checkbox']:checked + label {
+    border: 2px solid green;
+  }
+  .goals-task label {
     width: 40px;
     height: 40px;
   }
-  .goals-task .checkbox:checked:after {
-    font-size: 34px;
-    top: -5px;
-    left: 6px;
+  .tick {
+    font-size: 35px;
+    top: -7px;
   }
   .goals-task h1 {
     font-size: 16px;
