@@ -94,8 +94,6 @@ export default {
   width: 70px;
   height: 70px;
   background: #c4c4c4;
-  -webkit-transition: 400ms 100ms ease-out;
-  -o-transition: 400ms 100ms ease-out;
   transition: 400ms 100ms ease-out;
   cursor: pointer;
 }
@@ -112,35 +110,26 @@ export default {
   border: 3px solid green;
 }
 .goals-task input[type='checkbox']:checked + label .tick {
-  /* -webkit-transform: scale(1); */
-  /* -ms-transform: scale(1); */
   transform: scale(1);
   display: block;
 }
 .goals-task input[type='checkbox']:focus + label {
-  /* -webkit-animation-name: checkbox-pop; */
   animation-name: checkbox-pop;
-  /* -webkit-animation-duration: 400ms; */
   animation-duration: 400ms;
-  /* -webkit-animation-iteration-count: 1; */
   animation-iteration-count: 1;
-  /* -webkit-animation-timing-function: linear; */
   animation-timing-function: linear;
 }
 
 @-webkit-keyframes checkbox-pop {
   0% {
-    /* -webkit-transform: scale(1); */
     transform: scale(1);
   }
 
   33% {
-    /* -webkit-transform: scale(0.9); */
     transform: scale(0.9);
   }
 
   66% {
-    /* -webkit-transform: scale(1.1); */
     transform: scale(1.1);
   }
 
@@ -151,17 +140,14 @@ export default {
 
 @keyframes checkbox-pop {
   0% {
-    /* -webkit-transform: scale(1); */
     transform: scale(1);
   }
 
   33% {
-    /* -webkit-transform: scale(0.9); */
     transform: scale(0.9);
   }
 
   66% {
-    /* -webkit-transform: scale(1.1); */
     transform: scale(1.1);
   }
 
