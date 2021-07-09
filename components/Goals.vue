@@ -54,6 +54,7 @@ export default {
 .goals-container .heading {
   font-family: 'Saira Semi Condensed', sans-serif;
   font-size: 48px;
+  font-weight: 800;
   line-height: 76px;
   padding-left: 10px;
   padding-top: 80px;
@@ -159,6 +160,7 @@ export default {
   color: rgba(6, 6, 6, 0.75);
   font-family: 'Roboto', sans-serif;
   font-size: 36px;
+  font-weight: 700;
   line-height: 40px;
   letter-spacing: 0.1em;
   width: 80%;
@@ -180,6 +182,8 @@ export default {
 .goals-item button {
   background-color: #6f6dfd;
   color: #ffffff;
+  font-family: Helvetica Neue;
+  font-weight: 500;
   font-size: 20px;
   padding: 4px 35px;
   border: none;

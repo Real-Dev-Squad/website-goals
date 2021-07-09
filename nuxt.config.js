@@ -26,7 +26,15 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/google-fonts',
   ],
+  googleFonts: {
+    families: {
+      'Saira Semi Condensed': [600, 800],
+      Roboto: [700],
+      'Helvetica Neue': [500],
+    },
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],

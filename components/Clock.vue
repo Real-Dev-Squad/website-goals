@@ -14,9 +14,6 @@ export default {
     }
   },
   methods: {
-    myTimer() {
-      return new Date().toLocaleTimeString()
-    },
     clock() {
       let h = new Date().getHours()
       let m = new Date().getMinutes()
@@ -47,7 +44,7 @@ export default {
   color: #ffffff;
   font-family: 'Saira Semi Condensed', sans-serif;
   font-size: 20px;
-  font-weight: lighter;
+  font-weight: 600;
   text-align: center;
   padding: 4px 34px;
 }

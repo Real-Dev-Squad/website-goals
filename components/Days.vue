@@ -58,6 +58,7 @@ export default {
   font-family: 'Saira Semi Condensed', sans-serif;
   font-style: normal;
   font-size: 48px;
+  font-weight: 800;
   line-height: 76px;
   color: #e30062;
   padding-left: 5px;
@@ -82,7 +83,7 @@ export default {
   color: #c5c0c0;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
   line-height: 40px;
   padding-bottom: 15px;
@@ -155,6 +156,7 @@ export default {
     font-family: 'Saira Semi Condensed', sans-serif;
     font-style: normal;
     font-size: 14px;
+    font-weight: 800;
     line-height: 22px;
     color: #e30062;
     text-align: center;
