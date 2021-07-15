@@ -25,7 +25,6 @@
         </div>
         <img src="~/assets/swaraj.png" alt="userpic" />
       </div>
-      <br />
       <div class="goals-item">
         <div class="goals-task">
           <input id="checkbox2" type="checkbox" />
@@ -74,6 +73,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: #f8f8f8;
+  margin: 10px 0px;
   padding: 25px 30px;
 }
 .goals-item:hover {

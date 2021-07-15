@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="layout">
     <Navbar />
     <Clock />
     <Days />
@@ -27,8 +27,7 @@ export default {
 </script>
 
 <style scoped>
-html,
-body {
+#layout {
   margin: 0;
   padding: 0;
   width: 100%;
