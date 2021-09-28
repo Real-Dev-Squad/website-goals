@@ -24,7 +24,7 @@ export default {
       }
       h = h < 10 ? '0' + h : h
       m = m < 10 ? '0' + m : m
-      const formatedText = h + ':' + m + session + ' ' + 'IST'
+      const formatedText = h + ':' + m + session
       this.timer = formatedText
       setTimeout(this.clock, 1000)
     },
