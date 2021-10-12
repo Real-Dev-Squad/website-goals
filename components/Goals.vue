@@ -71,7 +71,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f8f8f8;
+  background-color: var(--background-card);
   margin: 10px 0px;
   padding: 25px 30px;
 }
@@ -93,7 +93,7 @@ export default {
 .goals-task label {
   width: 70px;
   height: 70px;
-  background: #c4c4c4;
+  background: var(--background-primary);
   transition: 400ms 100ms ease-out;
   cursor: pointer;
 }
@@ -156,7 +156,7 @@ export default {
   }
 }
 .goals-task h1 {
-  color: rgba(6, 6, 6, 0.75);
+  color: var(--color-primary);
   font-family: 'Roboto', sans-serif;
   font-size: 36px;
   font-weight: 700;

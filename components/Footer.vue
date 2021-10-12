@@ -1,7 +1,9 @@
 <template>
   <footer>
     <p>
-      The contents of this website are deployed from this
+      <span class="primary-text">
+        The contents of this website are deployed from this
+      </span>
       <a
         href="https://github.com/Real-Dev-Squad/website-goals"
         target="_blank"
@@ -28,5 +30,11 @@ footer {
   height: 2.5rem;
   position: relative;
   bottom: 0;
+}
+.primary-text {
+  color: var(--color-primary);
+}
+a {
+  color: var(--color-link);
 }
 </style>

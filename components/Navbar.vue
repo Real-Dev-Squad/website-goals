@@ -36,13 +36,16 @@
           <a class="active" href="https://goals.realdevsquad.com/">Goals</a>
         </li>
       </ul>
+      <ThemeToggler />
     </nav>
   </header>
 </template>
 
 <script>
+import ThemeToggler from './ThemeToggler.vue'
 export default {
   name: 'Navbar',
+  components: { ThemeToggler },
   data() {
     return {
       isClicked: false,

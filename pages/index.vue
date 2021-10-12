@@ -32,7 +32,7 @@ export default {
   padding: 0;
   width: 100%;
   box-sizing: border-box;
-  background-color: #e5e5e5;
+  background-color: var(--background-primary);
 }
 h1 {
   font-family: 'Nunito', sans-serif;
@@ -48,5 +48,20 @@ h1 {
   h1 {
     display: none;
   }
+}
+</style>
+
+<style>
+:root {
+  --background-primary: #e5e5e5;
+  --color-primary: rgb(68, 66, 66);
+  --color-link: #000;
+  --background-card: #f8f8f8;
+}
+:root.dark-theme {
+  --background-primary: #1c1b22;
+  --color-primary: #e1e1ec;
+  --background-card: #312f3b;
+  --color-link: #0080ff;
 }
 </style>
