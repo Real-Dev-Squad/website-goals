@@ -25,8 +25,8 @@ export default {
         ? (this.themeImage = 'sun.png')
         : (this.themeImage = 'moon.png')
       this.isDarkTheme
-        ? (document.documentElement.className = 'dark-theme')
-        : (document.documentElement.className = '')
+        ? (document.documentElement.className = 'dark')
+        : (document.documentElement.className = 'light')
     },
   },
 }

@@ -72,6 +72,8 @@ export default {
   justify-content: space-around;
   align-items: center;
   padding: 35px 60px;
+  border: var(--border-color) solid;
+  border-width: 1px;
 }
 .day-box {
   display: flex;

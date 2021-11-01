@@ -74,6 +74,8 @@ export default {
   background-color: var(--background-card);
   margin: 10px 0px;
   padding: 25px 30px;
+  border: var(--border-color) solid;
+  border-width: 1px;
 }
 .goals-item:hover {
   transform: scale(1.005);

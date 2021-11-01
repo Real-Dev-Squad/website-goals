@@ -52,16 +52,18 @@ h1 {
 </style>
 
 <style>
-:root {
+:root.light {
   --background-primary: #e5e5e5;
   --color-primary: rgb(68, 66, 66);
   --color-link: #000;
   --background-card: #f8f8f8;
+  --border-color: #ffffff;
 }
-:root.dark-theme {
+:root.dark {
   --background-primary: #1c1b22;
   --color-primary: #e1e1ec;
   --background-card: #312f3b;
   --color-link: #0080ff;
+  --border-color: #55ffff;
 }
 </style>
