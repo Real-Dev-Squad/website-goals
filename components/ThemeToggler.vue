@@ -7,13 +7,34 @@
 </template>
 
 <script>
+function setCookie(name, value, days) {
+  let expires = ''
+  if (days) {
+    const date = new Date()
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+    expires = '; expires=' + date.toUTCString()
+  }
+  document.cookie = name + '=' + (value || '') + expires + '; path=/'
+}
+
 export default {
   name: 'ThemeToggler',
+  props: {
+    theme: {
+      type: String,
+      default: 'light',
+    },
+  },
   data() {
     return {
       isDarkTheme: false,
       themeImage: this.isDarkTheme ? 'sun.png' : 'moon.png',
     }
+  },
+  beforeMount() {
+    this.theme === 'dark'
+      ? (this.isDarkTheme = true)
+      : (this.isDarkTheme = false)
   },
   methods: {
     toggleClicked(value) {
@@ -27,6 +48,8 @@ export default {
       this.isDarkTheme
         ? (document.documentElement.className = 'dark')
         : (document.documentElement.className = 'light')
+      const currentTheme = this.isDarkTheme ? 'dark' : 'light'
+      setCookie('theme', currentTheme, 30)
     },
   },
 }

@@ -36,7 +36,7 @@
           <a class="active" href="https://goals.realdevsquad.com/">Goals</a>
         </li>
       </ul>
-      <ThemeToggler />
+      <ThemeToggler :theme="theme" />
     </nav>
   </header>
 </template>
@@ -45,7 +45,15 @@
 import ThemeToggler from './ThemeToggler.vue'
 export default {
   name: 'Navbar',
-  components: { ThemeToggler },
+  components: {
+    ThemeToggler,
+  },
+  props: {
+    theme: {
+      type: String,
+      default: 'light',
+    },
+  },
   data() {
     return {
       isClicked: false,
