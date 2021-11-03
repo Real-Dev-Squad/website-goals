@@ -12,22 +12,14 @@
 </template>
 
 <script>
+import { getCookie } from '../helpers/cookies'
+import { addClassToDocument } from '../helpers/document'
 import Navbar from '../components/Navbar.vue'
 import Clock from '../components/Clock.vue'
 import Days from '../components/Days.vue'
 import Goals from '../components/Goals.vue'
 import Footer from '../components/Footer.vue'
 
-function getCookie(name) {
-  const nameEQ = name + '='
-  const ca = document.cookie.split(';')
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i]
-    while (c.charAt(0) === ' ') c = c.substring(1, c.length)
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length)
-  }
-  return null
-}
 export default {
   components: {
     Navbar,
@@ -45,11 +37,9 @@ export default {
     const currentTheme = getCookie('theme')
     if (currentTheme) {
       this.theme = currentTheme
-      this.theme === 'dark'
-        ? (document.documentElement.className = 'dark')
-        : (document.documentElement.className = 'light')
+      addClassToDocument(this.theme === 'dark' ? 'dark' : 'light')
     } else {
-      document.documentElement.className = 'light'
+      addClassToDocument('light')
       this.theme = 'light'
     }
   },

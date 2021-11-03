@@ -7,16 +7,8 @@
 </template>
 
 <script>
-function setCookie(name, value, days) {
-  let expires = ''
-  if (days) {
-    const date = new Date()
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-    expires = '; expires=' + date.toUTCString()
-  }
-  document.cookie = name + '=' + (value || '') + expires + '; path=/'
-}
-
+import { setCookie } from '../helpers/cookies'
+import { addClassToDocument } from '../helpers/document'
 export default {
   name: 'ThemeToggler',
   props: {
@@ -32,9 +24,8 @@ export default {
     }
   },
   beforeMount() {
-    this.theme === 'dark'
-      ? (this.isDarkTheme = true)
-      : (this.isDarkTheme = false)
+    this.isDarkTheme = this.theme === 'dark'
+    this.themeImage = this.isDarkTheme ? 'sun.png' : 'moon.png'
   },
   methods: {
     toggleClicked(value) {
@@ -42,12 +33,8 @@ export default {
     },
     toggleTheme() {
       this.isDarkTheme = !this.isDarkTheme
-      this.isDarkTheme
-        ? (this.themeImage = 'sun.png')
-        : (this.themeImage = 'moon.png')
-      this.isDarkTheme
-        ? (document.documentElement.className = 'dark')
-        : (document.documentElement.className = 'light')
+      this.themeImage = this.isDarkTheme ? 'sun.png' : 'moon.png'
+      addClassToDocument(this.isDarkTheme ? 'dark' : 'light')
       const currentTheme = this.isDarkTheme ? 'dark' : 'light'
       setCookie('theme', currentTheme, 30)
     },
