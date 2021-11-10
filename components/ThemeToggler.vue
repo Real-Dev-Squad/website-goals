@@ -45,12 +45,10 @@ export default {
 <style scoped>
 .theme-toggle-wrapper {
   cursor: pointer;
-  padding: 15px;
   display: flex;
   align-items: center;
 }
 .theme-toggle-icon {
-  width: 20px;
   height: 20px;
 }
 </style>

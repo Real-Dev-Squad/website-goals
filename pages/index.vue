@@ -53,6 +53,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   background-color: var(--background-primary);
+  transition: all 0.5s linear;
 }
 h1 {
   font-family: 'Nunito', sans-serif;
