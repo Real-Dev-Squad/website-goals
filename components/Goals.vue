@@ -17,7 +17,6 @@
             height="110"
             src="https://www.youtube.com/embed/cCOL7MC4Pl0"
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           >
