@@ -3,7 +3,7 @@
     <p>
       The contents of this website are deployed from this
       <a
-        href="https://github.com/Real-Dev-Squad/website-goals"
+        href="https://github.com/Real-Dev-Squad/website-members"
         target="_blank"
         rel="noopener noreferrer"
       >
