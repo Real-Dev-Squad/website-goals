@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'goals-site',
+    title: 'Goals | Real Dev Squad',
     htmlAttrs: {
       lang: 'en',
     },
