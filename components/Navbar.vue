@@ -1,41 +1,60 @@
 <template>
-  <header class="navbar">
-    <nav>
-      <div class="box">
-        <div class="logo">
-          <a href="https://realdevsquad.com/">
-            <img
-              src="~/assets/Real-Dev-Squad@1x.png"
-              alt="Real Dev Squad logo"
-            />
-          </a>
-        </div>
-        <div class="hamburger-menu" @click="toggleClicked(isClicked)">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+  <header class="wrapper">
+    <nav class="navBar">
+      <div class="hamburger" @click="toggleClicked(isClicked)">
+        <img src="~assets/menu.png" />
       </div>
-      <ul :class="[isClicked ? 'show-menu' : 'hide-menu']">
-        <li>
-          <a href="https://welcome.realdevsquad.com/">Welcome</a>
-        </li>
-        <li>
-          <a href="https://www.realdevsquad.com/events.html">Events</a>
-        </li>
-        <li>
-          <a href="https://members.realdevsquad.com/">Members</a>
-        </li>
-        <li>
-          <a href="https://crypto.realdevsquad.com/">Crypto</a>
-        </li>
-        <li>
-          <a href="https://status.realdevsquad.com/">Status</a>
-        </li>
-        <li>
-          <a class="active" href="https://goals.realdevsquad.com/">Goals</a>
-        </li>
-      </ul>
+      <div class="navBarLogin">
+        <a
+          class="btnLogin"
+          href="https://github.com/login/oauth/authorize?client_id=23c78f66ab7964e5ef97"
+        >
+          <button type="button" class="btnLoginText">
+            Sign In With GitHub
+            <img
+              className="githubLogo"
+              src="~/assets/github.png"
+              alt="GitHub Icon"
+              height="15px"
+              width="15px"
+            /></button
+        ></a>
+      </div>
+
+      <div class="navbarMenuItem">
+        <ul :class="[isClicked ? 'hide-menu' : 'navBarMenu']">
+          <li class="navBarLogoLi">
+            <a href="https://realdevsquad.com/">
+              <img
+                src="~/assets/Real-Dev-Squad@1x.png"
+                alt="Real Dev Squad logo"
+                width="50px"
+                height="50px"
+              />
+            </a>
+          </li>
+          <li>
+            <a href="https://welcome.realdevsquad.com/">Welcome</a>
+          </li>
+          <li>
+            <a href="https://www.realdevsquad.com/events.html">Events</a>
+          </li>
+          <li>
+            <a href="https://members.realdevsquad.com/">Members</a>
+          </li>
+          <li>
+            <a href="https://crypto.realdevsquad.com/">Crypto</a>
+          </li>
+          <li>
+            <a href="https://status.realdevsquad.com/">Status</a>
+          </li>
+          <li>
+            <a class="activeTab" href="https://goals.realdevsquad.com/"
+              >Goals</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
 </template>
@@ -57,85 +76,225 @@ export default {
 </script>
 
 <style scoped>
-nav {
-  background: #1d1283;
+.wrapper {
+  font: 700 16px 'Roboto', sans-serif;
+  margin-bottom: 25px;
+}
+/* .navbar {
   display: flex;
-}
-.hamburger-menu {
-  position: relative;
-  width: 35px;
-  height: 70%;
-  left: 10px;
-  flex-flow: column;
-  justify-content: space-around;
+  flex-direction: row;
   align-items: center;
-  padding: 10px 0;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: none;
+  justify-content: space-between;
+  background: blue;
+} */
+
+.navBar li a {
+  margin: 10px;
+  display: block;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  text-align: center;
+  padding: 19px 16px;
+  text-decoration: none;
+  list-style: none;
 }
-.hamburger-menu span {
-  background-color: white;
-  width: 70%;
-  height: 3px;
-  margin: 2px 0;
+
+.navBar li {
+  float: left;
 }
-nav ul {
+
+.navBar li a:hover {
+  color: #49a82e;
+}
+
+.navBarMenu {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #1d1283;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  transition: all 0.5s;
-}
-nav li a {
-  display: block;
-  color: #ffffff;
-  text-align: center;
-  font-weight: bolder;
-  padding: 0 0.5em;
-  text-decoration: none;
-}
-nav li a:hover,
-nav li a.active {
-  color: #87d870;
-}
-img {
-  width: 3.5em;
-  height: 3.5em;
 }
 
-@media screen and (max-width: 600px) {
-  nav {
-    flex-direction: column;
+.navBarLogoLi {
+  list-style: none;
+  padding: 12px 20px;
+}
+
+.navBar li.navBarLogoLi a {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navBar li.navBarLoginLi {
+  float: right;
+}
+
+.navBar li.navBarLoginLi .btnLogin {
+  padding: 0px;
+  margin: 22px;
+}
+
+.navBarLogin,
+.homeTab {
+  display: none;
+}
+.hide-menu {
+  background: #fff;
+}
+ul > .btnLogin {
+  margin-right: auto;
+}
+.btnLoginText {
+  border-radius: 6px;
+  padding: 5px;
+  background-color: #1d1283;
+  color: white;
+  cursor: pointer;
+  border: 2px solid white;
+  display: flex;
+}
+
+.userGreet {
+  color: #ffffff;
+  margin: 23px;
+  display: none;
+}
+
+.navBarLoginLi .userGreet a {
+  padding: 0px;
+}
+
+.userProfilePic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline;
+  vertical-align: middle;
+}
+
+.userGreetMsg {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.navBar li a.activeTab {
+  color: #49a82e;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 10px;
+}
+
+.hamburger {
+  display: none;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #fff;
+}
+
+.githubLogo {
+  margin-left: 4px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 5px;
+}
+
+.link {
+  padding: 10px;
+  margin-top: 2px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #041484;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.active {
+  color: #e30464;
+}
+.Homes {
+  display: none;
+}
+.navBarLogin {
+  display: block;
+  margin: 20px;
+  position: absolute;
+  top: 0;
+  right: 0px;
+}
+
+@media screen and (max-width: 970px) {
+  .navBar {
+    background: #1d1283;
   }
-  .box {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
+  .Homes {
+    display: block;
   }
-  .box .logo {
-    padding: 0 0.3em;
+  .hamburger {
+    height: 73px;
+    width: 73px;
+    padding: 20px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
   }
-  .box .hamburger-menu {
-    display: flex;
+  .hamburger .icon {
+    margin-top: 4px;
+    padding-left: 2px;
   }
-  nav ul {
-    flex-direction: column;
-    transition: all 0.5s ease-in-out;
+  .navBarMenu {
+    background: white;
+    display: none;
+    width: 100%;
+    padding: 10px 0px;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.5);
   }
-  nav .show-menu {
-    display: flex;
+
+  .navBarMenu.active,
+  .homeTab {
+    display: block;
   }
-  nav .hide-menu {
+
+  .navBar li a {
+    padding: 10px 40px;
+    text-align: left;
+    color: black;
+  }
+
+  .navBarLoginLi,
+  .navBarLogoLi {
     display: none;
   }
-  nav li a {
-    padding: 0.5em 0em;
+
+  .navBar li a.activeTab {
+    text-decoration: none;
+  }
+
+  .navBar li {
+    float: none;
+  }
+
+  .mainBanner,
+  .logoImg {
+    margin-top: 40px;
+  }
+
+  .userGreet {
+    margin: 0px;
   }
 }
 </style>
