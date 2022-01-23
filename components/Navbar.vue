@@ -33,20 +33,8 @@
               />
             </a>
           </li>
-          <li>
-            <a href="https://welcome.realdevsquad.com/">Welcome</a>
-          </li>
-          <li>
-            <a href="https://www.realdevsquad.com/events.html">Events</a>
-          </li>
-          <li>
-            <a href="https://members.realdevsquad.com/">Members</a>
-          </li>
-          <li>
-            <a href="https://crypto.realdevsquad.com/">Crypto</a>
-          </li>
-          <li>
-            <a href="https://status.realdevsquad.com/">Status</a>
+          <li v-for="item in LINKS" :key="item.name">
+            <a :href="item.link">{{ item.name }}</a>
           </li>
           <li>
             <a class="activeTab" href="https://goals.realdevsquad.com/"
@@ -65,6 +53,13 @@ export default {
   data() {
     return {
       isClicked: false,
+      LINKS: [
+        { name: 'Welcome', link: 'https://welcome.realdevsquad.com' },
+        { name: 'Events', link: 'https://www.realdevsquad.com/events.html' },
+        { name: 'Members', link: 'https://members.realdevsquad.com/' },
+        { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
+        { name: 'Status', link: 'https://status.realdevsquad.com/' },
+      ],
     }
   },
   methods: {
@@ -80,13 +75,6 @@ export default {
   font: 700 16px 'Roboto', sans-serif;
   margin-bottom: 25px;
 }
-/* .navbar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background: blue;
-} */
 
 .navBar li a {
   margin: 10px;
