@@ -81,17 +81,7 @@ git commit -m "Write message about your commit"
 
 It may so happen that since the last time you cloned the repo/took a pull from develop, some changes may be merged in the develop branch. So to be on the safer side, we should have those changes as well.
 
-In order to do that, we first checkout to **develop** branch by:
-
-```
-git checkout develop
-```
-
-Once we're in develop, it's time to take a pull:
-
-```
-git pull upstream develop
-```
+In order to do that, you should repeat the steps mentioned in step number **4**
 
 Now that our **local** develop branch is in sync with **remote** develop branch (of the Real Dev Squad Repository), we should let our branch know about the changes from the develop branch (if any). To do so we first checkout to our branch:
 
@@ -107,7 +97,7 @@ git rebase develop
 
 You should solve the merge conflicts, if any.
 
-9. **Pushing your code**
+1. **Pushing your code**
 
 Now it is the time to push the changes of your local develop branch to your fork of the repository which is on Github (which we cloned in step 2).
 
