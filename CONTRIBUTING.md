@@ -14,7 +14,7 @@ Fork this repository using the **Fork** option at the top-right corner of this p
 
 ![how-to-fork](https://i.imgur.com/s9LLbOw.png)
 
-1. **Cloning repository**
+2. **Cloning repository**
 
 Clone your forked repository, this will download your fork in your computer. To do this, open your terminal (command prompt/bash/git bash) and enter the following command, paste your link after the word **clone** without the **<>**.
 
@@ -97,7 +97,7 @@ git rebase develop
 
 You should solve the merge conflicts, if any.
 
-1. **Pushing your code**
+9. **Pushing your code**
 
 Now it is the time to push the changes of your local develop branch to your fork of the repository which is on Github (which we cloned in step 2).
 
