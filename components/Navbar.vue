@@ -140,6 +140,7 @@ ul > .btnLogin {
   cursor: pointer;
   border: 2px solid white;
   display: flex;
+  gap: 0.2rem;
 }
 
 .userGreet {
@@ -218,7 +219,7 @@ ul > .btnLogin {
 }
 .navBarLogin {
   display: block;
-  margin: 20px;
+  margin: 1.5rem;
   position: absolute;
   top: 0;
   right: 0px;
