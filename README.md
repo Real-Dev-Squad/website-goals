@@ -2,11 +2,20 @@
 
 ## Setup
 
+Please install `yarn` and `volta`
+
+[Why Volta?](https://docs.volta.sh/guide/#why-volta)
+
+To install Volta, please follow the [process](https://docs.volta.sh/guide/getting-started)
+
 ```bash
 > Setup [avoiding CORS](https://github.com/Real-Dev-Squad/docs/tree/main/docs/dev/https-dev-url-cors)
 
 # install dependencies
-$ yarn install
+$ yarn 
+
+# Confirm correct configuration setup 
+$ yarn validate-setup
 
 # run dev serve on dev.realdevsquad.com (follow https setup instructions)
 $ yarn dev
