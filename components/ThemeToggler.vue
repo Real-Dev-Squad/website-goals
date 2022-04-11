@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-toggle-wrapper" @click="toggleTheme()">
+  <div class="theme-toggle-wrapper hide" @click="toggleTheme()">
     <span>
       <img class="theme-toggle-icon" :src="require(`~/assets/${themeImage}`)" />
     </span>
@@ -50,5 +50,8 @@ export default {
 }
 .theme-toggle-icon {
   height: 20px;
+}
+.hide {
+  display: none;
 }
 </style>
