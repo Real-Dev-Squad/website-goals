@@ -67,11 +67,12 @@ export default {
   display: none;
 }
 .days {
-  background-color: #f8f8f8;
+  background-color: var(--background-card);
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 35px 60px;
+  border: 1px var(--border-color) solid;
 }
 .day-box {
   display: flex;
@@ -80,7 +81,7 @@ export default {
   justify-content: center;
 }
 .day {
-  color: #c5c0c0;
+  color: var(--color-primary);
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 700;

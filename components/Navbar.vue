@@ -36,13 +36,24 @@
           <a class="active" href="https://goals.realdevsquad.com/">Goals</a>
         </li>
       </ul>
+      <ThemeToggler :theme="theme" class="ThemeToggler" />
     </nav>
   </header>
 </template>
 
 <script>
+import ThemeToggler from './ThemeToggler.vue'
 export default {
   name: 'Navbar',
+  components: {
+    ThemeToggler,
+  },
+  props: {
+    theme: {
+      type: String,
+      default: 'light',
+    },
+  },
   data() {
     return {
       isClicked: false,
@@ -60,6 +71,7 @@ export default {
 nav {
   background: #1d1283;
   display: flex;
+  position: relative;
 }
 .hamburger-menu {
   position: relative;
@@ -107,20 +119,25 @@ img {
   width: 3.5em;
   height: 3.5em;
 }
-
+.ThemeToggler {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+}
 @media screen and (max-width: 600px) {
   nav {
     flex-direction: column;
   }
-  .box {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
+  .logo {
+    display: none;
   }
-  .box .logo {
+  .box {
+    height: 60px;
+    display: flex;
+    align-items: center;
     padding: 0 0.3em;
   }
+
   .box .hamburger-menu {
     display: flex;
   }
