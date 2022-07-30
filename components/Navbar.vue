@@ -75,7 +75,7 @@ export default {
   height: 73px;
   display: flex;
   align-items: center;
-  background-color: #1d1283;
+  background-color: var(--nav-primary);
   color: white;
   position: sticky;
   transform-style: preserve-3d;
@@ -108,7 +108,7 @@ export default {
   margin-right: 20px;
 }
 .redirection__option:hover {
-  color: #49a82e;
+  color: var(--nav-secondary);
 }
 .dropdown {
   position: absolute;
@@ -119,7 +119,7 @@ export default {
   left: 0;
   transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   background-color: white;
-  color: #1d1283;
+  color: var(--nav-primary);
   width: 100%;
 }
 .dropdown--open {
@@ -131,7 +131,7 @@ export default {
   display: block;
 }
 .dropdown__option:hover {
-  color: #49a82e;
+  color: var(--nav-secondary);
 }
 .login {
   margin-left: auto;
@@ -148,7 +148,7 @@ export default {
   white-space: nowrap;
 }
 .login__image {
-  margin-left: 0.3rem;
+  margin-left: 6px;
 }
 
 @media screen and (max-width: 970px) {

@@ -24,6 +24,10 @@ html {
   margin: 0;
   padding: 0;
 }
+:root {
+  --nav-primary: #1d1283;
+  --nav-secondary: #49a82e;
+}
 a {
   text-decoration: none;
   color: inherit;
