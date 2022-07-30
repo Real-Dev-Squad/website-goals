@@ -76,7 +76,7 @@ export default {
   display: flex;
   align-items: center;
   background-color: var(--nav-primary);
-  color: white;
+  color: var(--color-white);
   position: sticky;
   transform-style: preserve-3d;
   padding: 0 20px;
@@ -93,7 +93,7 @@ export default {
   height: 3px;
   width: 25px;
   margin: 5px 0;
-  background-color: white;
+  background-color: var(--color-white);
 }
 .redirection {
   display: flex;
@@ -118,7 +118,7 @@ export default {
   bottom: 0;
   left: 0;
   transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
-  background-color: white;
+  background-color: var(--color-white);
   color: var(--nav-primary);
   width: 100%;
 }
@@ -135,7 +135,7 @@ export default {
 }
 .login {
   margin-left: auto;
-  border: 2px solid white;
+  border: 2px solid var(--color-white);
   border-radius: 6px;
   padding: 5px;
   background-color: transparent;

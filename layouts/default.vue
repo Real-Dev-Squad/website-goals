@@ -27,6 +27,7 @@ html {
 :root {
   --nav-primary: #1d1283;
   --nav-secondary: #49a82e;
+  --color-white: #ffffff;
 }
 a {
   text-decoration: none;
