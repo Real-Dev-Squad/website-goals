@@ -1,14 +1,18 @@
 <template>
   <div class="week-box">
     <div class="heading">
-      <img src="~/assets/ankur.png" alt="userpic" />
+      <img src="~/assets/ankur.png" alt="userpic">
       <h1>Your goals</h1>
     </div>
-    <h2 class="week-heading">This week</h2>
+    <h2 class="week-heading">
+      This week
+    </h2>
     <div class="days">
       <div v-for="day in days" :key="day.id" class="day-box">
-        <div class="day">{{ day.name }}</div>
-        <button class="complete"></button>
+        <div class="day">
+          {{ day.name }}
+        </div>
+        <button class="complete" />
       </div>
     </div>
   </div>
@@ -17,7 +21,7 @@
 <script>
 export default {
   name: 'Days',
-  data() {
+  data () {
     return {
       days: [
         { id: 1, name: 'Mon' },
@@ -26,10 +30,10 @@ export default {
         { id: 4, name: 'Thurs' },
         { id: 5, name: 'Fri' },
         { id: 6, name: 'Sat' },
-        { id: 7, name: 'Sun' },
-      ],
+        { id: 7, name: 'Sun' }
+      ]
     }
-  },
+  }
 }
 </script>
 

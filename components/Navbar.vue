@@ -14,7 +14,7 @@
             alt="Real Dev Squad logo"
             width="50px"
             height="50px"
-          />
+          >
         </a>
       </li>
       <li v-for="item in LINKS" :key="item.name">
@@ -39,7 +39,7 @@
         alt="GitHub Icon"
         height="15px"
         width="15px"
-      />
+      >
     </button>
   </nav>
 </template>
@@ -49,7 +49,7 @@ import { LINKS } from '../utils/constants'
 
 export default {
   name: 'Navbar',
-  data() {
+  data () {
     return {
       isClicked: false,
       LINKS: [
@@ -57,19 +57,19 @@ export default {
         { name: 'Events', link: 'https://www.realdevsquad.com/events.html' },
         { name: 'Members', link: 'https://members.realdevsquad.com/' },
         { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
-        { name: 'Status', link: 'https://status.realdevsquad.com/' },
+        { name: 'Status', link: 'https://status.realdevsquad.com/' }
       ],
-      LOGIN: LINKS.LOGIN,
+      LOGIN: LINKS.LOGIN
     }
   },
   methods: {
-    toggleClicked(value) {
+    toggleClicked (value) {
       this.isClicked = !value
     },
-    redirectLogin() {
+    redirectLogin () {
       window.location.href = this.LOGIN
-    },
-  },
+    }
+  }
 }
 </script>
 
