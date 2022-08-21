@@ -31,10 +31,7 @@
       </li>
     </ul>
 
-    <button
-      class="login"
-      onClick="window.location.href='https://github.com/login/oauth/authorize?client_id=23c78f66ab7964e5ef97'"
-    >
+    <button class="login" @click="redirectLogin()">
       <span class="login__text">Sign In With GitHub</span>
       <img
         class="login__image"
@@ -48,6 +45,8 @@
 </template>
 
 <script>
+import { LINKS } from '../utils/constants'
+
 export default {
   name: 'Navbar',
   data() {
@@ -60,11 +59,15 @@ export default {
         { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
         { name: 'Status', link: 'https://status.realdevsquad.com/' },
       ],
+      LOGIN: LINKS.LOGIN,
     }
   },
   methods: {
     toggleClicked(value) {
       this.isClicked = !value
+    },
+    redirectLogin() {
+      window.location.href = this.LOGIN
     },
   },
 }
