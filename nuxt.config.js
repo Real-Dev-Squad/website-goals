@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Goals',
+    title: 'Goals | Real Dev Squad',
     htmlAttrs: {
       lang: 'en',
     },
@@ -27,7 +27,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/google-fonts',
-    '@nuxt/typescript-build'
+    '@nuxt/typescript-build',
   ],
   googleFonts: {
     families: {
