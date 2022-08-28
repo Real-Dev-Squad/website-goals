@@ -1,141 +1,171 @@
 <template>
-  <header class="navbar">
-    <nav>
-      <div class="box">
-        <div class="logo">
-          <a href="https://realdevsquad.com/">
-            <img
-              src="~/assets/Real-Dev-Squad@1x.png"
-              alt="Real Dev Squad logo"
-            />
-          </a>
-        </div>
-        <div class="hamburger-menu" @click="toggleClicked(isClicked)">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <ul :class="[isClicked ? 'show-menu' : 'hide-menu']">
-        <li>
-          <a href="https://welcome.realdevsquad.com/">Welcome</a>
-        </li>
-        <li>
-          <a href="https://www.realdevsquad.com/events.html">Events</a>
-        </li>
-        <li>
-          <a href="https://members.realdevsquad.com/">Members</a>
-        </li>
-        <li>
-          <a href="https://crypto.realdevsquad.com/">Crypto</a>
-        </li>
-        <li>
-          <a href="https://status.realdevsquad.com/">Status</a>
-        </li>
-        <li>
-          <a class="active" href="https://goals.realdevsquad.com/">Goals</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <nav class="navbar">
+    <button class="hamburger" @click="toggleClicked(isClicked)">
+      <div class="hamburger__bar" />
+      <div class="hamburger__bar" />
+      <div class="hamburger__bar" />
+    </button>
+
+    <ul class="redirection">
+      <li>
+        <a href="https://realdevsquad.com/" class="redirection__option--logo">
+          <img
+            src="~/assets/Real-Dev-Squad@1x.png"
+            alt="Real Dev Squad logo"
+            width="50px"
+            height="50px"
+          />
+        </a>
+      </li>
+      <li v-for="item in LINKS" :key="item.name">
+        <a :href="item.link" class="redirection__option">{{ item.name }}</a>
+      </li>
+    </ul>
+
+    <ul class="dropdown" :class="{ 'dropdown--open': isClicked }">
+      <li>
+        <a href="https://realdevsquad.com/" class="dropdown__option">Home</a>
+      </li>
+      <li v-for="item in LINKS" :key="item.name">
+        <a :href="item.link" class="dropdown__option">{{ item.name }}</a>
+      </li>
+    </ul>
+
+    <button class="login" @click="redirectLogin()">
+      <span class="login__text">Sign In With GitHub</span>
+      <img
+        class="login__image"
+        src="~/assets/github.png"
+        alt="GitHub Icon"
+        height="15px"
+        width="15px"
+      />
+    </button>
+  </nav>
 </template>
 
 <script>
+import { LINKS } from '../utils/constants'
+
 export default {
   name: 'Navbar',
   data() {
     return {
       isClicked: false,
+      LINKS: [
+        { name: 'Welcome', link: 'https://welcome.realdevsquad.com' },
+        { name: 'Events', link: 'https://www.realdevsquad.com/events.html' },
+        { name: 'Members', link: 'https://members.realdevsquad.com/' },
+        { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
+        { name: 'Status', link: 'https://status.realdevsquad.com/' },
+      ],
+      LOGIN: LINKS.LOGIN,
     }
   },
   methods: {
     toggleClicked(value) {
       this.isClicked = !value
     },
+    redirectLogin() {
+      window.location.href = this.LOGIN
+    },
   },
 }
 </script>
 
 <style scoped>
-nav {
-  background: #1d1283;
+.navbar {
+  height: 73px;
   display: flex;
-}
-.hamburger-menu {
-  position: relative;
-  width: 35px;
-  height: 70%;
-  left: 10px;
-  flex-flow: column;
-  justify-content: space-around;
   align-items: center;
-  padding: 10px 0;
-  box-sizing: border-box;
-  cursor: pointer;
+  background-color: var(--nav-primary);
+  color: var(--color-white);
+  position: sticky;
+  transform-style: preserve-3d;
+  padding: 0 20px;
+  top: 0;
+  z-index: 1;
+}
+.hamburger {
   display: none;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
 }
-.hamburger-menu span {
-  background-color: white;
-  width: 70%;
+.hamburger__bar {
   height: 3px;
-  margin: 2px 0;
+  width: 25px;
+  margin: 5px 0;
+  background-color: var(--color-white);
 }
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #1d1283;
+.redirection {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  transition: all 0.5s;
 }
-nav li a {
+.redirection__option {
+  padding: 19px 16px;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+.redirection__option--logo {
+  margin-right: 20px;
+}
+.redirection__option:hover {
+  color: var(--nav-secondary);
+}
+.dropdown {
+  position: absolute;
+  transform: translateZ(-10px);
+  display: none;
+  flex-direction: column;
+  bottom: 0;
+  left: 0;
+  transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  background-color: var(--color-white);
+  color: var(--nav-primary);
+  width: 100%;
+}
+.dropdown--open {
+  transform: translateY(100%);
+}
+.dropdown__option {
+  padding: 10px 40px;
+  margin: 10px;
   display: block;
-  color: #ffffff;
-  text-align: center;
-  font-weight: bolder;
-  padding: 0 0.5em;
-  text-decoration: none;
 }
-nav li a:hover,
-nav li a.active {
-  color: #87d870;
+.dropdown__option:hover {
+  color: var(--nav-secondary);
 }
-img {
-  width: 3.5em;
-  height: 3.5em;
+.login {
+  margin-left: auto;
+  border: 2px solid var(--color-white);
+  border-radius: 6px;
+  padding: 5px;
+  background-color: transparent;
+  display: flex;
+  width: 151px;
+  cursor: pointer;
+}
+.login__text {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.login__image {
+  margin-left: 6px;
 }
 
-@media screen and (max-width: 600px) {
-  nav {
-    flex-direction: column;
+@media screen and (max-width: 970px) {
+  .hamburger {
+    display: block;
   }
-  .box {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
+  .login {
+    width: 75px;
   }
-  .box .logo {
-    padding: 0 0.3em;
-  }
-  .box .hamburger-menu {
-    display: flex;
-  }
-  nav ul {
-    flex-direction: column;
-    transition: all 0.5s ease-in-out;
-  }
-  nav .show-menu {
-    display: flex;
-  }
-  nav .hide-menu {
+  .redirection {
     display: none;
   }
-  nav li a {
-    padding: 0.5em 0em;
+  .dropdown {
+    display: flex;
   }
 }
 </style>
