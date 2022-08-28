@@ -21,8 +21,8 @@ export default {
     Footer,
     Clock,
     Days,
-    Goals,
-  },
+    Goals
+  }
 }
 </script>
 

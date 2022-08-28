@@ -1,20 +1,22 @@
 <template>
   <div class="clock">
-    <div class="date-time">{{ currentDate }} | {{ timer }}{{ clock() }}</div>
+    <div class="date-time">
+      {{ currentDate }} | {{ timer }}{{ clock() }}
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Clock',
-  data() {
+  data () {
     return {
       currentDate: new Date().toDateString(),
-      timer: '',
+      timer: ''
     }
   },
   methods: {
-    clock() {
+    clock () {
       let h = new Date().getHours()
       let m = new Date().getMinutes()
       let session = 'am'
@@ -27,8 +29,8 @@ export default {
       const formatedText = h + ':' + m + session
       this.timer = formatedText
       setTimeout(this.clock, 1000)
-    },
-  },
+    }
+  }
 }
 </script>
 
