@@ -1,11 +1,15 @@
 <template>
   <div class="goals-container">
-    <h1 class="heading">Today</h1>
-    <h1 class="no-of-goals">0/2</h1>
+    <h1 class="heading">
+      Today
+    </h1>
+    <h1 class="no-of-goals">
+      0/2
+    </h1>
     <div class="goals">
       <div class="goals-item">
         <div class="goals-task">
-          <input id="checkbox1" type="checkbox" />
+          <input id="checkbox1" type="checkbox">
           <label for="checkbox1">
             <div class="tick">&#10004;</div>
           </label>
@@ -19,14 +23,13 @@
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
-          >
-          </iframe>
+          />
         </div>
-        <img src="~/assets/swaraj.png" alt="userpic" />
+        <img src="~/assets/swaraj.png" alt="userpic">
       </div>
       <div class="goals-item">
         <div class="goals-task">
-          <input id="checkbox2" type="checkbox" />
+          <input id="checkbox2" type="checkbox">
           <label for="checkbox2">
             <div class="tick">&#10004;</div>
           </label>
@@ -40,7 +43,7 @@
 
 <script>
 export default {
-  name: 'Goal',
+  name: 'Goal'
 }
 </script>
 
