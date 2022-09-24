@@ -19,8 +19,6 @@ SETTINGS_PRODUCTION = 'django_jsonapi.settings.production'
 SETTINGS_DEVELOPMENT = 'django_jsonapi.settings.development'
 SETTINGS_TESTING = 'django_jsonapi.settings.testing'
 
-# Changing DJANGO PORT,
-
 
 def main():
     """Run administrative tasks."""
@@ -37,6 +35,7 @@ def main():
         os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                               SETTINGS_DEVELOPMENT)
 
+    # Changing DJANGO PORT
     runserver.default_port = settings.__getattr__('PORT')
 
     try:
