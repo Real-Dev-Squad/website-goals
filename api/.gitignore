@@ -138,5 +138,8 @@ GitHub.sublime-settings
 .history
 
 
+# Ignoring .env file
+django_jsonapi/.env
+
 # Ignore local setting file
 django_jsonapi/settings/local.py
