@@ -10,4 +10,4 @@
 8. Update the "Root Directory" to `/api` and add "Start Command" as `python manage.py && gunicorn django_jsonapi.wsgi`.
 9. Click on "Generate Domain" and add that hostname to `HOSTS` env variable under the "Variables" tab.
 For example - `HOSTS=goals-api.railway.app`
-10. Goto the generate domain and access the backend
+10. Goto the generated domain and access the backend
