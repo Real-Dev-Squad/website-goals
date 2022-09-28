@@ -1,8 +1,8 @@
 from .base import *
 
 # Over writing settings from base with development settings
-
-SECRET_KEY = env('SECRET_KEY')
+ 
+SECRET_KEY = 'django-insecure-y1d7md7iv_si3qrf7r_&3yk&hjhn+ytkv%=0ge3onj81!)v38u'
 
 PORT = env('PORT')
 
