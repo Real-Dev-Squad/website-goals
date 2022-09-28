@@ -9,6 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Settings
 
+SECRET_KEY = 'secret_key'
+
 PORT = 5000
 
 DEBUG = True
