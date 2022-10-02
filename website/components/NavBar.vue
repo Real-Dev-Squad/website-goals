@@ -48,7 +48,7 @@
 import { LINKS } from '../utils/constants'
 
 export default {
-  name: 'Navbar',
+  name: 'NavBar',
   data () {
     return {
       isClicked: false,
