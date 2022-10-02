@@ -1,8 +1,20 @@
 <template>
   <div>
+    <NavBar />
     <Nuxt />
   </div>
 </template>
+
+<script>
+import NavBar from '../components/NavBar.vue'
+
+export default {
+  name: 'DefaultLayout',
+  components: {
+    NavBar
+  }
+}
+</script>
 
 <style>
 html {
@@ -24,18 +36,22 @@ html {
   margin: 0;
   padding: 0;
 }
+
 :root {
   --nav-primary: #1d1283;
   --nav-secondary: #49a82e;
   --color-white: #ffffff;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 li {
   list-style: none;
 }
+
 button {
   color: inherit;
 }
