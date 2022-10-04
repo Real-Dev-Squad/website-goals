@@ -27,6 +27,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  color: var(--text-color);
 }
 
 *,
@@ -41,6 +42,14 @@ html {
   --nav-primary: #1d1283;
   --nav-secondary: #49a82e;
   --color-white: #ffffff;
+
+  --base: #ffffff;
+  --base--dark: #f6f6f6;
+  --primary-color: #1d1283;
+  --secondary-color: #e20665;
+
+  --text-color: #2a2e34;
+  --text-color--light: rgb(119, 119, 119);
 }
 
 a {
@@ -50,6 +59,14 @@ a {
 
 li {
   list-style: none;
+}
+
+input {
+  color: inherit;
+}
+
+select {
+  color: inherit;
 }
 
 button {
