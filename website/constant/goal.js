@@ -12,6 +12,6 @@ export const GOAL_STATUS = {
 
 export const DEFAULT_GOAL = {
   title: '',
-  type: '',
+  type: GOAL_TYPE.SHORT_TERM.type,
   status: GOAL_STATUS.ONGOING.type
 }

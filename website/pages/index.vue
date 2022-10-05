@@ -1,20 +1,22 @@
 <template>
   <div>
     <ul class="goals">
-      <GoalTabVue v-for="goal in goals" :key="goal.id" :goal="goal" />
-      <GoalTabVue :goal="DEFAULT_GOAL" @goal-added="addGoal" />
+      <GoalTabViewVue v-for="goal in goals" :key="goal.id" :goal="goal" />
+      <GoalTabAddVue :goal="DEFAULT_GOAL" @goal-added="addGoal" />
     </ul>
   </div>
 </template>
 
 <script>
-import GoalTabVue from '../components/GoalTab.vue'
+import GoalTabAddVue from '../components/GoalTabAdd.vue'
+import GoalTabViewVue from '../components/GoalTabView.vue'
 import { DEFAULT_GOAL } from '../constant/goal'
 
 export default {
   name: 'HomePage',
   components: {
-    GoalTabVue
+    GoalTabAddVue,
+    GoalTabViewVue
   },
   data () {
     return {
@@ -36,7 +38,8 @@ export default {
 
 <style scoped>
 .goals {
-  padding: 0 40px;
+  margin: 0 40px;
+  box-shadow: rgba(81, 81, 81, 0.35) 0px 5px 15px;
 }
 
 </style>

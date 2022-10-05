@@ -45,7 +45,9 @@ html {
 
   --base: #ffffff;
   --base--dark: #f6f6f6;
+
   --primary-color: #1d1283;
+  --primary-color--light: #5f51dd;
   --secondary-color: #e20665;
 
   --text-color: #2a2e34;
@@ -61,15 +63,26 @@ li {
   list-style: none;
 }
 
-input {
+input,
+select,
+button {
   color: inherit;
+  background-color: inherit;
+}
+
+input::placeholder {
+  color: var(--text-color--light);
+}
+
+select:focus,
+input:focus {
+  outline: none;
 }
 
 select {
-  color: inherit;
-}
-
-button {
-  color: inherit;
+  padding: 4px;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
 }
 </style>

@@ -79,6 +79,8 @@ export default {
   },
   methods: {
     handleSubmit () {
+      if (!this.form.title) { return }
+
       const goal = {
         title: this.form.title,
         type: this.form.type,
@@ -94,14 +96,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .goal-form {
   display: flex;
   align-items: center;
   border-radius: 2px;
   overflow: hidden;
-  margin: 1px;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  background-color: var(--base);
+}
+
+.goal-form:focus-within {
+  outline: 1px solid var(--primary-color--light);
 }
 
 .title {
@@ -114,18 +119,21 @@ export default {
   border: 0;
 }
 
-.title__field:focus {
-  outline: none;
-}
-
-select {
-  padding: 10px;
-  appearance: none;
-  background-color: var(--base--dark);
-  border: 0;
+.title__field:hover {
+  color: var(--primary-color--light);
 }
 
 select:hover {
   color: var(--secondary-color);
+}
+
+.type {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.status {
+  padding: 10px;
+  cursor: pointer;
 }
 </style>
