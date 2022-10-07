@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { GOAL_TYPE, GOAL_STATUS, DEFAULT_GOAL } from '../constant/goal'
+import { GOAL_TYPE, GOAL_STATUS } from '../constant/goal'
 
 export default {
   name: 'GoalTab',
@@ -76,20 +76,6 @@ export default {
   },
   mounted () {
     this.$store.dispatch('users/fetchUsers')
-  },
-  methods: {
-    handleSubmit () {
-      const goal = {
-        title: this.form.title,
-        type: this.form.type,
-        status: this.form.status
-      }
-
-      this.$emit('goal-added', goal)
-      this.form.title = DEFAULT_GOAL.title
-      this.form.type = DEFAULT_GOAL.type
-      this.form.status = DEFAULT_GOAL.status
-    }
   }
 }
 </script>

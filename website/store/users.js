@@ -24,7 +24,8 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchUsers: ({ commit }) => {
+  fetchUsers: ({ commit, state }) => {
+    if (state.list.length) { return }
     const baseURL = `${URL.BASE_RDS}/members`
 
     fetch(baseURL)

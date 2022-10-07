@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     addGoal (goal) {
-      this.$store.commit('goals/add', goal)
+      this.$store.dispatch('goals/addGoal', goal)
     }
   }
 }

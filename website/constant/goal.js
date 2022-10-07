@@ -15,3 +15,7 @@ export const DEFAULT_GOAL = {
   type: GOAL_TYPE.SHORT_TERM.type,
   status: GOAL_STATUS.ONGOING.type
 }
+
+export const ERROR_MESSAGE = {
+  GOAL_ID_NOT_FOUND: 'Goal id not found'
+}
