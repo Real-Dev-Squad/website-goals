@@ -1,9 +1,12 @@
 import { expect, it, describe } from 'vitest'
+import { spy } from 'sinon'
+
 import { ERROR_MESSAGE } from '../../../constant/goal'
-import { mutations } from '../../../store/goals'
+import { mutations, actions } from '../../../store/goals'
 import { DEFAULT_GOAL_MOCK, COMPLETED_GOAL_MOCK } from '../../fixture/goal.mock'
 
 const { add, remove } = mutations
+const { addGoal } = actions
 
 describe('Store/goals', () => {
   describe('mutation/add', () => {
@@ -32,6 +35,7 @@ describe('Store/goals', () => {
 
       expect(state.list).to.be.length(0)
     })
+
     it('should throw error on invalid goal id', () => {
       const state = { list: [COMPLETED_GOAL_MOCK] }
 
@@ -39,5 +43,27 @@ describe('Store/goals', () => {
 
       expect(removeWrapper).toThrow(new Error(ERROR_MESSAGE.GOAL_ID_NOT_FOUND))
     })
+  })
+
+  describe('action/addGoal', () => {
+    it('should commit goal data', () => {
+      const commit = spy()
+
+      addGoal({ commit }, COMPLETED_GOAL_MOCK)
+
+      expect(commit.callCount).to.be.eql(1)
+    })
+
+    it('should commit correct goal data', () => {
+      const commit = spy()
+
+      addGoal({ commit }, COMPLETED_GOAL_MOCK)
+
+      expect(commit.args).to.deep.equal([
+        ['add', COMPLETED_GOAL_MOCK]
+      ])
+    })
+
+    it.todo('should not commit goal data with empty title')
   })
 })

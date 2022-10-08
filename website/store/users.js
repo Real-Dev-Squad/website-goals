@@ -1,4 +1,4 @@
-import { URL } from '../constant/url'
+import userGateway from '../gateway/user.gateway'
 
 export const state = () => ({
   list: []
@@ -12,7 +12,7 @@ export const mutations = {
         roles: user.roles || {},
         username: user.username,
         firstName: user.first_name,
-        lastName: user.last_same,
+        lastName: user.last_name,
         githubDisplayName: user.github_display_name,
         picture: {
           publicId: user.picture?.publicId,
@@ -26,11 +26,10 @@ export const mutations = {
 export const actions = {
   fetchUsers: ({ commit, state }) => {
     if (state.list.length) { return }
-    const baseURL = `${URL.BASE_RDS}/members`
 
-    fetch(baseURL)
-      .then(res => res.json())
-      .then(res => commit('setUserData', res.members))
+    userGateway
+      .getUsers()
+      .then(members => commit('setUserData', members))
       .catch(e => console.error(e))
   }
 }
