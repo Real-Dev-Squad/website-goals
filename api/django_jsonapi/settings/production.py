@@ -8,7 +8,9 @@ PORT = env('PORT')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['.realdevsquad.com']
+DEFAULT_ALLOWED_HOSTS_STRING = '.realdevsquad.com'
+
+ALLOWED_HOSTS = env('ALLOWED_HOSTS',default=DEFAULT_ALLOWED_HOSTS_STRING).split(' ')
 
 DATABASES = {
     'default': {

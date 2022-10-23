@@ -2,13 +2,13 @@ from .base import *
 
 # Over writing settings from base with development settings
  
-SECRET_KEY = 'django-insecure-y1d7md7iv_si3qrf7r_&3yk&hjhn+ytkv%=0ge3onj81!)v38u'
+SECRET_KEY = 'SECRET_KEY'
 
 PORT = env('PORT')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.realdevsquad.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.realdevsquad.com']
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -27,4 +27,4 @@ try:
     from .local import *
 except ImportError:
     print('"local.py" NOT-FOUND, Please create it in "django_jsonapi/settings" folder')
-    pass
+    

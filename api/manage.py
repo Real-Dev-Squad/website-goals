@@ -4,16 +4,15 @@ from django.conf import settings
 from django.core.management.commands.runserver import Command as runserver
 import os
 import sys
-import environ
+from dotenv import load_dotenv
 
-env = environ.Env(
-    # set casting, default value
-    DJANGO_ENV=(str, 'DEVELOPMENT')
-)
+load_dotenv()
+
 
 # Defining constants
 DJANGO_ENV = 'DJANGO_ENV'
 PRODUCTION = 'PRODUCTION'
+DEVELOPMENT = 'DEVELOPMENT'
 TESTING = 'TESTING'
 SETTINGS_PRODUCTION = 'django_jsonapi.settings.production'
 SETTINGS_DEVELOPMENT = 'django_jsonapi.settings.development'
@@ -23,18 +22,19 @@ SETTINGS_TESTING = 'django_jsonapi.settings.testing'
 def main():
     """Run administrative tasks."""
 
-    django_env = env(DJANGO_ENV).upper()
+    django_env = os.getenv('DJANGO_ENV', DEVELOPMENT).upper() 
+    
+    # Setting it to DEVELOPMENT
+    django_settings_module = SETTINGS_DEVELOPMENT
 
     if (django_env == PRODUCTION):
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              SETTINGS_PRODUCTION)
+        django_settings_module = SETTINGS_PRODUCTION
     elif (django_env == TESTING):
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              SETTINGS_TESTING)
-    else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              SETTINGS_DEVELOPMENT)
-
+        django_settings_module = SETTINGS_TESTING
+    
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                              django_settings_module)
+    
     # Changing DJANGO PORT
     runserver.default_port = settings.__getattr__('PORT')
 
