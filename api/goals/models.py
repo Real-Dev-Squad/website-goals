@@ -1,11 +1,15 @@
+from datetime import datetime
+from email.policy import default
 from django.db import models
+
 
 class Goal(models.Model):
     goalType = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    createdAt = models.DateTimeField('date published')
+    createdAt = models.DateTimeField('date published', auto_now=True)
     createdBy = models.CharField(max_length=50)
+
 
 class UserGoal(models.Model):
     userId = models.CharField(max_length=50)
