@@ -2,7 +2,7 @@ from .base import *
 
 # Over writing settings from base with development settings
  
-SECRET_KEY = 'SECRET_KEY'
+SECRET_KEY = env('SECRET_KEY', default='$_SECRET_KEY_$')
 
 PORT = env('PORT')
 
