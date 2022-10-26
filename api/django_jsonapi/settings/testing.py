@@ -6,7 +6,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 PORT = env('PORT')
 
-DEBUG = True
+DEBUG = env('DEBUG', default=False)
 
 ALLOWED_HOSTS = ['localhost', '.realdevsquad.com']
 
