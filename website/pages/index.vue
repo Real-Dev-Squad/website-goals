@@ -1,52 +1,45 @@
 <template>
-  <div id="layout">
-    <Navbar />
-    <Clock />
-    <Days />
-    <Goals />
-    <h1>Work In Progress</h1>
-    <Footer />
+  <div>
+    <ul class="goals">
+      <GoalTabViewVue v-for="goal in goals" :key="goal.id" :goal="goal" />
+      <GoalTabAddVue :goal="DEFAULT_GOAL" @goal-added="addGoal" />
+    </ul>
   </div>
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue'
-import Clock from '../components/Clock.vue'
-import Days from '../components/Days.vue'
-import Goals from '../components/Goals.vue'
-import Footer from '../components/Footer.vue'
+import GoalTabAddVue from '../components/GoalTabAdd.vue'
+import GoalTabViewVue from '../components/GoalTabView.vue'
+import { DEFAULT_GOAL } from '../constant/goal'
+
 export default {
+  name: 'HomePage',
   components: {
-    Navbar,
-    Footer,
-    Clock,
-    Days,
-    Goals
+    GoalTabAddVue,
+    GoalTabViewVue
+  },
+  data () {
+    return {
+      DEFAULT_GOAL
+    }
+  },
+  computed: {
+    goals () {
+      return this.$store.state.goals.list
+    }
+  },
+  methods: {
+    addGoal (goal) {
+      this.$store.dispatch('goals/addGoal', goal)
+    }
   }
 }
 </script>
 
 <style scoped>
-#layout {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  box-sizing: border-box;
-  background-color: #e5e5e5;
+.goals {
+  margin: 0 40px;
+  box-shadow: rgba(81, 81, 81, 0.35) 0px 5px 15px;
 }
-h1 {
-  font-family: 'Nunito', sans-serif;
-  font-size: 99px;
-  line-height: 100px;
-  text-align: center;
-  letter-spacing: 0.1em;
-  color: #ffffff;
-  text-shadow: 0px 4px 4px #041187;
-  margin: 450px 0 200px 0;
-}
-@media screen and (max-width: 600px) {
-  h1 {
-    display: none;
-  }
-}
+
 </style>
