@@ -13,7 +13,8 @@ export const GOAL_STATUS = {
 export const DEFAULT_GOAL = {
   title: '',
   type: GOAL_TYPE.SHORT_TERM.type,
-  status: GOAL_STATUS.ONGOING.type
+  status: GOAL_STATUS.ONGOING.type,
+  assignees: []
 }
 
 export const ERROR_MESSAGE = {
