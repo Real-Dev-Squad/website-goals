@@ -29,7 +29,6 @@ describe('Store/users', () => {
 
   describe('action/fetchUsers', () => {
     let commit
-
     beforeEach(() => {
       commit = spy()
     })
@@ -37,7 +36,6 @@ describe('Store/users', () => {
     afterEach(() => {
       restore()
     })
-
     it('should fetch user data and commit it', async () => {
       const stubbedGetUsers = stub(userGateway, 'getUsers').resolves([NORMAL_USER])
       const state = { list: [] }
