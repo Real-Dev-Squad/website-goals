@@ -4,6 +4,36 @@
 - You can check for any **unassigned** [issues](https://github.com/Real-Dev-Squad/website-goals/issues) and **comment** on that issue that you'd like to get that issue assigned to you. (Remember: Do not work on issues assigned to someone else and do not work on any issue without having it assigned to you.)
 - Create issue if you see any bug and then once you get approved from the admins, you can assign yourself and start working on it.
 
+# File Structure
+
+```
+📦website-goals
+ ┣ 📂api                Here API specific to Website-goals resides
+ ┣ 📂website            Here code specific to Website-goals resides
+ ┃ ┣ 📂assets
+ ┃ ┣ 📂components
+ ┃ ┣ 📂constant
+ ┃ ┣ 📂gateway
+ ┃ ┣ 📂Layouts
+ ┃ ┣ 📂pages
+ ┃ ┣ 📂static
+ ┃ ┣ 📂store
+ ┃ ┣ 📂test
+ ┃ ┣ 📂utils
+ ┃ ┣ 📜.babelrc
+ ┃ ┣ 📜.editorconfig
+ ┃ ┣ 📜.eslintrc.js
+ ┃ ┣ 📜.gitignore
+ ┃ ┣ 📜CONTRIBUTING.md
+ ┃ ┣ 📜LICENSE
+ ┃ ┣ 📜 nuxt.config.js
+ ┃ ┣ 📜package.json
+ ┃ ┣ 📜README.md
+ ┃ ┣ 📜yarn.lock
+ ┣ CONTRIBUTING.md      Contains information for contributing to the repository
+ ┣ 📜README.md         README file for the repository
+```
+
 # How can you make a **Pull Request** (PR)
 
 **Note**: Steps 1, 2 and 3 are **one-time** steps required for setup. If you have already cloned the repo and added upstream, consider following this documentation from step 4.
