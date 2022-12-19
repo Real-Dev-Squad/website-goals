@@ -47,12 +47,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 INSTALLED_APPS = [
     'goals.apps.GoalsConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authCustom.apps.AuthcustomConfig',
+    'rest_framework_json_api'
 ]
 
 MIDDLEWARE = [
