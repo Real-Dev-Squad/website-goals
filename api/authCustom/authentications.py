@@ -3,6 +3,14 @@ from rest_framework import authentication
 from rest_framework import exceptions
 
 
+class UserAuthenticationExtender():
+    def __init__(self, key, userId, created):
+        self.key = key 
+        self.userId  = userId
+        self.created = created
+        self.is_authenticated = True
+
+
 class TokenCustomAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
         try:
@@ -19,4 +27,5 @@ class TokenCustomAuthentication(authentication.BaseAuthentication):
             raise exceptions.AuthenticationFailed(
                 'Token is expired or invalid')
 
-        return ({"userId": token.userId, "token": token.key, "created": token.created, "is_authenticated": True}, None)
+        user = UserAuthenticationExtender(token.key, token.userId, token.created)
+        return (user, None)

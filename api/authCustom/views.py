@@ -1,11 +1,11 @@
 from rest_framework.decorators import api_view, parser_classes, permission_classes, authentication_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
 
 from .models import Token_Custom
 from .authentications import TokenCustomAuthentication
-from .permissions import IsAuthenticated
 
 from pathlib import Path
 import environ
