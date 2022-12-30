@@ -1,46 +1,30 @@
 <template>
-  <form class="goal-form" @submit.prevent="handleSubmit">
-    <select id="goal-status" v-model="form.status" class="status">
-      <option
-        selected
-        disabled
-        hidden
-        default
-        value=""
-        class="status__default"
-      >
-        Status
-      </option>
-      <option v-for="option in options.status" :key="option.type" :value="option.type" class="status__option">
-        {{ option.text }}
-      </option>
-    </select>
-    <div class="title">
-      <input v-model="form.title" name="title" placeholder="Add task" class="title__field">
-    </div>
-    <select id="goal-type" v-model="form.type" class="type">
-      <option
-        selected
-        disabled
-        hidden
-        default
-        value=""
-        class="type__default"
-      >
-        Goal Type
-      </option>
-      <option v-for="option in options.type" :key="option.type" :value="option.type" class="type__option">
-        {{ option.text }}
-      </option>
-    </select>
-  </form>
+  <v-form @keyup.native.enter="handleSubmit">
+    <v-container>
+      <v-row>
+        <v-col cols="12" md="9">
+          <v-text-field v-model="form.title" label="Title" required />
+        </v-col>
+        <v-col cols="6" md="1">
+          <PopupAssigneeVue v-model="form.assignees" />
+        </v-col>
+        <v-col cols="6" md="2">
+          <v-select v-model="form.type" :items="options.type" label="Type" required />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-form>
 </template>
 
 <script>
 import { GOAL_TYPE, GOAL_STATUS, DEFAULT_GOAL } from '../constant/goal'
+import PopupAssigneeVue from './PopupAssignee.vue'
 
 export default {
-  name: 'GoalTab',
+  name: 'GoalTabAdd',
+  components: {
+    PopupAssigneeVue
+  },
   props: {
     goal: {
       type: Object,
@@ -53,7 +37,8 @@ export default {
       form: {
         title: this.goal.title,
         type: this.goal.type,
-        status: this.goal.status
+        status: this.goal.status,
+        assignees: this.goal.assignees
       },
       options: {
         type: [
@@ -74,9 +59,6 @@ export default {
       return this.$store.state.users.list
     }
   },
-  mounted () {
-    this.$store.dispatch('users/fetchUsers')
-  },
   methods: {
     handleSubmit () {
       if (!this.form.title) { return }
@@ -91,49 +73,11 @@ export default {
       this.form.title = DEFAULT_GOAL.title
       this.form.type = DEFAULT_GOAL.type
       this.form.status = DEFAULT_GOAL.status
+      this.form.assignees = DEFAULT_GOAL.assignees
     }
   }
 }
 </script>
 
 <style scoped>
-.goal-form {
-  display: flex;
-  align-items: center;
-  border-radius: 2px;
-  overflow: hidden;
-  background-color: var(--base);
-}
-
-.goal-form:focus-within {
-  outline: 1px solid var(--primary-color--light);
-}
-
-.title {
-  flex-grow: 1;
-}
-
-.title__field {
-  padding: 10px;
-  width: 100%;
-  border: 0;
-}
-
-.title__field:hover {
-  color: var(--primary-color--light);
-}
-
-select:hover {
-  color: var(--secondary-color);
-}
-
-.type {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.status {
-  padding: 10px;
-  cursor: pointer;
-}
 </style>

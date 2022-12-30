@@ -1,36 +1,23 @@
 <template>
-  <nav class="navbar">
-    <button class="hamburger" @click="toggleClicked(isClicked)">
-      <div class="hamburger__bar" />
-      <div class="hamburger__bar" />
-      <div class="hamburger__bar" />
-    </button>
-
+  <v-app-bar
+    elevation="0"
+    color="var(--nav-primary)"
+    app
+  >
     <ul class="redirection">
-      <li>
-        <a href="https://realdevsquad.com/" class="redirection__option--logo">
-          <img
-            src="~/assets/Real-Dev-Squad@1x.png"
-            alt="Real Dev Squad logo"
-            width="50px"
-            height="50px"
-          >
-        </a>
-      </li>
+      <a href="https://realdevsquad.com/" class="redirection__option--logo">
+        <img
+          src="~/assets/Real-Dev-Squad@1x.png"
+          alt="Real Dev Squad logo"
+          width="50px"
+          height="50px"
+        >
+      </a>
       <li v-for="item in LINKS" :key="item.name">
         <a :href="item.link" class="redirection__option">{{ item.name }}</a>
       </li>
     </ul>
-
-    <ul class="dropdown" :class="{ 'dropdown--open': isClicked }">
-      <li>
-        <a href="https://realdevsquad.com/" class="dropdown__option">Home</a>
-      </li>
-      <li v-for="item in LINKS" :key="item.name">
-        <a :href="item.link" class="dropdown__option">{{ item.name }}</a>
-      </li>
-    </ul>
-
+    <v-spacer />
     <button class="login" @click="redirectLogin()">
       <span class="login__text">Sign In With GitHub</span>
       <img
@@ -41,7 +28,7 @@
         width="15px"
       >
     </button>
-  </nav>
+  </v-app-bar>
 </template>
 
 <script>
@@ -74,70 +61,28 @@ export default {
 </script>
 
 <style scoped>
-.navbar {
-  height: 73px;
-  display: flex;
-  align-items: center;
-  background-color: var(--nav-primary);
-  color: var(--color-white);
-  position: sticky;
-  transform-style: preserve-3d;
-  padding: 0 20px;
-  top: 0;
-  z-index: 1;
-}
-.hamburger {
-  display: none;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
-}
-.hamburger__bar {
-  height: 3px;
-  width: 25px;
-  margin: 5px 0;
-  background-color: var(--color-white);
-}
 .redirection {
   display: flex;
   align-items: center;
+  padding: 0;
+  font: 700 16px Roboto,sans-serif;
 }
 .redirection__option {
-  padding: 19px 16px;
+  color: var(--color-white);
+  padding: 0 16px;
   margin: 0 10px;
   border-radius: 10px;
 }
 .redirection__option--logo {
   margin-right: 20px;
+  padding: 0;
 }
 .redirection__option:hover {
   color: var(--nav-secondary);
 }
-.dropdown {
-  position: absolute;
-  transform: translateZ(-10px);
-  display: none;
-  flex-direction: column;
-  bottom: 0;
-  left: 0;
-  transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
-  background-color: var(--color-white);
-  color: var(--nav-primary);
-  width: 100%;
-}
-.dropdown--open {
-  transform: translateY(100%);
-}
-.dropdown__option {
-  padding: 10px 40px;
-  margin: 10px;
-  display: block;
-}
-.dropdown__option:hover {
-  color: var(--nav-secondary);
-}
 .login {
-  margin-left: auto;
+  color: var(--color-white);
+  font: 400 13px Roboto,sans-serif;
   border: 2px solid var(--color-white);
   border-radius: 6px;
   padding: 5px;
@@ -152,20 +97,5 @@ export default {
 }
 .login__image {
   margin-left: 6px;
-}
-
-@media screen and (max-width: 970px) {
-  .hamburger {
-    display: block;
-  }
-  .login {
-    width: 75px;
-  }
-  .redirection {
-    display: none;
-  }
-  .dropdown {
-    display: flex;
-  }
 }
 </style>

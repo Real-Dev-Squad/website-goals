@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <v-app>
     <NavBar />
-    <Nuxt />
-  </div>
+    <v-main>
+      <v-container fluid>
+        <Nuxt />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -77,12 +81,5 @@ input::placeholder {
 select:focus,
 input:focus {
   outline: none;
-}
-
-select {
-  padding: 4px;
-  appearance: none;
-  background-color: transparent;
-  border: 0;
 }
 </style>
