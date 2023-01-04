@@ -48,7 +48,7 @@ class AuthenticateTest(APITestCase):
 
     def test_auth_with_wrong_cookie(self):
         _request = self.factory.get('authToken/auth')
-        _request.COOKIES['goal-site-session'] = self.token.key + "1"
+        _request.COOKIES['goal-site-session'] = self.token.auth_token + "1"
         _response = Authenticated(_request)
         self.assertEqual(
             _response.data[0]["detail"].title(), "Token Is Expired Or Invalid")
@@ -60,7 +60,7 @@ class AuthenticateTest(APITestCase):
         time = get_previous_month_date(time)
         Token_Custom.objects.filter(
             userId=self.token.userId).update(created=time)
-        _request.COOKIES['goal-site-session'] = self.token.key
+        _request.COOKIES['goal-site-session'] = self.token.auth_token
         _response = Authenticated(_request)
         self.assertEqual(
             _response.data[0]["detail"].title(), "Token Is Expired Or Invalid")
@@ -68,7 +68,7 @@ class AuthenticateTest(APITestCase):
 
     def test_auth_with_cookie(self):
         _request = self.factory.get('authToken/auth')
-        _request.COOKIES['goal-site-session'] = self.token.key
+        _request.COOKIES['goal-site-session'] = self.token.auth_token
         _response = Authenticated(_request)
         self.assertEqual(_response.data, "Hello World")
         self.assertEqual(_response.status_code, 200)

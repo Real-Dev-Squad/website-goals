@@ -4,9 +4,9 @@ from rest_framework import exceptions
 
 
 class UserAuthenticationExtender():
-    def __init__(self, key, userId, created):
-        self.key = key 
-        self.userId  = userId
+    def __init__(self, auth_token, userId, created):
+        self.auth_token = auth_token
+        self.userId = userId
         self.created = created
         self.is_authenticated = True
 
@@ -19,7 +19,7 @@ class TokenCustomAuthentication(authentication.BaseAuthentication):
             return None
 
         try:
-            token = Token_Custom.objects.get(key=goal_token)
+            token = Token_Custom.objects.get(auth_token=goal_token)
             if token.is_invalid(token.created.timestamp()):
                 raise exceptions.AuthenticationFailed(
                     "Token is expired or invalid")
@@ -27,5 +27,6 @@ class TokenCustomAuthentication(authentication.BaseAuthentication):
             raise exceptions.AuthenticationFailed(
                 'Token is expired or invalid')
 
-        user = UserAuthenticationExtender(token.key, token.userId, token.created)
+        user = UserAuthenticationExtender(
+            token.auth_token, token.userId, token.created)
         return (user, None)
