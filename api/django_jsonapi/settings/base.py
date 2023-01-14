@@ -47,12 +47,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 INSTALLED_APPS = [
     'goals.apps.GoalsConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authCustom.apps.AuthcustomConfig',
+    'rest_framework_json_api'
 ]
 
 MIDDLEWARE = [
@@ -170,6 +173,7 @@ REST_FRAMEWORK = {
     'SEARCH_PARAM': 'filter[search]',
     'TEST_REQUEST_RENDERER_CLASSES': (
         'rest_framework_json_api.renderers.JSONRenderer',
+        "rest_framework.renderers.JSONRenderer"
     ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'vnd.api+json'
 }
