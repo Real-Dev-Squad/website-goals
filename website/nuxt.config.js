@@ -22,6 +22,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/jsonapi-vuex.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,16 +38,24 @@ export default {
   googleFonts: {
     families: {
       'Saira Semi Condensed': [600, 800],
-      Roboto: [700],
-      'Helvetica Neue': [500]
+      'Helvetica Neue': [500],
+      Roboto: [700]
+    }
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: process.env.GOAL_SERVICE_URL
     }
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ['jsonapi-vuex']
   }
 }

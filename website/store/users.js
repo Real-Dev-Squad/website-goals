@@ -1,5 +1,3 @@
-import userGateway from '../gateway/user.gateway'
-
 export const state = () => ({
   list: []
 })
@@ -29,11 +27,10 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchUsers: ({ commit, state }) => {
+  async fetchUsers ({ commit, state }) {
     if (state.list.length) { return }
 
-    userGateway
-      .getUsers()
-      .then(members => commit('setUserData', members))
+    const res = await this.$axios.$get('https://api.realdevsquad.com/members')
+    commit('setUserData', res.members)
   }
 }
