@@ -1,23 +1,58 @@
-import { ERROR_MESSAGE } from '../constant/goal'
+import { FETCH_POLICY } from "../constant/dataLayer";
 
 export const state = () => ({
-  list: []
+  goals: {
+    byId: {},         // Goal actual data mapped to their ID
+    allIds: {
+      valid: false,
+      loading: false,
+      data: [],
+    },
+  },
 })
 
 export const mutations = {
-  add (state, goal) {
-    state.list.push(goal)
+  replaceByIds (state, goalsMappedById) {
+    state.goals.byId = goalsMappedById;
+    const allIds = Object.keys(goalsMappedById);
+    state.goals.allIds.data = allIds;
+    state.goals.allIds.valid = true;
   },
-  remove (state, goalId) {
-    const indexOfGoal = state.list.findIndex(goal => goal.id === goalId)
-    if (indexOfGoal === -1) { throw new Error(ERROR_MESSAGE.GOAL_ID_NOT_FOUND) }
-    state.list.splice(indexOfGoal, 1)
+  setAllIdsFetching (state, isLoading) {
+    state.goals.allIds.loading = isLoading;
   }
 }
 
 export const actions = {
-  addGoal ({ commit }, goal) {
-    // POST request here
+  add ({ commit }, goal) {
     commit('add', goal)
+  },
+  async fetchAll({ 
+    commit, 
+    dispatch, 
+    state 
+  }, options) {
+    const adjustedOptions = { 
+      fetchPolicy: FETCH_POLICY.CACHE_FIRST,
+      ...options,
+    }
+
+    if (adjustedOptions.fetchPolicy === FETCH_POLICY.CACHE_FIRST && state.goals.allIds.valid === true) return;
+    if (state.goals.allIds.loading === true) return;
+    const goalsMappedById = dispatch('jv/get', 'goal/', { root: true });
+    commit('setAllIdsFetching', true)
+    commit('replaceByIds', await goalsMappedById);
+    commit('setAllIdsFetching', false);
+  },
+}
+
+export const getters = {
+  getGoalList (state) {
+    const list = state.goals.allIds.data.map(id => state.goals.byId[id]);
+    return list;
+  },
+  getGoalById: (state) => (id) => {
+    const goal = state.goals.byId[id];
+    return goal;
   }
 }
