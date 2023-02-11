@@ -20,16 +20,11 @@ export default {
       DEFAULT_GOAL
     }
   },
-  computed: {
-    goals () {
-      return this.$store.state.goals.list
-    }
-  },
   methods: {
     addGoal (goal) {
       this.$store.dispatch('goals/addGoal', goal)
     }
-  }
+  },
 }
 </script>
 
