@@ -32,7 +32,7 @@ export default {
     },
     forInput: {
       type: String,
-      default: 'for'
+      required: true
     },
     isRequired: {
       type: Boolean,

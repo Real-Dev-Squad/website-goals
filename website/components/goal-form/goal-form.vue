@@ -11,7 +11,6 @@
         placeholder="eg: Testing setup for dashboard"
         is-autofocus="true"
       />
-
       <InputField
         label="Task Name:"
         for-input="task-name"
@@ -41,7 +40,7 @@
         :is-required="true"
         name="user-role"
         input-class="input notEditing user-role"
-        :options="options"
+        :options="usernameCategoryOptions"
       />
       <InputField
         id="username"
@@ -62,7 +61,7 @@
         :is-required="true"
         name="priority"
         input-class="input notEditing priority"
-        :options="options2"
+        :options="goalPriorityOptions"
       />
       <SelectOption
         v-model="selectedOption"
@@ -71,7 +70,7 @@
         :is-required="true"
         name="type"
         input-class="input notEditing type"
-        :options="options2"
+        :options="goalTypeOptions"
       />
       <InputField
         id="due-date"
@@ -96,12 +95,12 @@
         placeholder="eg: ankush"
         :is-autofocus="true"
       />
-      <InputField
+      <SubmitButton
         id="submit"
-        input-class="submit"
+        input-class="submitBtn"
         type="submit"
         name="submit"
-        value="Submit"
+        label="Submit"
       />
     </form>
   </div>
@@ -110,16 +109,18 @@
 <script>
 import InputField from './../reusable/input-field.vue'
 import SelectOption from './../reusable/select-option.vue'
+import SubmitButton from './../reusable/submit-button.vue'
 
 export default {
   name: 'GoalForm',
   components: {
     InputField,
-    SelectOption
+    SelectOption,
+    SubmitButton
   },
   data () {
     return {
-      options: [
+      usernameCategoryOptions: [
         { label: 'Select a category', value: 'select' },
         { label: 'MEMBER', value: 'member' },
         { label: 'ADMIN', value: 'admin' },
@@ -128,11 +129,18 @@ export default {
         { label: 'NEWCOMER', value: 'newcomer' },
         { label: 'DESIGNER', value: 'designer' }
       ],
-      options2: [
+      goalPriorityOptions: [
         { label: 'Select the priority', value: 'select' },
         { label: 'HIGH', value: 'high' },
         { label: 'MEDIUM', value: 'medium' },
         { label: 'LOW', value: 'low' }
+      ],
+      goalTypeOptions: [
+        { label: 'Select the type', value: 'select' },
+        { label: 'BUG', value: 'bug' },
+        { label: 'FEATURE', value: 'feature' },
+        { label: 'DOCUMENTATION', value: 'documentation' },
+        { label: 'TESTING', value: 'testing' }
       ]
     }
   },
@@ -142,12 +150,11 @@ export default {
 <style>
 :root {
   --color-white: #fff;
-  --color-black: #000;
   --color-gray: #666;
   --color-gray-light: #f4f4f4;
   --color-rgba-black-065: rgba(0, 0, 0, 0.65);
-  --color-rgba-black-007: rgba(0, 0, 0, 0.07);
   --color-blue: #7171fd;
+  --color-blue-hover: #3535ba;
   --color-red: red;
 }
 
@@ -167,19 +174,15 @@ export default {
   margin-bottom: 1em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
 }
 
-.inputBox label {
+label {
   font-size: 1rem;
   font-weight: 700;
-  width: 100%;
   text-align: left;
-  position: relative;
 }
 
-.inputBox input {
+.input {
   padding: 1em;
   border: 1px solid var(--color-gray);
   border-radius: 5px;
@@ -187,29 +190,22 @@ export default {
 }
 
 ::placeholder {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .submitBtn {
   font-size: 1rem;
   padding: 1em 0.5em;
-  outline: 0;
-  box-shadow: var(--color-rgba-black-007) 0 1px 1px,
-    var(--color-rgba-black-007) 0 2px 2px, var(--color-rgba-black-007) 0 4px 4px,
-    var(--color-rgba-black-007) 0 8px 8px,
-    var(--color-rgba-black-007) 0 16px 16px;
-}
-
-.submit {
+  width: 100%;
   background-color: var(--color-blue);
   color: var(--color-white);
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.submit:hover {
-  background-color: var(--color-blue);
-  color: var(--color-white);
+.submitBtn:hover {
   opacity: 0.8;
+  background-color: var(--color-blue-hover);
 }
 
 .required {
@@ -225,39 +221,19 @@ export default {
   border-radius: 5px;
 }
 
-#isNoteworthy {
-  width: auto;
-}
-
 .notEditing {
   display: none;
 }
 .edit-button {
-  width: fit-content;
-  height: fit-content;
   font-size: 0.9rem;
   opacity: 60%;
   right: 5px;
   cursor: pointer;
-  display: block;
   transition: opacity ease 0.25s;
   padding: 0.3125rem 0.625rem 0.3125rem 0rem;
 }
 
-.inputBox .preview {
-  font-size: 0.875em;
-  font-weight: 400;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  width: 80%;
-  position: relative;
-  overflow: hidden;
-}
-
-.edit-button:hover {
-  opacity: 100%;
-}
-
+.edit-button:hover,
 .edit-button.edit-button__active {
   opacity: 100%;
 }

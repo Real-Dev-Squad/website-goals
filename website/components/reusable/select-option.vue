@@ -18,6 +18,8 @@
         v-for="option in options"
         :key="option.value"
         :value="option.value"
+        :selected="option.value === selectedOption"
+        :disabled="option.value === disabledOption"
       >
         {{ option.label }}
       </option>
@@ -62,7 +64,8 @@ export default {
   },
   data () {
     return {
-      selectedOption: this.value
+      selectedOption: this.options[0].value,
+      disabledOption: this.options[0].value
     }
   },
   methods: {

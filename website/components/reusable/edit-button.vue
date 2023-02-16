@@ -21,10 +21,8 @@ export default {
     editBtn () {
       const input = event.target.nextElementSibling
       event.target.classList.toggle('edit-button__active')
-
       input.classList.toggle('notEditing')
     }
   }
 }
-
 </script>
