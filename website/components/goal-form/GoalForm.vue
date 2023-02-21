@@ -1,6 +1,9 @@
 <template>
-  <div class="container loaderContainer">
-    <form action="" class="goal-form">
+  <div class="container ">
+    <form action="">
+      <h2 class="text-center">
+        Create a New Goal
+      </h2>
       <InputField
         id="task-name"
         label="Goal Title"
@@ -79,9 +82,9 @@
 </template>
 
 <script>
-import InputField from './../reusable/input-field.vue'
-import SelectOption from './../reusable/select-option.vue'
-import SubmitButton from './../reusable/submit-button.vue'
+import InputField from '../reusable/InputField.vue'
+import SelectOption from '../reusable/SelectOption.vue'
+import SubmitButton from '../reusable/Buttons.vue'
 
 export default {
   name: 'GoalForm',
@@ -94,29 +97,12 @@ export default {
     usernameCategoryOptions: ['Select a user role', 'MEMBER', 'ADMIN', 'DEVELOPER', 'TESTER', 'NEWCOMER', 'DESIGNER'],
     goalPriorityOptions: ['Select the priority', 'HIGH', 'MEDIUM', 'LOW'],
     goalTypeOptions: ['Select the type', 'BUG', 'FEATURE', 'DOCUMENTATION', 'TESTING']
-  }),
-  methods: {}
+  })
 }
 </script>
 <style>
-:root {
-  --color-gray: #666;
-  --color-rgba-black-065: rgba(0, 0, 0, 0.65);
-}
-
-.goal-form {
-  width: 60vw;
-  max-width: 40rem;
-  min-width: 18.75rem;
-  margin: 0 auto;
-  padding: 1em 1.5em;
-  border: 1px solid var(--color-gray-light);
-  border-radius: 10px;
-  box-shadow: 0 0 15px -7px var(--color-rgba-black-065);
-}
 label {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--color-rgba-black-065);
 }
 </style>
