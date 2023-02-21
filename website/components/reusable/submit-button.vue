@@ -1,16 +1,14 @@
 <template>
-  <div class="inputBox">
-    <button
-      :id="inputId"
-      :class="inputClass"
-      :type="type"
-      :name="name"
-    >
-      {{ label }}
-    </button>
-  </div>
+  <v-btn
+    :id="buttonId"
+    block
+    :type="type"
+    :name="name"
+    :color="color"
+  >
+    {{ label }}
+  </v-btn>
 </template>
-
 <script>
 export default {
   name: 'SubmitButton',
@@ -18,10 +16,6 @@ export default {
     label: {
       type: String,
       required: true
-    },
-    inputClass: {
-      type: String,
-      default: 'input'
     },
     type: {
       type: String,
@@ -31,9 +25,13 @@ export default {
       type: String,
       required: true
     },
-    inputId: {
+    buttonId: {
       type: String,
-      default: 'input'
+      default: 'button'
+    },
+    color: {
+      type: String,
+      default: 'primary'
     }
   }
 }

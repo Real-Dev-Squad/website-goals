@@ -1,46 +1,23 @@
 <template>
-  <div class="inputBox">
-    <label :for="forInput">
-      {{ label }}
-      <span class="required"> *</span>
-    </label>
-    <EditButton />
-    <input
-      :id="inputId"
-      :required="isRequired"
-      :class="inputClass"
-      :type="type"
-      :name="name"
-      :placeholder="placeholder"
-      :autofocus="isAutofocus"
-    >
-  </div>
+  <v-text-field
+    :id="inputId"
+    :label="label"
+    :type="type"
+    :name="name"
+    :placeholder="placeholder"
+  />
 </template>
 
 <script>
-import EditButton from './../reusable/edit-button.vue'
 
 export default {
   name: 'InputField',
   components: {
-    EditButton
   },
   props: {
     label: {
       type: String,
       required: true
-    },
-    forInput: {
-      type: String,
-      required: true
-    },
-    isRequired: {
-      type: Boolean,
-      default: true
-    },
-    inputClass: {
-      type: String,
-      default: 'input'
     },
     type: {
       type: String,
@@ -53,10 +30,6 @@ export default {
     placeholder: {
       type: String,
       default: ''
-    },
-    isAutofocus: {
-      type: Boolean,
-      default: true
     },
     inputId: {
       type: String,
