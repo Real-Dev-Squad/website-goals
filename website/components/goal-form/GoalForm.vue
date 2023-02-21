@@ -29,48 +29,54 @@
         required
         placeholder="Comma separated links"
       />
-      <SelectOption
-        label="User Role"
-        name="user-role"
-        required
-        :options="usernameCategoryOptions"
-      />
-      <InputField
-        id="username"
-        label="Username"
-        type="text"
-        name="username"
-        required
-        placeholder="eg: sahsisunny"
-      />
-      <SelectOption
-        label="Priority"
-        name="priority"
-        required
-        :options="goalPriorityOptions"
-      />
-      <SelectOption
-        label="Type"
-        name="type"
-        required
-        :options="goalTypeOptions"
-      />
-      <InputField
-        id="due-date"
-        label="Due Date"
-        type="date"
-        name="due-date"
-        required
-        placeholder="eg: 2020-01-01"
-      />
-      <InputField
-        id="assignee"
-        label="Assignee"
-        type="text"
-        name="assignee"
-        required
-        placeholder="eg: ankush"
-      />
+      <div class="input-container">
+        <SelectOption
+          label="User Role"
+          name="user-role"
+          required
+          :options="usernameCategoryOptions"
+        />
+        <InputField
+          id="username"
+          label="Username"
+          type="text"
+          name="username"
+          required
+          placeholder="eg: sahsisunny"
+        />
+      </div>
+      <div class="input-container">
+        <SelectOption
+          label="Priority"
+          name="priority"
+          required
+          :options="goalPriorityOptions"
+        />
+        <SelectOption
+          label="Type"
+          name="type"
+          required
+          :options="goalTypeOptions"
+        />
+      </div>
+      <div class="input-container">
+        <InputField
+          id="due-date"
+          label="Due Date"
+          type="date"
+          name="due-date"
+          required
+          placeholder="eg: 2020-01-01"
+        />
+        <InputField
+          id="assignee"
+          label="Assignee"
+          type="text"
+          name="assignee"
+          required
+          placeholder="eg: ankush"
+        />
+      </div>
       <SubmitButton
         id="submit"
         type="submit"
@@ -101,6 +107,20 @@ export default {
 }
 </script>
 <style>
+.container {
+  padding: 2rem;
+}
+.input-container {
+  display: flex;
+}
+.input-container > *:first-child {
+  margin-right: 2rem;
+  width: 100%;
+}
+.input-container > *:last-child {
+  width: 100%;
+}
+
 label {
   font-size: 1.2rem;
   font-weight: 600;
