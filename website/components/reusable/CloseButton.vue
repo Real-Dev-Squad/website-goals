@@ -1,37 +1,33 @@
 <template>
   <v-btn
-    :id="buttonId"
-    block
-    :type="type"
     :name="name"
     :color="color"
+    icon
+    @click="close"
   >
     {{ label }}
   </v-btn>
 </template>
 <script>
 export default {
-  name: 'ReusableButton',
+  name: 'CloseButton',
   props: {
     label: {
       type: String,
       required: true
     },
-    type: {
-      type: String,
-      default: 'button'
-    },
     name: {
       type: String,
       required: true
     },
-    buttonId: {
-      type: String,
-      default: 'button'
-    },
     color: {
       type: String,
       default: 'primary'
+    }
+  },
+  methods: {
+    close () {
+      this.$emit('close')
     }
   }
 }

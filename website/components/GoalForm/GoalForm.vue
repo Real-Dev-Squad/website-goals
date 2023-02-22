@@ -77,7 +77,7 @@
           placeholder="eg: ankush"
         />
       </div>
-      <SubmitButton
+      <ReusableButton
         id="submit"
         type="submit"
         name="submit"
@@ -90,14 +90,14 @@
 <script>
 import InputField from '../reusable/InputField.vue'
 import SelectOption from '../reusable/SelectOption.vue'
-import SubmitButton from '../reusable/Buttons.vue'
+import ReusableButton from '../reusable/Buttons.vue'
 
 export default {
   name: 'GoalForm',
   components: {
     InputField,
     SelectOption,
-    SubmitButton
+    ReusableButton
   },
   data: () => ({
     usernameCategoryOptions: ['Select a user role', 'MEMBER', 'ADMIN', 'DEVELOPER', 'TESTER', 'NEWCOMER', 'DESIGNER'],
@@ -108,7 +108,7 @@ export default {
 </script>
 <style>
 .container {
-  padding: 2rem;
+  padding: 0 2rem 2rem;
 }
 .input-container {
   display: flex;

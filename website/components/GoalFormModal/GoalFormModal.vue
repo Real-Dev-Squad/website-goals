@@ -15,6 +15,13 @@
         </v-btn>
       </template>
       <v-card>
+        <div class="d-flex justify-end">
+          <CloseButton
+            label="x"
+            name="close"
+            @close="dialog = false"
+          />
+        </div>
         <GoalForm />
       </v-card>
     </v-dialog>
@@ -22,11 +29,13 @@
 </template>
 
 <script>
-import GoalForm from './../../components/goal-form/GoalForm.vue'
+import GoalForm from './../../components/GoalForm/GoalForm.vue'
+import CloseButton from './../../components/reusable/CloseButton.vue'
 export default {
   name: 'GoalFormModal',
   components: {
-    GoalForm
+    GoalForm,
+    CloseButton
   },
   data () {
     return {
