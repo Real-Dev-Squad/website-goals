@@ -1,19 +1,19 @@
 <template>
   <div class="container ">
-    <form action="">
+    <v-form>
       <h2 class="text-center">
         Create a New Goal
       </h2>
-      <InputField
+      <v-text-field
         id="task-name"
         label="Goal Title"
         type="text"
         name="task-name"
-        required
         placeholder="eg: Testing setup for dashboard"
         autofocus
+        required
       />
-      <InputField
+      <v-text-field
         id="title"
         label="Task Name"
         type="text"
@@ -21,46 +21,14 @@
         required
         placeholder="eg: Testing setup for dashboard"
       />
-      <InputField
-        id="links"
-        label="Links"
-        type="text"
-        name="links"
-        required
-        placeholder="Comma separated links"
+      <v-textarea
+        name="input-7-1"
+        label="Description"
+        placeholder="Description of the task"
+        value=""
       />
       <div class="input-container">
-        <SelectOption
-          label="User Role"
-          name="user-role"
-          required
-          :options="usernameCategoryOptions"
-        />
-        <InputField
-          id="username"
-          label="Username"
-          type="text"
-          name="username"
-          required
-          placeholder="eg: sahsisunny"
-        />
-      </div>
-      <div class="input-container">
-        <SelectOption
-          label="Priority"
-          name="priority"
-          required
-          :options="goalPriorityOptions"
-        />
-        <SelectOption
-          label="Type"
-          name="type"
-          required
-          :options="goalTypeOptions"
-        />
-      </div>
-      <div class="input-container">
-        <InputField
+        <v-text-field
           id="due-date"
           label="Due Date"
           type="date"
@@ -68,42 +36,28 @@
           required
           placeholder="eg: 2020-01-01"
         />
-        <InputField
-          id="assignee"
-          label="Assignee"
-          type="text"
-          name="assignee"
-          required
-          placeholder="eg: ankush"
-        />
+        <PopupAssigneeVue />
       </div>
-      <ReusableButton
+      <v-btn
         id="submit"
+        block
         type="submit"
-        name="submit"
-        label="Submit"
-      />
-    </form>
+        color="primary"
+      >
+        Submit
+      </v-btn>
+    </v-form>
   </div>
 </template>
 
 <script>
-import InputField from '../reusable/InputField.vue'
-import SelectOption from '../reusable/SelectOption.vue'
-import ReusableButton from '../reusable/Buttons.vue'
+import PopupAssigneeVue from '../PopupAssignee.vue'
 
 export default {
   name: 'GoalForm',
   components: {
-    InputField,
-    SelectOption,
-    ReusableButton
-  },
-  data: () => ({
-    usernameCategoryOptions: ['Select a user role', 'MEMBER', 'ADMIN', 'DEVELOPER', 'TESTER', 'NEWCOMER', 'DESIGNER'],
-    goalPriorityOptions: ['Select the priority', 'HIGH', 'MEDIUM', 'LOW'],
-    goalTypeOptions: ['Select the type', 'BUG', 'FEATURE', 'DOCUMENTATION', 'TESTING']
-  })
+    PopupAssigneeVue
+  }
 }
 </script>
 <style>
