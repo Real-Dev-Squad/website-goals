@@ -1,5 +1,5 @@
 <template>
-  <div class="container ">
+  <v-container class="container">
     <v-form>
       <h2 class="text-center">
         Create a New Goal
@@ -19,7 +19,6 @@
         type="text"
         name="title"
         :rules="[required]"
-
         placeholder="eg: Testing setup for dashboard"
       />
       <v-textarea
@@ -28,16 +27,20 @@
         placeholder="Description of the goal..."
         value=""
       />
-      <div class="input-container">
-        <v-text-field
-          id="due-date"
-          label="Due Date*"
-          type="date"
-          name="due-date"
-          :rules="[required]"
-        />
-        <PopupAssigneeVue />
-      </div>
+      <v-row>
+        <v-col cols="12" sm="6">
+          <v-text-field
+            id="due-date"
+            label="Due Date*"
+            type="date"
+            name="due-date"
+            :rules="[required]"
+          />
+        </v-col>
+        <v-col cols="12" sm="6">
+          <PopupAssigneeVue />
+        </v-col>
+      </v-row>
       <v-btn
         id="submit"
         block
@@ -47,7 +50,7 @@
         Submit
       </v-btn>
     </v-form>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -68,16 +71,6 @@ export default {
 <style scoped>
 .container {
   padding: 0 2rem 2rem;
-}
-.input-container {
-  display: flex;
-}
-.input-container > *:first-child {
-  margin-right: 2rem;
-  width: 100%;
-}
-.input-container > *:last-child {
-  width: 100%;
 }
 
 </style>
