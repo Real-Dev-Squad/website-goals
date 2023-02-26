@@ -6,35 +6,35 @@
       </h2>
       <v-text-field
         id="task-name"
-        label="Goal Title"
+        label="Goal Title*"
         type="text"
         name="task-name"
         placeholder="eg: Testing setup for dashboard"
         autofocus
-        required
+        :rules="[required]"
       />
       <v-text-field
         id="title"
-        label="Task Name"
+        label="Task Name*"
         type="text"
         name="title"
-        required
+        :rules="[required]"
+
         placeholder="eg: Testing setup for dashboard"
       />
       <v-textarea
         name="input-7-1"
         label="Description"
-        placeholder="Description of the task"
+        placeholder="Description of the goal..."
         value=""
       />
       <div class="input-container">
         <v-text-field
           id="due-date"
-          label="Due Date"
+          label="Due Date*"
           type="date"
           name="due-date"
-          required
-          placeholder="eg: 2020-01-01"
+          :rules="[required]"
         />
         <PopupAssigneeVue />
       </div>
@@ -57,6 +57,11 @@ export default {
   name: 'GoalForm',
   components: {
     PopupAssigneeVue
+  },
+  methods: {
+    required (value) {
+      return !!value || 'Required.'
+    }
   }
 }
 </script>
@@ -75,8 +80,4 @@ export default {
   width: 100%;
 }
 
-label {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
 </style>
