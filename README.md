@@ -1,27 +1,34 @@
-# Website Goals
+# goals-site
 
-This projects aims to help client to keep track of his daily, weekly and monthly goals on dashboard.
+## Setup
 
-Client can create his own goals with setting the deadlines and work on it. Once the task is done, client can mark the work as done, till then the task will be in pending list just like old school To-do list.
+Please install `yarn` and `volta`
 
-Website admins will be able to see your progress, they can also assign task to you.
+[Why Volta?](https://docs.volta.sh/guide/#why-volta)
 
-This will help you keeping yourself accountable and finish your tasks within the deadline.
+To install Volta, please follow the [process](https://docs.volta.sh/guide/getting-started)
 
-Visit our site at https://goals.realdevsquad.com/
+```bash
+> Setup [avoiding CORS](https://github.com/Real-Dev-Squad/docs/tree/main/docs/dev/https-dev-url-cors)
 
-<hr/>
+# install dependencies
+$ yarn 
 
-## Tech Stack used
+# Confirm correct configuration setup 
+$ yarn validate-setup
 
-Python, VueJS, nuxtJS
+# run dev serve on dev.realdevsquad.com (follow https setup instructions)
+$ yarn dev
 
-<hr/>
+# serve with hot reload at localhost:3443 only
+$ yarn dev:nuxt
 
-## How to get started
+# build for production and launch server
+$ yarn build
+$ yarn start
 
-- Make sure you have node installed on your computer.
-- Go through the issues and comment on the issue you want to work on to get yourself assigned.
-- Read the [issue](https://github.com/Real-Dev-Squad/website-goals/issues) description and raise the PR.
-- For contributing follow this [CONTRIBRUTING.md](./website/CONTRIBUTING.md)
-- If you need any other help, feel free to ping on the #goals-site-vue channel at discord.
+# generate static project
+$ yarn generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

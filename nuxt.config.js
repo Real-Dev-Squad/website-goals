@@ -51,11 +51,23 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/sentry'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['jsonapi-vuex']
+  },
+
+  sentry: {
+    dsn: process.env.SENTRY_DSN,
+    tracing: {
+      tracesSampleRate: 1.0,
+      browserTracing: {},
+      vueOptions: {
+        trackComponents: true
+      }
+    }
   }
 }
