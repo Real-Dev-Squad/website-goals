@@ -1,34 +1,42 @@
-# goals-site
+# Nuxt 3 Minimal Starter
+
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
 
-Please install `yarn` and `volta`
-
-[Why Volta?](https://docs.volta.sh/guide/#why-volta)
-
-To install Volta, please follow the [process](https://docs.volta.sh/guide/getting-started)
+Make sure to install the dependencies:
 
 ```bash
-> Setup [avoiding CORS](https://github.com/Real-Dev-Squad/docs/tree/main/docs/dev/https-dev-url-cors)
+# yarn
+yarn install
 
-# install dependencies
-$ yarn 
+# npm
+npm install
 
-# Confirm correct configuration setup 
-$ yarn validate-setup
-
-# run dev serve on dev.realdevsquad.com (follow https setup instructions)
-$ yarn dev
-
-# serve with hot reload at localhost:3443 only
-$ yarn dev:nuxt
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+# pnpm
+pnpm install
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Development Server
+
+Start the development server on `http://localhost:3000`
+
+```bash
+npm run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+npm run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
