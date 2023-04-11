@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { GOAL_TYPE, GOAL_STATUS } from '../constant/goal'
+import { GOAL_TYPE, GOAL_STATUS } from '~/constants/goal'
 
 export default {
   name: 'GoalTab',
@@ -71,11 +71,11 @@ export default {
   },
   computed: {
     users () {
-      return this.$store.state.users.list
+      // return this.$store.state.users.list
     }
   },
   mounted () {
-    this.$store.dispatch('users/fetchUsers')
+    // this.$store.dispatch('users/fetchUsers')
   }
 }
 </script>

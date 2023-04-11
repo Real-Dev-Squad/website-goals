@@ -56,15 +56,15 @@ export default {
   },
   computed: {
     users () {
-      return this.$store.state.users.list.map((user) => {
-        const name = `${user.firstName} ${user.lastName}`
-        return {
-          id: user.id,
-          name,
-          avatar: user.picture.url,
-          initials: name.trim().toUpperCase().split(' ', 2).map(str => str.charAt(0)).join('')
-        }
-      })
+      // return this.$store.state.users.list.map((user) => {
+      //   const name = `${user.firstName} ${user.lastName}`
+      //   return {
+      //     id: user.id,
+      //     name,
+      //     avatar: user.picture.url,
+      //     initials: name.trim().toUpperCase().split(' ', 2).map(str => str.charAt(0)).join('')
+      //   }
+      // })
     }
   },
   watch: {
@@ -76,7 +76,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('users/fetchUsers')
+    // this.$store.dispatch('users/fetchUsers')
   }
 }
 </script>
