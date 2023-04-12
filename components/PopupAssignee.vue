@@ -65,6 +65,7 @@ export default {
       //     initials: name.trim().toUpperCase().split(' ', 2).map(str => str.charAt(0)).join('')
       //   }
       // })
+      return []
     }
   },
   watch: {
