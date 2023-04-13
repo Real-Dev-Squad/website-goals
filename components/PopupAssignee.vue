@@ -1,29 +1,13 @@
 <template>
-  <v-autocomplete
-    v-model="localAssignees"
-    :items="users"
-    color="blue-grey lighten-2"
-    label="Assignee"
-    item-text="name"
-    item-value="id"
-    multiple
-    auto-select-first
-    append-icon=""
-  >
+  <v-autocomplete v-model="localAssignees" :items="users" color="blue-grey lighten-2" label="Assignee" item-text="name"
+    item-value="id" multiple auto-select-first append-icon="">
     <template #selection="data">
       <v-tooltip bottom>
         <template #activator="{ on, attrs }">
-          <v-avatar v-if="data.item.avatar" v-bind="attrs" size="28" class="avatar" v-on="on">
+          <v-avatar v-if="data.item.avatar" v-bind="attrs" size="28" class="avatar">
             <v-img :src="data.item.avatar" />
           </v-avatar>
-          <v-avatar
-            v-else
-            v-bind="attrs"
-            size="28"
-            class="avatar"
-            color="indigo"
-            v-on="on"
-          >
+          <v-avatar v-else v-bind="attrs" size="28" class="avatar" color="indigo">
             <span class="white--text text-body-5"> {{ data.item.initials }} </span>
           </v-avatar>
         </template>
@@ -33,13 +17,14 @@
     </template>
 
     <template #item="data">
-      <v-list-item-avatar color="indigo">
-        <img v-if="data.item.avatar" :src="data.item.avatar">
-        <span v-else class="white--text text-h5"> {{ data.item.initials }} </span>
-      </v-list-item-avatar>
-      <v-list-item-content>
+      <v-list-item>
+        <v-avatar color="indigo">
+          <img v-if="data.item.avatar" :src="data.item.avatar">
+          <span v-else class="white--text text-h5"> {{ data.item.initials }} </span>
+        </v-avatar>
+
         <v-list-item-title class="assignee__select-text" v-html="data.item.name" />
-      </v-list-item-content>
+      </v-list-item>
     </template>
   </v-autocomplete>
 </template>
@@ -48,14 +33,14 @@
 export default {
   name: 'PopupAssignee',
   props: ['assignee'],
-  data () {
+  data() {
     return {
       localAssignees: this.assignee,
       name: 'Assignees'
     }
   },
   computed: {
-    users () {
+    users() {
       // return this.$store.state.users.list.map((user) => {
       //   const name = `${user.firstName} ${user.lastName}`
       //   return {
@@ -70,13 +55,13 @@ export default {
   },
   watch: {
     localAssignees: {
-      handler (newValue) {
+      handler(newValue) {
         this.$emit('input', newValue)
       },
       deep: true
     }
   },
-  mounted () {
+  mounted() {
     // this.$store.dispatch('users/fetchUsers')
   }
 }
