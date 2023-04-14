@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import { GOAL_TYPE, GOAL_STATUS, DEFAULT_GOAL } from '../constant/goal'
-import PopupAssigneeVue from './PopupAssignee.vue'
+import { GOAL_TYPE, GOAL_STATUS, DEFAULT_GOAL } from '~/constants/goal'
+import PopupAssigneeVue from '~/components/PopupAssignee.vue'
 
 export default {
   name: 'GoalTabAdd',
@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     users () {
-      return this.$store.state.users.list
+      // return this.$store.state.users.list
     }
   },
   methods: {

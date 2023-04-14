@@ -9,7 +9,7 @@
 
 <script>
 import GoalTabAddVue from '../components/GoalTabAdd.vue'
-import { DEFAULT_GOAL } from '../constant/goal'
+import { DEFAULT_GOAL } from '../constants/goal'
 import GoalFormModal from './../components/GoalFormModal/GoalFormModal.vue'
 
 export default {
@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     addGoal (goal) {
-      this.$store.dispatch('goals/addGoal', goal)
     }
   }
 }

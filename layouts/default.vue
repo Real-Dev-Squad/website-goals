@@ -3,15 +3,14 @@
     <NavBar />
     <v-main>
       <v-container fluid>
-        <Nuxt />
+        <slot />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import NavBar from '../components/NavBar.vue'
-
+import NavBar from '~/components/NavBar.vue';
 export default {
   name: 'DefaultLayout',
   components: {
