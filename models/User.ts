@@ -1,17 +1,20 @@
 import { Model, useRepo } from 'pinia-orm';
+import { UserGoal } from '~/models/UserGoal';
 
-class User extends Model {
+export class User extends Model {
   static entity = 'users'
 
   static fields() {
     return {
-      id: this.uid(),
+      id: this.attr(null),
       username: this.string(''),
       firstName: this.string(''),
       lastName: this.string(''),
       githubDisplayName: this.string(''),
       githubId: this.attr(null),
       avatarUrl: this.string(''),
+
+      userGoals: this.hasMany(UserGoal, 'userId'),
     }
   }
 
