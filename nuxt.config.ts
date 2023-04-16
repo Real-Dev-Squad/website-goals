@@ -4,6 +4,7 @@ import vuetify from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   typescript: {
     shim: false,
+    strict: true,
   },
   css: ['vuetify/styles'],
   build: {
