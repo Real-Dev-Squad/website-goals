@@ -1,7 +1,7 @@
 import { Model, useRepo } from 'pinia-orm';
 
 export class UserGoal extends Model {
-  static entity = 'UserGoals'
+  static entity = 'usergoals'
 
   static fields() {
     return {
@@ -18,12 +18,14 @@ export class UserGoal extends Model {
   }
 
   declare id: string
-  declare userId: string
   declare startsOn: string
   declare endsOn: string
   declare precentageCompleted: number
   declare assignedBy: string
   declare status: string
+
+  declare userId: string
+  declare goalId: string
 }
 
 export const userGoalRepo = useRepo(UserGoal)

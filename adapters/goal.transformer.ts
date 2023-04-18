@@ -10,12 +10,14 @@ export const transformUserGoalFromApi = (userGoal: any): UserGoal => {
   const attributes = userGoal.attributes;
   return {
     id: userGoal.id,
-    userId: attributes.userId,
     startsOn: attributes.startsOn,
     endsOn: attributes.endsOn,
     percentageCompleted: attributes.percentageCompleted,
     assignedBy: attributes.assignedBy,
     status: attributes.status,
+    
+    userId: attributes.userId,
+    goalId: userGoal.relationships.goal.data.id,
   }
 }
 
