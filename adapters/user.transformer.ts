@@ -1,10 +1,10 @@
 
-import { User } from "~/interfaces/User";
+import { type User } from '~/interfaces/User'
 
-export const transformUsers = (users: any): Array<User> => {
+export const transformUsers = (users: any): User[] => {
   const filteredUsers = users
-    .filter((user: any) => user.incompleteUserDetails === false)    // Filter by profile completion
-  return filteredUsers.map((user: any) => transformUser(user));
+    .filter((user: any) => user.incompleteUserDetails === false) // Filter by profile completion
+  return filteredUsers.map((user: any) => transformUser(user))
 }
 
 export const transformUser = (user: any): User => {
@@ -15,6 +15,6 @@ export const transformUser = (user: any): User => {
     lastName: user.last_name,
     githubDisplayName: user.github_display_name,
     githubId: user.github_id,
-    avatarUrl: user.picture?.url,
+    avatarUrl: user.picture?.url
   }
 }

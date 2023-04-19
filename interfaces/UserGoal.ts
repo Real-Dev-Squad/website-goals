@@ -1,11 +1,11 @@
 export interface UserGoal {
-  id: string,
-  startsOn: string,
-  endsOn: string,
-  percentageCompleted: number,
-  assignedBy: string,
-  status: string,
+  id: string
+  startsOn: string
+  endsOn: string
+  percentageCompleted: number
+  assignedBy: string
+  status: string
 
-  userId: string,
-  goalId: string,
+  userId: string
+  goalId: string
 }

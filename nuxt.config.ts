@@ -4,11 +4,11 @@ import vuetify from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   typescript: {
     shim: false,
-    strict: true,
+    strict: true
   },
   css: ['vuetify/styles'],
   build: {
-    transpile: ["vuetify"]
+    transpile: ['vuetify']
   },
   modules: [
     'nuxt-icon',
@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   ],
   vite: {
     ssr: {
-      noExternal: ['vuetify'],
+      noExternal: ['vuetify']
     }
   },
   pinia: {
@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       // automatically imports `defineStore`
       'defineStore', // import { defineStore } from 'pinia'
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
-      ['useRepo', 'usePinaRepo'],
-    ],
-  },
+      ['useRepo', 'usePinaRepo']
+    ]
+  }
 })

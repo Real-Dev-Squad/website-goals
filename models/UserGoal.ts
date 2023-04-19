@@ -1,9 +1,9 @@
-import { Model, useRepo } from 'pinia-orm';
+import { Model, useRepo } from 'pinia-orm'
 
 export class UserGoal extends Model {
   static entity = 'usergoals'
 
-  static fields() {
+  static fields (): any {
     return {
       id: this.attr(null),
       startsOn: this.string(''),
@@ -13,7 +13,7 @@ export class UserGoal extends Model {
       status: this.string(null),
 
       userId: this.attr(null),
-      goalId: this.attr(null),
+      goalId: this.attr(null)
     }
   }
 
