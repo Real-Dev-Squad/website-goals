@@ -2,10 +2,9 @@ import { defineStore } from "pinia";
 import * as goalAdapter from "~/adapters/goal";
 import { goalRepo } from "~/models/Goal";
 import { userGoalRepo } from "~/models/UserGoal";
-import { userRepo } from "~/models/User";
 
 export const useGoalsStore = defineStore({
-  id: 'user-store',
+  id: 'goal-store',
   state: () => ({
     isLoading: false,
     isValid: false,
