@@ -4,7 +4,7 @@ import { UserGoal } from '~/models/UserGoal'
 export class Goal extends Model {
   static entity = 'goals'
 
-  static fields () {
+  static fields (): any {
     return {
       id: this.attr(null),
       goalType: this.string(null),
