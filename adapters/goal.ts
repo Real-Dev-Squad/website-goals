@@ -1,26 +1,26 @@
-import axios from "axios";
-import * as goalAdapter from './goal.transformer';
-import { Goal } from "~/interfaces/Goal";
-import { UserGoal } from "~/interfaces/UserGoal";
+import axios from 'axios'
+import * as goalAdapter from './goal.transformer'
+import { type Goal } from '~/interfaces/Goal'
+import { type UserGoal } from '~/interfaces/UserGoal'
 
 export const fetchGoals = async () => {
-  const goals: Array<Goal> = await axios
+  const goals: Goal[] = await axios
     .get('https://website-goals-production-5d0a.up.railway.app/goal/')
     .then(res => goalAdapter.transformGoalsFromApi(res.data.data))
     .catch(error => {
-      throw new Error(error);
+      throw new Error(error)
     })
 
-  return goals;
+  return goals
 }
 
 export const fetchUserGoals = async () => {
-  const userGoals: Array<UserGoal> = await axios
-  .get('https://website-goals-production-5d0a.up.railway.app/usergoal/')
-  .then(res => goalAdapter.transformUserGoalsFromApi(res.data.data))
-  .catch(error => {
-    throw new Error(error);
-  })
+  const userGoals: UserGoal[] = await axios
+    .get('https://website-goals-production-5d0a.up.railway.app/usergoal/')
+    .then(res => goalAdapter.transformUserGoalsFromApi(res.data.data))
+    .catch(error => {
+      throw new Error(error)
+    })
 
   return userGoals
 }

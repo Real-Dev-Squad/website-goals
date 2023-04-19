@@ -1,8 +1,8 @@
 export interface Goal {
-  id: string,
-  goalType: string,
-  title: string,
-  description: string,
-  createdAt: string,
-  createdBy: string,
+  id: string
+  goalType: string
+  title: string
+  description: string
+  createdAt: string
+  createdBy: string
 }
