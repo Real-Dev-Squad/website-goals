@@ -21,17 +21,12 @@ function consoleGoals () {
   console.log(goalStore.getGoalDetailList())
 }
 
-// export default {
-//   name: 'TestPage',
-//   data () {
-//   },
-//   methods: {
-//   },
-//   mounted() {
-//     goalStore.fetchGoals();
-//     // userStore.fetchUsers();
-//   }
-// }
+</script>
+
+<script lang="ts">
+export default {
+  name: 'TestPage'
+}
 </script>
 
 <style scoped></style>
