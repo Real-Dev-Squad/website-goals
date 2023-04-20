@@ -68,14 +68,6 @@ export default {
         ]
       }
     }
-  },
-  computed: {
-    users () {
-      // return this.$store.state.users.list
-    }
-  },
-  mounted () {
-    // this.$store.dispatch('users/fetchUsers')
   }
 }
 </script>

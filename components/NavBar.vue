@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { LINKS } from '~/constants/links' 
+import { LINKS } from '~/constants/links'
 
 export default {
   name: 'NavBar',

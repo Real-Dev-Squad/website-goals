@@ -7,6 +7,7 @@
 <script lang="ts" setup>
 import { useGoalsStore } from '../store/goals'
 import { useUsersStore } from '../store/users'
+import { onMounted } from 'vue'
 
 const goalStore = useGoalsStore()
 const userStore = useUsersStore()

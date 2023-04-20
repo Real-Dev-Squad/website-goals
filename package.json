@@ -7,7 +7,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint --fix .",
+    "lint": "eslint --fix . --ext .js,.vue,.ts",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },

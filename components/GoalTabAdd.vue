@@ -1,5 +1,5 @@
 <template>
-  <v-form @keyup.native.enter="handleSubmit">
+  <v-form @submit.prevent="handleSubmit">
     <v-container>
       <v-row>
         <v-col cols="12" md="9">
@@ -52,11 +52,6 @@ export default {
           GOAL_STATUS.PAUSED
         ]
       }
-    }
-  },
-  computed: {
-    users () {
-      // return this.$store.state.users.list
     }
   },
   methods: {
