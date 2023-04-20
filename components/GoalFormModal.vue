@@ -1,29 +1,29 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      width="700px"
-    >
-      <template #activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          v-bind="attrs"
-          v-on="on"
-        >
-          Create a New Goal
-        </v-btn>
-      </template>
+    <v-dialog v-model="show" fullscreen :scrim="false" transition="dialog-bottom-transition">
       <v-card>
-        <div class="d-flex justify-end">
+        <v-toolbar
+          dark
+          color="primary"
+        >
           <v-btn
-            name="close"
-            color="primary"
             icon
-            @click="close"
+            dark
+            @click.stop="show = false"
           >
-            x
+            <v-icon icon="mdi-close"/>
           </v-btn>
-        </div>
+          <v-toolbar-title>Goal Form</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn
+              variant="text"
+              @click="show = false"
+            >
+              Save
+            </v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
         <GoalForm />
       </v-card>
     </v-dialog>
@@ -38,14 +38,17 @@ export default {
   components: {
     GoalForm
   },
-  data () {
-    return {
-      dialog: false
-    }
-  },
-  methods: {
-    close () {
-      this.dialog = false
+  props: ['visible'],
+  computed: {
+    show: {
+      get () {
+        return this.visible
+      },
+      set (value) {
+        if (!value) {
+          this.$emit('close')
+        }
+      }
     }
   }
 }

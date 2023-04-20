@@ -1,18 +1,16 @@
 <template>
   <v-form @submit.prevent="handleSubmit">
-    <v-container>
-      <v-row>
-        <v-col cols="12" md="9">
-          <v-text-field v-model="form.title" label="Title" required />
-        </v-col>
-        <v-col cols="6" md="1">
-          <PopupAssigneeVue v-model="form.assignees" />
-        </v-col>
-        <v-col cols="6" md="2">
-          <v-select v-model="form.type" :items="options.type" label="Type" required />
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-row>
+      <v-col cols="12" md="7">
+        <v-text-field v-model="form.title" label="Title" required />
+      </v-col>
+      <v-col cols="6" md="2">
+        <PopupAssigneeVue v-model="form.assignees" />
+      </v-col>
+      <v-col cols="6" md="3">
+        <v-select v-model="form.type" :items="options.type" label="Type" required />
+      </v-col>
+    </v-row>
   </v-form>
 </template>
 
@@ -74,5 +72,4 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
