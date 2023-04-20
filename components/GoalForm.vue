@@ -69,8 +69,5 @@ export default {
 }
 </script>
 <style scoped>
-.container {
-  padding: 0 2rem 2rem;
-}
 
 </style>
