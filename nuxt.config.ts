@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     shim: false,
     strict: true
   },
-  css: ['vuetify/styles'],
+  css: [
+    'vuetify/styles'
+  ],
   build: {
     transpile: ['vuetify']
   },

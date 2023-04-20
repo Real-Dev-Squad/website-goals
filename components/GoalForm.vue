@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import PopupAssigneeVue from '../PopupAssignee.vue'
+import PopupAssigneeVue from './PopupAssignee.vue'
 
 export default {
   name: 'GoalForm',

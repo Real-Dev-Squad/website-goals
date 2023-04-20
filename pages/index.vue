@@ -1,32 +1,29 @@
 <template>
-  <div>
-    <ul>
-      <GoalTabAddVue :goal="DEFAULT_GOAL" @goal-added="addGoal" />
-      <GoalFormModal />
-    </ul>
-  </div>
+  <v-container>
+    <GoalTabAdd :goal="DEFAULT_GOAL" @goal-added="addGoal" />
+    <v-btn @click="showGoalForm = true" color="primary">Show Goal Modal</v-btn>
+    <GoalFormModal :visible="showGoalForm" @close="showGoalForm = false" />
+  </v-container>
 </template>
 
 <script>
-import GoalTabAddVue from '../components/GoalTabAdd.vue'
-import { DEFAULT_GOAL } from '../constants/goal'
-import GoalFormModal from './../components/GoalFormModal/GoalFormModal.vue'
+import GoalFormModal from '~/components/GoalFormModal.vue'
+import GoalTabAdd from '~/components/GoalTabAdd.vue'
+import { DEFAULT_GOAL } from '~/constants/goal'
 
 export default {
   name: 'HomePage',
-  components: {
-    GoalTabAddVue,
-    GoalFormModal
-  },
   data () {
     return {
-      DEFAULT_GOAL
+      DEFAULT_GOAL,
+      showGoalForm: false
     }
   },
   methods: {
     addGoal (goal) {
     }
-  }
+  },
+  components: { GoalTabAdd, GoalFormModal }
 }
 </script>
 
