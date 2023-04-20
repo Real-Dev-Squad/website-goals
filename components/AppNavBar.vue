@@ -35,7 +35,7 @@
 import { LINKS } from '~/constants/links'
 
 export default {
-  name: 'NavBar',
+  name: 'AppNavBar',
   data () {
     return {
       isClicked: false,

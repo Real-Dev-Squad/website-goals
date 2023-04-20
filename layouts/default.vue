@@ -1,26 +1,31 @@
 <template>
   <v-app>
-    <NavBar />
+    <AppNavBar />
     <v-main>
-      <v-container fluid>
-        <slot />
+      <v-container>
+        <v-row>
+          <v-col cols="2">
+            <AppSideBar />
+          </v-col>
+
+          <v-col>
+            <v-sheet min-height="70vh" rounded="lg">
+              <slot />
+            </v-sheet>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import NavBar from '~/components/NavBar.vue'
 export default {
   name: 'DefaultLayout',
-  components: {
-    NavBar
-  }
 }
 </script>
 
 <style>
-
 :root {
   --nav-primary: #1d1283;
   --nav-secondary: #49a82e;
@@ -45,5 +50,4 @@ a {
 li {
   list-style: none;
 }
-
 </style>
