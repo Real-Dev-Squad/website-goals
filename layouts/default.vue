@@ -1,46 +1,31 @@
 <template>
   <v-app>
-    <NavBar />
+    <AppNavBar />
     <v-main>
-      <v-container fluid>
-        <slot />
+      <v-container>
+        <v-row>
+          <v-col cols="2">
+            <AppSideBar />
+          </v-col>
+
+          <v-col>
+            <v-sheet min-height="70vh" rounded="lg">
+              <slot />
+            </v-sheet>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import NavBar from '~/components/NavBar.vue'
 export default {
-  name: 'DefaultLayout',
-  components: {
-    NavBar
-  }
+  name: 'DefaultLayout'
 }
 </script>
 
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  color: var(--text-color);
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 :root {
   --nav-primary: #1d1283;
   --nav-secondary: #49a82e;
@@ -64,21 +49,5 @@ a {
 
 li {
   list-style: none;
-}
-
-input,
-select,
-button {
-  color: inherit;
-  background-color: inherit;
-}
-
-input::placeholder {
-  color: var(--text-color--light);
-}
-
-select:focus,
-input:focus {
-  outline: none;
 }
 </style>
