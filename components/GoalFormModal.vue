@@ -31,7 +31,8 @@
 </template>
 
 <script>
-import GoalForm from '../GoalForm/GoalForm.vue'
+import GoalForm from './GoalForm.vue'
+
 export default {
   name: 'GoalFormModal',
   components: {
