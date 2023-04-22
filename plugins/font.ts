@@ -1,13 +1,13 @@
-export async function loadFonts () {
+export async function loadFonts (): Promise<void> {
   const webFontLoader = await import(/* webpackChunkName: "webfontloader" */'webfontloader')
 
   webFontLoader.load({
     google: {
-      families: ['Roboto:100,300,400,500,700,900&display=swap'],
-    },
+      families: ['Roboto:100,300,400,500,700,900&display=swap']
+    }
   })
 }
 
-export default defineNuxtPlugin(_ => {
-  if (typeof window !== 'undefined') loadFonts();  
+export default defineNuxtPlugin(async (_) => {
+  if (typeof window !== 'undefined') await loadFonts()
 })
