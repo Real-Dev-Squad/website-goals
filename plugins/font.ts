@@ -9,5 +9,5 @@ export async function loadFonts (): Promise<void> {
 }
 
 export default defineNuxtPlugin(async (_) => {
-  if (typeof window !== 'undefined') await loadFonts()
+  await loadFonts()
 })
