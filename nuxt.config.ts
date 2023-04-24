@@ -21,6 +21,7 @@ export default defineNuxtConfig({
       nuxt.hooks.hook('vite:extendConfig', config => { config.plugins?.push(vuetify()) })
     }
   ],
+  plugins: [{ src: '~/plugins/font.ts', mode: 'client' }],
   vite: {
     ssr: {
       noExternal: ['vuetify']

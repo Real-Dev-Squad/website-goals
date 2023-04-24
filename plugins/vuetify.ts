@@ -1,6 +1,5 @@
-import { createVuetify, ThemeDefinition } from 'vuetify'
+import { createVuetify, type ThemeDefinition } from 'vuetify'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
-
 
 const rdsLightTheme: ThemeDefinition = {
   dark: false,
@@ -15,7 +14,7 @@ const rdsLightTheme: ThemeDefinition = {
     error: '#B00020',
     info: '#2196F3',
     success: '#4CAF50',
-    warning: '#FB8C00',
+    warning: '#FB8C00'
   }
 }
 
@@ -32,7 +31,7 @@ export default defineNuxtPlugin(nuxtApp => {
     theme: {
       defaultTheme: 'rdsLightTheme',
       themes: {
-        rdsLightTheme,
+        rdsLightTheme
       }
     }
   })
