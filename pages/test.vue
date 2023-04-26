@@ -1,6 +1,7 @@
 <template>
   <div>
     <button @click="consoleGoals">Display Goals</button>
+    <div>{{ JSON.stringify(authStore.$state) }}</div>
   </div>
 </template>
 
@@ -21,9 +22,8 @@ onMounted(() => {
 })
 
 function consoleGoals () {
-  console.log(authStore.getSelf())
+  console.log('page', authStore.getAuthState)
 }
-
 </script>
 
 <script lang="ts">

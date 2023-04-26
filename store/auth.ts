@@ -1,17 +1,26 @@
 import { defineStore } from 'pinia'
 import * as authAdapter from '~/adapters/auth'
 import { type AuthState } from '~/interfaces/AuthState'
+import { type ErrorApiBase } from '~/interfaces/ErrorApi'
 import { userRepo } from '~/models/User'
 
 type AuthStoreState =
   | {
+    kind: 'UNAUTHENTICATED'
     isLoading: boolean
-    isValid: false
+    error: null
     authInfo: null
   }
   | {
+    kind: 'ERRORED'
     isLoading: false
-    isValid: true
+    error: ErrorApiBase
+    authInfo: null
+  }
+  | {
+    kind: 'AUTHENTICATED'
+    isLoading: false
+    error: null
     authInfo: {
       userId: string
       status: string
@@ -25,8 +34,9 @@ type AuthStoreState =
 export const useAuthStore = defineStore({
   id: 'auth-store',
   state: (): AuthStoreState => ({
+    kind: 'UNAUTHENTICATED',
     isLoading: false,
-    isValid: false,
+    error: null,
     authInfo: null
   }),
   actions: {
@@ -34,33 +44,49 @@ export const useAuthStore = defineStore({
       if (this.isLoading) return
 
       this.isLoading = true
-      const { info, user } = await authAdapter.getSelf()
-      userRepo.save(user)
-      this.authInfo = {
-        userId: info.userId,
-        status: info.status,
-        roles: info.roles
-      }
 
-      this.isLoading = false
-      this.isValid = true
-    },
-    getSelf (): AuthState {
-      if (this.isLoading || !this.isValid) {
+      const { data, error } = await authAdapter.getSelf()
+      if (error != null) {
+        this.$patch({
+          kind: 'ERRORED',
+          error,
+          isLoading: false,
+          authInfo: null
+        })
+      } else if (data != null) {
+        this.$patch({
+          kind: 'AUTHENTICATED',
+          authInfo: data.info,
+          isLoading: false,
+          error: null
+        })
+        userRepo.save(data.user)
+      }
+    }
+  },
+  getters: {
+    getAuthState (state): AuthState {
+      if (state.kind === 'UNAUTHENTICATED') {
         return {
           kind: 'UNAUTHENTICATED',
-          isLoading: this.isLoading
+          isLoading: state.isLoading
         }
-      }
+      } else if (state.kind === 'ERRORED') {
+        return {
+          kind: 'UNAUTHENTICATED',
+          isLoading: false,
+          error: state.error
+        }
+      } else {
+        const user = userRepo.find(state.authInfo.userId)
+        if (user == null) throw new Error('User not found in repository')
 
-      const user = userRepo.find(this.authInfo.userId)
-      if (user == null) throw Error('Self user not found in repository')
-
-      return {
-        kind: 'AUTHENTICATED',
-        isLoading: this.isLoading,
-        roles: this.authInfo.roles,
-        user
+        return {
+          kind: 'AUTHENTICATED',
+          isLoading: false,
+          roles: state.authInfo.roles,
+          user
+        }
       }
     }
   }
