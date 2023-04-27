@@ -19,7 +19,6 @@ type GetSelfResponse = ApiResponse<
 ErrorApiForbidden | ErrorApiUnauthorized | ErrorApiUnavailable | ErrorApiNotFound | ErrorApiBase
 >
 
-// data, error response
 export const getSelf = async (): Promise<GetSelfResponse> => {
   const response: GetSelfResponse = await axios
     .get('https://api.realdevsquad.com/users/self/', { withCredentials: true })
