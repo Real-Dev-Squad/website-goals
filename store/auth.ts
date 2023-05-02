@@ -45,22 +45,26 @@ export const useAuthStore = defineStore({
 
       this.isLoading = true
 
-      const { data, error } = await authAdapter.getSelf()
-      if (error != null) {
-        this.$patch({
-          kind: 'ERRORED',
-          error,
-          isLoading: false,
-          authInfo: null
-        })
-      } else if (data != null) {
-        this.$patch({
-          kind: 'AUTHENTICATED',
-          authInfo: data.info,
-          isLoading: false,
-          error: null
-        })
-        userRepo.save(data.user)
+      try {
+        const { data, error } = await authAdapter.getSelf()
+        if (error != null) {
+          this.$patch({
+            kind: 'ERRORED',
+            error,
+            isLoading: false,
+            authInfo: null
+          })
+        } else if (data != null) {
+          this.$patch({
+            kind: 'AUTHENTICATED',
+            authInfo: data.info,
+            isLoading: false,
+            error: null
+          })
+          userRepo.save(data.user)
+        }
+      } catch (e) {
+        console.error(e)
       }
     }
   },
