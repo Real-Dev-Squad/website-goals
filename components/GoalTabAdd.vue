@@ -1,75 +1,32 @@
 <template>
   <v-form @submit.prevent="handleSubmit">
     <v-row>
-      <v-col cols="12" md="7">
-        <v-text-field v-model="form.title" label="Title" required />
-      </v-col>
-      <v-col cols="6" md="2">
-        <PopupAssigneeVue v-model="form.assignees" />
-      </v-col>
-      <v-col cols="6" md="3">
-        <v-select v-model="form.type" :items="options.type" label="Type" required />
+      <v-col cols="12" md="12">
+        <v-text-field v-model="form.title" label="Title" @keydown.enter.prevent="handleSubmit"/>
       </v-col>
     </v-row>
   </v-form>
 </template>
 
-<script>
-import { GOAL_TYPE, GOAL_STATUS, DEFAULT_GOAL } from '~/constants/goal'
-import PopupAssigneeVue from '~/components/PopupAssignee.vue'
+<script lang="ts" setup>
+import { reactive } from 'vue'
+import { useGoalsStore } from '~/store/goals';
 
-export default {
-  name: 'GoalTabAdd',
-  components: {
-    PopupAssigneeVue
-  },
-  props: {
-    goal: {
-      type: Object,
-      required: true
-    },
-    isEditable: Boolean
-  },
-  data () {
-    return {
-      form: {
-        title: this.goal.title,
-        type: this.goal.type,
-        status: this.goal.status,
-        assignees: this.goal.assignees
-      },
-      options: {
-        type: [
-          GOAL_TYPE.STANDUP,
-          GOAL_TYPE.LONG_TERM,
-          GOAL_TYPE.SHORT_TERM
-        ],
-        status: [
-          GOAL_STATUS.COMPLETED,
-          GOAL_STATUS.ONGOING,
-          GOAL_STATUS.PAUSED
-        ]
-      }
-    }
-  },
-  methods: {
-    handleSubmit () {
-      if (!this.form.title) { return }
+const goalStore = useGoalsStore();
 
-      const goal = {
-        title: this.form.title,
-        type: this.form.type,
-        status: this.form.status
-      }
+const form = reactive({
+  title: "",
+})
 
-      this.$emit('goal-added', goal)
-      this.form.title = DEFAULT_GOAL.title
-      this.form.type = DEFAULT_GOAL.type
-      this.form.status = DEFAULT_GOAL.status
-      this.form.assignees = DEFAULT_GOAL.assignees
-    }
-  }
+const handleSubmit = () => {
+  if (!form.title) return;
+
+  goalStore.add({
+    title: form.title,
+  })
+  form.title = "";
 }
+
 </script>
 
 <style scoped></style>
