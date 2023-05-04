@@ -2,13 +2,13 @@ import axios from 'axios'
 import * as goalAdapter from './goal.transformer'
 import { type Goal } from '~/interfaces/Goal'
 import { type UserGoal } from '~/interfaces/UserGoal'
-import { PostGoal } from '~/interfaces/PostGoal'
+import { type PostGoal } from '~/interfaces/PostGoal'
 import { transformGoalFromApi } from './goal.transformer'
 import { API } from '~/constants/api'
 
 const goalSiteConfig = {
   headers: {
-    "Content-Type": "application/vnd.api+json",
+    'Content-Type': 'application/vnd.api+json'
   }
 }
 
@@ -39,7 +39,7 @@ export const addGoal = async (goal: PostGoal): Promise<any> => {
     .post(`${API.GOAL_BASE_URL}/goal/`, {
       data: {
         type: 'Goal',
-        attributes: goal,
+        attributes: goal
       }
     }, goalSiteConfig)
     .then(res => transformGoalFromApi(res.data.data))

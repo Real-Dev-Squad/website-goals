@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import * as goalAdapter from '~/adapters/goal'
-import { PostGoal } from '~/interfaces/PostGoal'
+import { type PostGoal } from '~/interfaces/PostGoal'
 import { goalRepo } from '~/models/Goal'
 import { userGoalRepo } from '~/models/UserGoal'
 
@@ -26,7 +26,7 @@ export const useGoalsStore = defineStore({
       this.isLoading = false
     },
     async add (goal: PostGoal) {
-      const goalResponse = await goalAdapter.addGoal(goal);
+      const goalResponse = await goalAdapter.addGoal(goal)
 
       goalRepo.save(goalResponse)
     }
