@@ -13,7 +13,7 @@ export default {
       showGoalForm: false,
       showGoalTabPost: false
     }
-  },
+  }
 }
 </script>
 

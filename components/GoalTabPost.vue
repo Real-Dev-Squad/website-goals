@@ -1,10 +1,6 @@
 <template>
   <v-form @submit.prevent="handleSubmit">
-    <v-row>
-      <v-col cols="12" md="12">
-        <v-text-field v-model="form.title" label="Title" @keydown.enter.prevent="handleSubmit" autofocus @blur="$emit('onGoalTabPostBlur')"/>
-      </v-col>
-    </v-row>
+    <v-text-field v-model="form.title" label="Title" @keydown.enter.prevent="handleSubmit" autofocus @blur="$emit('onGoalTabPostBlur')"/>
   </v-form>
 </template>
 
