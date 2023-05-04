@@ -4,6 +4,7 @@ import { type Goal } from '~/interfaces/Goal'
 import { type UserGoal } from '~/interfaces/UserGoal'
 import { PostGoal } from '~/interfaces/PostGoal'
 import { transformGoalFromApi } from './goal.transformer'
+import { API } from '~/constants/api'
 
 const goalSiteConfig = {
   headers: {
@@ -13,7 +14,7 @@ const goalSiteConfig = {
 
 export const fetchGoals = async (): Promise<Goal []> => {
   const goals: Goal[] = await axios
-    .get('https://website-goals-production-5d0a.up.railway.app/goal/')
+    .get(`${API.GOAL_BASE_URL}/goal/`)
     .then(res => goalAdapter.transformGoalsFromApi(res.data.data))
     .catch(error => {
       throw new Error(error)
@@ -24,7 +25,7 @@ export const fetchGoals = async (): Promise<Goal []> => {
 
 export const fetchUserGoals = async (): Promise<UserGoal []> => {
   const userGoals: UserGoal[] = await axios
-    .get('https://website-goals-production-5d0a.up.railway.app/usergoal/')
+    .get(`${API.GOAL_BASE_URL}/usergoal/`)
     .then(res => goalAdapter.transformUserGoalsFromApi(res.data.data))
     .catch(error => {
       throw new Error(error)
