@@ -36,7 +36,7 @@ export const fetchUserGoals = async (): Promise<UserGoal []> => {
 
 export const addGoal = async (goal: PostGoal): Promise<any> => {
   const goalResponse = await axios
-    .post('https://backend-goals-production.up.railway.app/goal/', {
+    .post(`${API.GOAL_BASE_URL}/goal/`, {
       data: {
         type: 'Goal',
         attributes: goal,
