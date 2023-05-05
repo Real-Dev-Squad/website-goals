@@ -64,7 +64,7 @@ export const useGoalsStore = defineStore({
     getGoalDetailById: () => {
       return (goalId: string) => {
         const goal = goalRepo.withAllRecursive().find(goalId)
-        if (!goal) throw Error('Goal not found')
+        if (goal == null) throw Error('Goal not found')
 
         return goal
       }

@@ -7,10 +7,20 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
+import { useUsersStore } from '~/store/users'
+import { useGoalsStore } from '~/store/goals'
+
+const goalStore = useGoalsStore()
+const userStore = useUsersStore()
 
 const state = reactive({
   showGoalTabPost: false
+})
+
+onMounted(() => {
+  goalStore.fetchGoals()
+  userStore.fetchUsers()
 })
 </script>
 
