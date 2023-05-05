@@ -1,7 +1,14 @@
 <template>
-  <v-form @submit.prevent="handleSubmit">
-    <v-text-field v-model="form.title" label="Title" @keydown.enter.prevent="handleSubmit" autofocus @blur="$emit('onGoalTabPostBlur')"/>
-  </v-form>
+  <v-card elevation="1">
+    <v-form @submit.prevent="handleSubmit">
+      <v-row>
+        <v-col cols="12">
+          <v-text-field v-model="form.title" hide-details label="Title" @keydown.enter.prevent="handleSubmit" autofocus
+            @blur="$emit('onGoalTabPostBlur')" />
+        </v-col>
+      </v-row>
+    </v-form>
+  </v-card>
 </template>
 
 <script lang="ts" setup>
