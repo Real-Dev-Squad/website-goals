@@ -24,7 +24,15 @@ export const useUsersStore = defineStore({
   getters: {
     getUserById: () => {
       return (userId: string) => {
-        return userRepo.find(userId)
+        const user = userRepo.find(userId)
+        if (user == null) throw Error('User not found')
+
+        return user
+      }
+    },
+    all: () => {
+      return () => {
+        return userRepo.all()
       }
     }
   }

@@ -1,13 +1,13 @@
 <template>
     <v-col cols="12" md="8" class="pa-0">
-      <v-text-field hide-details v-model="goal.title" readonly />
+      <v-text-field hide-details v-model="goal.title" />
     </v-col>
     <v-col cols="6" md="4" class="pa-0">
-      <popup-assignee :assignee-ids="assigneeIds" read-only />
+      <popup-assignee :assignee-ids="assigneeIds" />
     </v-col>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { UserGoal } from '~/interfaces/UserGoal'
 import { useGoalsStore } from '~/store/goals'
 

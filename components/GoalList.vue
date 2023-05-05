@@ -1,10 +1,10 @@
 <template>
-  <div v-if="recentlyCreated.isLoading">
-    Loading...
-  </div>
-  <div v-else>
-    <GoalListTabView v-for="goalId in recentlyCreated.data" :key="goalId" :goal-id="goalId"/>
-  </div>
+  <v-container>
+    <span v-if="recentlyCreated.isLoading">Loading...</span>
+    <v-row v-else>
+      <GoalListTabEdit v-for="goalId in recentlyCreated.data" :key="goalId" :goal-id="goalId"/>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
