@@ -34,7 +34,7 @@ export const fetchUserGoals = async (): Promise<UserGoal []> => {
   return userGoals
 }
 
-export const addGoal = async (goal: PostGoal): Promise<any> => {
+export const addGoal = async (goal: PostGoal): Promise<Goal> => {
   const goalResponse = await axios
     .post(`${API.GOAL_BASE_URL}/goal/`, {
       data: {
