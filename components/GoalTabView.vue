@@ -1,5 +1,5 @@
 <template>
-  <form class="goal-form" @submit.prevent="handleSubmit">
+  <form class="goal-form" @submit.prevent="">
     <select id="goal-status" v-model="form.status" class="status">
       <option
         selected
@@ -36,7 +36,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import { GOAL_TYPE, GOAL_STATUS } from '~/constants/goal'
 
 export default {

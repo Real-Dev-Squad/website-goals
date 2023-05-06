@@ -30,7 +30,7 @@
   </v-row>
 </template>
 
-<script>
+<script lang="ts">
 import GoalForm from './GoalForm.vue'
 
 export default {
@@ -44,7 +44,7 @@ export default {
       get () {
         return this.visible
       },
-      set (value) {
+      set (value: boolean) {
         if (!value) {
           this.$emit('close')
         }

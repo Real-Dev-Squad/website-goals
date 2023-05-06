@@ -20,7 +20,7 @@
   </v-app-bar>
 </template>
 
-<script>
+<script lang="ts">
 import { LINKS } from '~/constants/links'
 
 export default {
@@ -39,7 +39,7 @@ export default {
     }
   },
   methods: {
-    toggleClicked (value) {
+    toggleClicked (value: boolean) {
       this.isClicked = !value
     },
     redirectLogin () {

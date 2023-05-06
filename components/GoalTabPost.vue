@@ -14,10 +14,10 @@ const form = reactive({
   title: ''
 })
 
-const handleSubmit = () => {
-  if (!form.title) return
+const handleSubmit = async (): Promise<void> => {
+  if (form.title === '') return
 
-  goalStore.add({
+  await goalStore.add({
     title: form.title
   })
   form.title = ''

@@ -53,7 +53,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import PopupAssigneeVue from './PopupAssignee.vue'
 
 export default {
@@ -62,8 +62,8 @@ export default {
     PopupAssigneeVue
   },
   methods: {
-    required (value) {
-      return !!value || 'Required.'
+    required (value: string) {
+      return Boolean(value) || 'Required.'
     }
   }
 }

@@ -5,7 +5,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'HomePage',
   data () {
