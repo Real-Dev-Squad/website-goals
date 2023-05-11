@@ -1,5 +1,5 @@
 import { Model, useRepo } from 'pinia-orm'
-import { UserGoal } from '~/models/UserGoal'
+import { Goal } from '~/models/Goal'
 
 export class User extends Model {
   static entity = 'users'
@@ -14,7 +14,7 @@ export class User extends Model {
       githubId: this.attr(null),
       avatarUrl: this.string(null),
 
-      userGoals: this.hasMany(UserGoal, 'userId')
+      goals: this.hasMany(Goal, 'assignedTo')
     }
   }
 

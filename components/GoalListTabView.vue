@@ -8,12 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import { UserGoal } from '~/interfaces/UserGoal'
 import { useGoalsStore } from '~/store/goals'
 
 const props = defineProps(['goalId'])
 const goalStore = useGoalsStore()
 
 const goal = goalStore.getGoalDetailById(props.goalId)
-const assigneeIds: string[] = goal.userGoals.map((usergoal: UserGoal) => usergoal.userId)
+const assigneeIds: string[] = goal.assignedTo ? [goal.assignedTo] : []
 </script>
