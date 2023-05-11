@@ -3,7 +3,7 @@
       <v-text-field hide-details v-model="goal.title" />
     </v-col>
     <v-col cols="6" md="4" class="pa-0">
-      <popup-assignee :assignee-ids="assigneeIds" />
+      <popup-assignee :assignee-id="goal.assignedTo" />
     </v-col>
 </template>
 
@@ -14,5 +14,4 @@ const props = defineProps(['goalId'])
 const goalStore = useGoalsStore()
 
 const goal = goalStore.getGoalDetailById(props.goalId)
-const assigneeIds: string[] = goal.assignedTo ? [goal.assignedTo] : []
 </script>
