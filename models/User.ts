@@ -14,7 +14,7 @@ export class User extends Model {
       githubId: this.attr(null),
       avatarUrl: this.string(''),
 
-      userGoals: this.hasMany(Goal, 'assignedTo')
+      goals: this.hasMany(Goal, 'assignedTo')
     }
   }
 
