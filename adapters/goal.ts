@@ -1,7 +1,6 @@
 import axios from 'axios'
 import * as goalAdapter from './goal.transformer'
 import { type Goal } from '~/interfaces/Goal'
-import { type UserGoal } from '~/interfaces/UserGoal'
 import { type PostGoal } from '~/interfaces/PostGoal'
 import { transformGoalFromApi } from './goal.transformer'
 import { API } from '~/constants/api'
@@ -21,17 +20,6 @@ export const fetchGoals = async (): Promise<Goal []> => {
     })
 
   return goals
-}
-
-export const fetchUserGoals = async (): Promise<UserGoal []> => {
-  const userGoals: UserGoal[] = await axios
-    .get(`${API.GOAL_BASE_URL}/usergoal/`)
-    .then(res => goalAdapter.transformUserGoalsFromApi(res.data.data))
-    .catch(error => {
-      throw new Error(error)
-    })
-
-  return userGoals
 }
 
 export const addGoal = async (goal: PostGoal): Promise<any> => {

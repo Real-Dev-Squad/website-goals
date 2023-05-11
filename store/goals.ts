@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import * as goalAdapter from '~/adapters/goal'
 import { type PostGoal } from '~/interfaces/PostGoal'
 import { goalRepo } from '~/models/Goal'
-import { userGoalRepo } from '~/models/UserGoal'
 
 export const useGoalsStore = defineStore({
   id: 'goal-store',
@@ -15,12 +14,9 @@ export const useGoalsStore = defineStore({
       if (this.isValid) return
 
       this.isLoading = true
-      const goalsPromise = goalAdapter.fetchGoals()
-      const userGoalsPromise = goalAdapter.fetchUserGoals()
-      const [goals, userGoals] = await Promise.all([goalsPromise, userGoalsPromise])
+      const goals = await goalAdapter.fetchGoals()
 
       goalRepo.save(goals)
-      userGoalRepo.save(userGoals)
 
       this.isValid = true
       this.isLoading = false
