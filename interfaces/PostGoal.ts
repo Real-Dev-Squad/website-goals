@@ -1,5 +1,5 @@
 export interface PostGoal {
-  title: string
+  title?: string
   description?: string
   createdBy?: string
   startsOn?: string

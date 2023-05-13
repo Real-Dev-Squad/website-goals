@@ -53,6 +53,16 @@ export const useGoalsStore = defineStore({
 
       goalRepo.save(goalResponse)
       this.recentlyCreated.data?.unshift(goalResponse.id)
+    },
+    async patch (goalId: string, goal: PostGoal) {
+      const prevGoal = goalRepo.find(goalId)
+      // Call api here
+
+      goalRepo.save({
+        id: goalId,
+        ...prevGoal,
+        ...goal
+      })
     }
   },
   getters: {

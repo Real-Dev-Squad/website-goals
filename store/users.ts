@@ -25,7 +25,6 @@ export const useUsersStore = defineStore({
     getUserById: () => {
       return (userId: string) => {
         const user = userRepo.find(userId)
-        if (user == null) throw Error('User not found')
 
         return user
       }

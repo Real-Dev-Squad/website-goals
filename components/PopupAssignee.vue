@@ -1,9 +1,6 @@
 <template>
-  <div v-if="!userStore.isValid">
-    Loading...
-  </div>
-  <v-autocomplete v-else v-model="localAssignee" :items="users" :readonly="readOnly" color="blue-grey lighten-2" item-title="name"
-    item-value="id" hide-details >
+  <v-autocomplete v-model="localAssignee" :items="users" :readonly="readOnly" color="blue-grey lighten-2" item-title="name"
+    item-value="id" hide-details menu autofocus>
     <template v-slot:selection="{ item }">
       <v-tooltip location="bottom">
         <template #activator="{ props: tooltipProp }">
@@ -18,8 +15,8 @@
       </v-tooltip>
     </template>
 
-    <template v-slot:item="{ props, item, index }">
-      <v-list-item v-bind="props" :title="item.title" :key="index">
+    <template v-slot:item="{ props, item }">
+      <v-list-item v-bind="props" :title="item.title" @click="$emit('select-assignee', item.raw.id)">
         <template v-slot:prepend="{}">
           <v-avatar v-if="item.raw.avatar" v-bind="props" size="28" class="avatar">
             <v-img :src="item.raw.avatar" />

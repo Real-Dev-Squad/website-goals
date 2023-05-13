@@ -1,9 +1,7 @@
 <template>
   <v-container>
     <span v-if="recentlyCreated.isLoading">Loading...</span>
-    <v-row v-else>
-      <GoalListTabEdit v-for="goalId in recentlyCreated.data" :key="goalId" :goal-id="goalId"/>
-    </v-row>
+    <GoalListTabEdit v-else v-for="goalId in recentlyCreated.data" :key="goalId" :goal-id="goalId" />
   </v-container>
 </template>
 
