@@ -34,3 +34,17 @@ export const addGoal = async (goal: PostGoal): Promise<Goal> => {
 
   return goalResponse
 }
+
+export const updateGoal = async (goalId: string, goal: PostGoal): Promise<Goal> => {
+  const goalResponse = await axios
+    .patch(`${API.GOAL_BASE_URL}/goal/`, {
+      data: {
+        id: goalId,
+        type: 'Goal',
+        attributes: goal
+      }
+    }, goalSiteConfig)
+    .then(res => transformGoalFromApi(res.data.data))
+
+  return goalResponse
+}
