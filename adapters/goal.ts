@@ -37,7 +37,7 @@ export const addGoal = async (goal: PostGoal): Promise<Goal> => {
 
 export const updateGoal = async (goalId: string, goal: PostGoal): Promise<Goal> => {
   const goalResponse = await axios
-    .patch(`${API.GOAL_BASE_URL}/goal/`, {
+    .patch(`${API.GOAL_BASE_URL}/goal/${goalId}/`, {
       data: {
         id: goalId,
         type: 'Goal',
