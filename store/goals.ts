@@ -62,9 +62,7 @@ export const useGoalsStore = defineStore({
         ...goal
       })
 
-      const goalResponse = await goalAdapter.updateGoal(goalId, goal)
-
-      console.log(goalResponse)
+      await goalAdapter.updateGoal(goalId, goal)
     }
   },
   getters: {
