@@ -1,79 +1,50 @@
 <template>
-  <v-autocomplete
-    v-model="localAssignees"
-    :items="users"
-    color="blue-grey lighten-2"
-    label="Assignee"
-    item-text="name"
-    item-value="id"
-    multiple
-    auto-select-first
-    append-icon=""
-  >
-    <template #selection="data">
-      <v-tooltip bottom>
-        <template #activator="{ isActive, attrs }">
-          <v-avatar v-if="data.item.avatar" v-bind="attrs" size="28" class="avatar" v-on="isActive">
-            <v-img :src="data.item.avatar" />
+  <v-autocomplete v-model="localAssignee" :items="users" :readonly="readOnly" color="blue-grey lighten-2"
+    item-title="name" item-value="id" hide-details menu autofocus>
+    <template v-slot:selection="{ item }">
+      <v-tooltip location="bottom">
+        <template #activator="{ props: tooltipProp }">
+          <v-avatar v-if="item.raw.avatar" v-bind="tooltipProp" size="25">
+            <v-img :src="item.raw.avatar" />
           </v-avatar>
-          <v-avatar v-else v-bind="attrs" size="28" class="avatar" color="indigo">
-            <span class="white--text text-body-5"> {{ data.item.initials }} </span>
+          <v-avatar v-else v-bind="tooltipProp" color="indigo" size="25">
+            {{ item.raw.initials }}
           </v-avatar>
         </template>
-
-        <span>{{ data.item.name }}</span>
+        <span>{{ item.raw.name }}</span>
       </v-tooltip>
     </template>
-
-    <template v-slot:item="data">
-      <v-list-item>
-        <v-avatar color="indigo">
-          <img v-if="data.item.avatar" :src="data.item.avatar">
-          <span v-else class="white--text text-h5"> {{ data.item.initials }} </span>
-        </v-avatar>
-
-        <v-list-item-title class="assignee__select-text">{{ data.item.name }}</v-list-item-title>
+    <template v-slot:item="{ props, item }">
+      <v-list-item v-bind="props" :title="item.title" @click="$emit('select-assignee', item.raw.id)">
+        <template v-slot:prepend="{}">
+          <v-avatar v-if="item.raw.avatar" v-bind="props" size="28" class="avatar">
+            <v-img :src="item.raw.avatar" />
+          </v-avatar>
+          <v-avatar v-else v-bind="props" size="28" class="avatar" color="indigo">
+            {{ item.raw.initials }}
+          </v-avatar>
+        </template>
       </v-list-item>
     </template>
   </v-autocomplete>
 </template>
 
-<script>
-export default {
-  name: 'PopupAssignee',
-  props: ['assignee'],
-  data () {
-    return {
-      localAssignees: this.assignee,
-      name: 'Assignees'
-    }
-  },
-  computed: {
-    users () {
-      // return this.$store.state.users.list.map((user) => {
-      //   const name = `${user.firstName} ${user.lastName}`
-      //   return {
-      //     id: user.id,
-      //     name,
-      //     avatar: user.picture.url,
-      //     initials: name.trim().toUpperCase().split(' ', 2).map(str => str.charAt(0)).join('')
-      //   }
-      // })
-      return []
-    }
-  },
-  watch: {
-    localAssignees: {
-      handler (newValue) {
-        this.$emit('input', newValue)
-      },
-      deep: true
-    }
-  },
-  mounted () {
-    // this.$store.dispatch('users/fetchUsers')
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { useUsersStore } from '~/store/users'
+const props = defineProps(['assigneeId', 'readOnly'])
+const userStore = useUsersStore()
+const assignee = props.assigneeId ? userStore.getUserById(props.assigneeId) : null
+const localAssignee = ref(assignee)
+const users = userStore.all().map(user => {
+  const name = `${user.firstName} ${user.lastName}`
+  return {
+    id: user.id,
+    name,
+    avatar: user.avatarUrl,
+    initials: name.trim().toUpperCase().split(' ', 2).map(str => str.charAt(0)).join('')
   }
-}
+})
 </script>
 
 <style scoped>

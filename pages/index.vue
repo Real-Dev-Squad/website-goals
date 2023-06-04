@@ -1,20 +1,24 @@
 <template>
   <v-container>
-    <GoalTabPost v-if="showGoalTabPost" @on-goal-tab-post-blur="showGoalTabPost = false"/>
-    <GoalTabPostToggleButton v-else @on-add-goal-button-click="showGoalTabPost = true"/>
+    <GoalTabPost />
+    <GoalList />
   </v-container>
 </template>
 
-<script>
-export default {
-  name: 'HomePage',
-  data () {
-    return {
-      showGoalForm: false,
-      showGoalTabPost: false
-    }
-  }
-}
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import { useUsersStore } from '~/store/users'
+import { useGoalsStore } from '~/store/goals'
+const goalStore = useGoalsStore()
+const userStore = useUsersStore()
+onMounted(() => {
+  goalStore.fetchGoals()
+  userStore.fetchUsers()
+})
 </script>
 
-<style scoped></style>
+<script lang="ts">
+export default {
+  name: 'HomePage'
+}
+</script>

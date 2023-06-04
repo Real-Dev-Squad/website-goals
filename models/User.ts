@@ -12,7 +12,7 @@ export class User extends Model {
       lastName: this.string(''),
       githubDisplayName: this.string(''),
       githubId: this.attr(null),
-      avatarUrl: this.string(''),
+      avatarUrl: this.string(null),
 
       goals: this.hasMany(Goal, 'assignedTo')
     }
