@@ -5,5 +5,5 @@ export interface User {
   lastName: string
   githubDisplayName?: string
   githubId: string
-  avatarUrl?: string
+  avatarUrl: string
 }

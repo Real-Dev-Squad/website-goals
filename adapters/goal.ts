@@ -2,7 +2,6 @@ import axios from 'axios'
 import * as goalAdapter from './goal.transformer'
 import { type Goal } from '~/interfaces/Goal'
 import { type PostGoal } from '~/interfaces/PostGoal'
-import { transformGoalFromApi } from './goal.transformer'
 import { API } from '~/constants/api'
 
 const goalSiteConfig = {
@@ -22,7 +21,7 @@ export const fetchGoals = async (): Promise<Goal []> => {
   return goals
 }
 
-export const addGoal = async (goal: PostGoal): Promise<any> => {
+export const addGoal = async (goal: PostGoal): Promise<Goal> => {
   const goalResponse = await axios
     .post(`${API.GOAL_BASE_URL}/goal/`, {
       data: {
@@ -30,7 +29,21 @@ export const addGoal = async (goal: PostGoal): Promise<any> => {
         attributes: goal
       }
     }, goalSiteConfig)
-    .then(res => transformGoalFromApi(res.data.data))
+    .then(res => goalAdapter.transformGoalFromApi(res.data.data))
+
+  return goalResponse
+}
+
+export const updateGoal = async (goalId: string, goal: PostGoal): Promise<Goal> => {
+  const goalResponse = await axios
+    .patch(`${API.GOAL_BASE_URL}/goal/${goalId}/`, {
+      data: {
+        id: goalId,
+        type: 'Goal',
+        attributes: goalAdapter.transformGoalAttributesToApi(goal)
+      }
+    }, goalSiteConfig)
+    .then(res => goalAdapter.transformGoalFromApi(res.data.data))
 
   return goalResponse
 }

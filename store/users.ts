@@ -9,7 +9,7 @@ export const useUsersStore = defineStore({
     isValid: false
   }),
   actions: {
-    async fetchUsers () {
+    async fetchUsers() {
       if (this.isValid) return
 
       this.isLoading = true
@@ -24,7 +24,14 @@ export const useUsersStore = defineStore({
   getters: {
     getUserById: () => {
       return (userId: string) => {
-        return userRepo.find(userId)
+        const user = userRepo.find(userId)
+
+        return user
+      }
+    },
+    all: () => {
+      return () => {
+        return userRepo.all()
       }
     }
   }

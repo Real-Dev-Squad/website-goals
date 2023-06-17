@@ -1,11 +1,18 @@
 <template>
-  <v-form @submit.prevent="handleSubmit">
-    <v-text-field v-model="form.title" label="Title" @keydown.enter.prevent="handleSubmit" autofocus @blur="$emit('onGoalTabPostBlur')"/>
-  </v-form>
+  <v-row>
+    <v-col cols="12" class="px-0 container">
+      <v-text-field v-if="showGoalTabPost" v-model="form.title" hide-details label="Title"
+        @keydown.enter.prevent="handleSubmit" autofocus @blur="showGoalTabPost = false" />
+      <v-btn v-else size="small" @click="showGoalTabPost = true" elevation="0">
+        <v-icon start icon="mdi:mdi-plus" />
+        Add Goal
+      </v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useGoalsStore } from '~/store/goals'
 
 const goalStore = useGoalsStore()
@@ -13,6 +20,7 @@ const emit = defineEmits(['onGoalTabPostBlur'])
 const form = reactive({
   title: ''
 })
+const showGoalTabPost = ref(false)
 
 const handleSubmit = () => {
   if (!form.title) return
@@ -21,9 +29,14 @@ const handleSubmit = () => {
     title: form.title
   })
   form.title = ''
-  emit('onGoalTabPostBlur')
 }
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+</style>
