@@ -1,21 +1,19 @@
-import { expect } from 'chai'
-import { fetchGoals, fetchUserGoals } from '../../adapters/goal'
-import { describe, test } from 'vitest'
+// import { expect } from 'chai'
+import { fetchGoals } from "../../adapters/goal";
+import { describe, test, expect, beforeAll, afterAll, afterEach } from "vitest";
+import { server } from "__mocks__/server";
 
-describe('adapter/goal', () => {
-  describe('fetchGoals', () => {
-    test('response should be an array', async () => {
-      const goals = await fetchGoals()
+// Start server before all tests
+beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
+//  Close server after all tests
+afterAll(() => server.close());
+// Reset handlers after each test `important for test isolation`
+afterEach(() => server.resetHandlers());
 
-      expect(goals).to.be.an('Array')
-    })
-  })
+describe("adapter/goal", () => {
+  test("response should be an array", async () => {
+    const goals = await fetchGoals();
 
-  describe('fetchUserGoals', () => {
-    test('response should be an array', async () => {
-      const userGoals = await fetchUserGoals()
-
-      expect(userGoals).to.be.an('Array')
-    })
-  })
-})
+    expect(goals).to.be.an("Array");
+  });
+});

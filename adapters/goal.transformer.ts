@@ -1,13 +1,15 @@
-import { type Goal } from '~/interfaces/Goal'
-import { PostGoal } from '~/interfaces/PostGoal'
+import { type Goal } from "~/interfaces/Goal";
+import { PostGoal } from "~/interfaces/PostGoal";
 
 export const transformGoalsFromApi = (goals: any): Goal[] => {
-  const transformedGoals = goals.map((goal: any) => transformGoalFromApi(goal))
-  return transformedGoals
-}
+  const transformedGoals = goals?.map((goal: any) =>
+    transformGoalFromApi(goal)
+  );
+  return transformedGoals;
+};
 
 export const transformGoalFromApi = (goal: any): Goal => {
-  const attributes = goal.attributes
+  const attributes = goal.attributes;
 
   return {
     id: goal.id,
@@ -20,20 +22,20 @@ export const transformGoalFromApi = (goal: any): Goal => {
     percentageCompleted: attributes.percentage_completed,
     assignedBy: attributes.assigned_by,
     status: attributes.status,
-    assignedTo: attributes.assigned_to
-  }
-}
+    assignedTo: attributes.assigned_to,
+  };
+};
 
 export const transformGoalAttributesToApi = (goal: PostGoal): any => {
-  const transformedObj: any = {}
+  const transformedObj: any = {};
 
-  function camelToUnderscore (key: string): string {
-    return key.replace(/([A-Z])/g, '_$1').toLowerCase()
+  function camelToUnderscore(key: string): string {
+    return key.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
 
   for (const [key, value] of Object.entries(goal)) {
-    transformedObj[camelToUnderscore(key)] = value
+    transformedObj[camelToUnderscore(key)] = value;
   }
 
-  return transformedObj
-}
+  return transformedObj;
+};
