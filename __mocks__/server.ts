@@ -1,8 +1,6 @@
-import { setupServer } from "msw/node";
-import handlers from "./handlers";
-import { beforeAll, afterAll, afterEach } from "vitest";
+import { setupServer } from 'msw/node'
+import handlers from './handlers'
 
-const server = setupServer(...handlers);
+const server = setupServer(...handlers)
 
-
-export { server };
+export { server }

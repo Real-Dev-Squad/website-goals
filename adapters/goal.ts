@@ -1,25 +1,25 @@
-import axios from "axios";
-import * as goalAdapter from "./goal.transformer";
-import { type Goal } from "~/interfaces/Goal";
-import { type PostGoal } from "~/interfaces/PostGoal";
-import { API } from "../constants/api";
+import axios from 'axios'
+import * as goalAdapter from './goal.transformer'
+import { type Goal } from '~/interfaces/Goal'
+import { type PostGoal } from '~/interfaces/PostGoal'
+import { API } from '../constants/api'
 
 const goalSiteConfig = {
   headers: {
-    "Content-Type": "application/vnd.api+json",
-  },
-};
+    'Content-Type': 'application/vnd.api+json'
+  }
+}
 
 export const fetchGoals = async (): Promise<Goal[]> => {
   const goals: Goal[] = await axios
     .get(`${API.GOAL_BASE_URL}/goal/`)
     .then((res) => goalAdapter.transformGoalsFromApi(res.data.data))
     .catch((error) => {
-      throw new Error(error);
-    });
+      throw new Error(error)
+    })
 
-  return goals;
-};
+  return goals
+}
 
 export const addGoal = async (goal: PostGoal): Promise<Goal> => {
   const goalResponse = await axios
@@ -27,16 +27,16 @@ export const addGoal = async (goal: PostGoal): Promise<Goal> => {
       `${API.GOAL_BASE_URL}/goal/`,
       {
         data: {
-          type: "Goal",
-          attributes: goal,
-        },
+          type: 'Goal',
+          attributes: goal
+        }
       },
       goalSiteConfig
     )
-    .then((res) => goalAdapter.transformGoalFromApi(res.data.data));
+    .then((res) => goalAdapter.transformGoalFromApi(res.data.data))
 
-  return goalResponse;
-};
+  return goalResponse
+}
 
 export const updateGoal = async (
   goalId: string,
@@ -48,13 +48,13 @@ export const updateGoal = async (
       {
         data: {
           id: goalId,
-          type: "Goal",
-          attributes: goalAdapter.transformGoalAttributesToApi(goal),
-        },
+          type: 'Goal',
+          attributes: goalAdapter.transformGoalAttributesToApi(goal)
+        }
       },
       goalSiteConfig
     )
-    .then((res) => goalAdapter.transformGoalFromApi(res.data.data));
+    .then((res) => goalAdapter.transformGoalFromApi(res.data.data))
 
-  return goalResponse;
-};
+  return goalResponse
+}

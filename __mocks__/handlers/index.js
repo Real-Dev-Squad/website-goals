@@ -1,5 +1,5 @@
-import { goalsHandlers } from "./goals.handler";
+import { goalsHandlers } from './goals.handler'
 
-const handlers = [...goalsHandlers];
+const handlers = [...goalsHandlers]
 
-export default handlers;
+export default handlers
