@@ -1,8 +1,10 @@
 import { type Goal } from '~/interfaces/Goal'
-import { PostGoal } from '~/interfaces/PostGoal'
+import { type PostGoal } from '~/interfaces/PostGoal'
 
 export const transformGoalsFromApi = (goals: any): Goal[] => {
-  const transformedGoals = goals.map((goal: any) => transformGoalFromApi(goal))
+  const transformedGoals = goals?.map((goal: any) =>
+    transformGoalFromApi(goal)
+  )
   return transformedGoals
 }
 

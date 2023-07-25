@@ -9,3 +9,4 @@ dist
 .DS_Store
 pages/test.vue
 .yarn
+/coverage/
