@@ -1,9 +1,7 @@
 <template>
   <v-container class="container">
     <v-form>
-      <h2 class="text-center">
-        Create a New Goal
-      </h2>
+      <h2 class="text-center">Create a New Goal</h2>
       <v-text-field
         id="task-name"
         label="Goal Title*"
@@ -40,34 +38,31 @@
         <v-col cols="12" sm="6">
           <PopupAssigneeVue />
         </v-col>
+        <v-col> <v-select :items="statusList" label="Status"></v-select></v-col>
       </v-row>
-      <v-btn
-        id="submit"
-        block
-        type="submit"
-        color="primary"
-      >
-        Submit
-      </v-btn>
+      <v-btn id="submit" block type="submit" color="primary"> Submit </v-btn>
     </v-form>
   </v-container>
 </template>
 
 <script>
-import PopupAssigneeVue from './PopupAssignee.vue'
+import PopupAssigneeVue from "./PopupAssignee.vue";
 
 export default {
-  name: 'GoalForm',
+  name: "GoalForm",
   components: {
-    PopupAssigneeVue
+    PopupAssigneeVue,
   },
   methods: {
-    required (value) {
-      return !!value || 'Required.'
-    }
+    required(value) {
+      return !!value || "Required.";
+    },
+  },
+  setup:()=>{
+    const statusList = ["In progress", "Completed", "To be done"];
+    return {statusList}
   }
-}
-</script>
-<style scoped>
+};
 
-</style>
+</script>
+<style scoped></style>
