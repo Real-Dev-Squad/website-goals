@@ -1,28 +1,19 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
-    es2021: true
+    node: true
+  },
+  parserOptions: {
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false
   },
   extends: [
-    'plugin:vue/vue3-essential',
-    'standard-with-typescript'
+    '@nuxtjs',
+    'plugin:nuxt/recommended'
   ],
-  overrides: [
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: 'tsconfig.json'
-  },
   plugins: [
-    'vue'
   ],
-  rules: {
-  },
-  ignorePatterns: [
-    'dist/*',
-    '.output/*',
-    '.nuxt/*',
-    'node_modules/*'
-  ]
+  // add your custom rules here
+  rules: {}
 }
