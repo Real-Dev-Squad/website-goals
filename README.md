@@ -14,14 +14,8 @@ To install Volta, please follow the [process](https://docs.volta.sh/guide/gettin
 # install dependencies
 $ yarn 
 
-# Confirm correct configuration setup 
-$ yarn validate-setup
-
 # run dev serve on dev.realdevsquad.com (follow https setup instructions)
 $ yarn dev
-
-# serve with hot reload at localhost:3443 only
-$ yarn dev:nuxt
 
 # build for production and launch server
 $ yarn build
