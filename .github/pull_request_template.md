@@ -1,23 +1,36 @@
-### Issue:
+### Issue
 
-### Description:
+##### Example : Closes #<issue_number>
 
-### Anything you would like to inform the reviewer about:
+### What is the change?
 
-### Dev Tested:
+Provide a small description in points of what did you change
+
+##### Example :
+
+- Done this
+- Made these changes
+
+### Is Development Tested?
 
 - [ ] Yes
 - [ ] No
 
-### Put the Feature behind Feature Flag
+### Before / After Change Screenshots
 
-- [ ] Yes
-- [ ] No
+For visual or interaction changes. Please provide a video / screenshot.
 
-### Test Stats
+##### Example:
 
-### Images/video of the change:
+Before :
+Image/Video
 
-### Follow-up Issues (if any):
+After :
+Image/Video
 
-> NOTE: After your PR is merged in main please verify its working on prod and raise a dev to main PR
+**Note :**
+What to delete and what not to
+
+- Keep the headings and answer the questions.
+- Delete the examples
+- Delete the description below headings `What is the change?` & `Before/After Screenshots`
