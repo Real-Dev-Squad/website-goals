@@ -1,6 +1,7 @@
 import { type PostGoal } from '~/interfaces/PostGoal'
 import { goalRepo } from '~/models/Goal'
 import * as goalAdapter from '~/adapters/goal'
+import { defineStore } from 'pinia'
 
 type GoalStoreState =
   | {

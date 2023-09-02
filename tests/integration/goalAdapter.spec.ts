@@ -1,6 +1,6 @@
 import { fetchGoals } from '../../adapters/goal'
 import { describe, test, expect, beforeAll, afterAll, afterEach } from 'vitest'
-import { server } from '__mocks__/server'
+import { server } from '~/__mocks__/server'
 
 // Start server before all tests
 beforeAll(() => {
