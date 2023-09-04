@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat color="var(--nav-primary)">
+  <v-app-bar flat color="primary">
     <v-container class="d-flex align-center">
       <ul class="redirection">
         <a href="https://realdevsquad.com/" class="redirection__option--logo">
