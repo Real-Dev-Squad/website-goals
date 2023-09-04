@@ -42,7 +42,7 @@ export const updateGoal = async (
   goalId: string,
   goal: PostGoal
 ): Promise<Goal> => {
-  if (goalId) throw Error("Goal not found");
+  if (!goalId) throw Error("GoalId not defined");
   const goalResponse = await axios
     .patch(
       `${API.GOAL_BASE_URL}/goal/${goalId}/`,
