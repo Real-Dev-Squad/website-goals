@@ -5,10 +5,10 @@ export const GOAL_TYPE = {
 }
 
 export const GOAL_STATUS = {
-  COMPLETED: { type: 'COMPLETED', text: 'Completed' },
-  ONGOING: { type: 'ONGOING', text: 'Ongoing' },
-  PAUSED: { type: 'PAUSED', text: 'Paused' }
-}
+  COMPLETED: { type: "completed", text: "Completed" },
+  ONGOING: { type: "ongoing", text: "Ongoing" },
+  PAUSED: { type: "paused", text: "Paused" },
+};
 
 export const DEFAULT_GOAL = {
   title: '',
