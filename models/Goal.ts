@@ -12,7 +12,7 @@ export class Goal extends Model {
       createdBy: this.attr(null),
       startsOn: this.string(''),
       endsOn: this.string(''),
-      precentageCompleted: this.number(0),
+      percentageCompleted: this.number(0),
       status: this.string(null),
       assignedTo: this.attr(null),
       assignedBy: this.string(null)
@@ -26,7 +26,7 @@ export class Goal extends Model {
   declare createdBy: string
   declare startsOn: string
   declare endsOn: string
-  declare precentageCompleted: number
+  declare percentageCompleted: number
   declare status: string
   declare assignedTo: string
   declare assignedBy: string
