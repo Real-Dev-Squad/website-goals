@@ -12,7 +12,6 @@
             <v-icon icon="mdi-close" />
           </v-btn>
           <v-toolbar-title>Goal Form</v-toolbar-title>
-      <!-- <v-spacer></v-spacer> -->
         </v-toolbar>
         <GoalForm />
       </v-card>
@@ -29,14 +28,14 @@ export default {
     GoalForm,
   },
 
-  props: ["visible", "closeCreateGoalModal"],
+  props: ["visible", "closeGoalModal"],
   computed: {
     show: {
       get() {
         return this.visible;
       },
       set() {
-        this.closeCreateGoalModal();
+        this.closeGoalModal();
       },
     },
   },

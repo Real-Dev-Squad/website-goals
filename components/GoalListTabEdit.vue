@@ -1,6 +1,8 @@
 <template>
   <tr v-if="goal">
-    <td @click="openCreateGoalModal(state.id)">{{ state.title }}</td>
+    <nuxt-link :to="`/goal/${props.goalId}`">
+      {{ state.title }}
+    </nuxt-link>
     <td>{{ state.status || "---" }}</td>
     <td>
       <v-menu v-model="state.assigneeMenu" location="bottom">
@@ -39,7 +41,7 @@ import { reactive, ref } from "vue";
 import { goalRepo } from "~/models/Goal";
 import { useGoalsStore } from "~/store/goals";
 import { useUsersStore } from "~/store/users";
-const props = defineProps(["goalId", "openCreateGoalModal"]);
+const props = defineProps(["goalId"]);
 
 const goalStore = useGoalsStore();
 const userStore = useUsersStore();

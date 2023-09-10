@@ -2,6 +2,7 @@
   <v-container>
     <GoalTabPost />
     <GoalList />
+    <router-view />
   </v-container>
 </template>
 
