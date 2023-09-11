@@ -4,6 +4,18 @@
       {{ state.title }}
     </nuxt-link>
     <td>{{ state.status || "---" }}</td>
+    <td>{{ state.startsOn }}</td>
+    <td>
+      <v-progress-circular
+        :rotate="360"
+        :size="60"
+        :width="10"
+        :model-value="state.percentageCompleted"
+        color="teal"
+      >
+        {{ state.percentageCompleted }}
+      </v-progress-circular>
+    </td>
     <td>
       <v-menu v-model="state.assigneeMenu" location="bottom">
         <template v-slot:activator="{ props }">

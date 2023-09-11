@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <GoalFilters />
     <span v-if="recentlyCreated.isLoading">Loading...</span>
     <v-table v-else>
       <thead>
