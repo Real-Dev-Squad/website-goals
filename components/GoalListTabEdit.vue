@@ -17,33 +17,11 @@
       </v-progress-circular>
     </td>
     <td>
-      <v-menu v-model="state.assigneeMenu" location="bottom">
-        <template v-slot:activator="{ props }">
-          <v-btn variant="plain" v-bind="props" icon>
-            <v-tooltip v-if="!assignee" text="Add Assignee">
-              <template v-slot:activator="{ props }">
-                <v-icon icon="mdi-account-plus-outline" v-bind="props" />
-              </template>
-            </v-tooltip>
-            <v-tooltip v-else :text="assignee.name">
-              <template v-slot:activator="{ props }">
-                <v-avatar v-if="assignee.avatar" v-bind="props">
-                  <v-img :src="assignee.avatar" />
-                </v-avatar>
-                <v-avatar v-else color="indigo" v-bind="props">
-                  {{ assignee.initials }}
-                </v-avatar>
-              </template>
-            </v-tooltip>
-          </v-btn>
-        </template>
-        <v-card min-width="300">
-          <popup-assignee
-            :assignee-id="goal.assignedTo"
-            @select-assignee="handleSelectAssignee"
-          />
-        </v-card>
-      </v-menu>
+      <popup-assignee
+        :assignee-id="goal.assignedTo"
+        @select-assignee="handleSelectAssignee"
+        :readonly="false"
+      />
     </td>
   </tr>
 </template>
@@ -66,21 +44,9 @@ const state = reactive({
 });
 
 const assignee = computed(() => {
-  const assigneeRaw =
-    goal?.value?.assignedTo && userStore.getUserById(goal.value.assignedTo);
-  return assigneeRaw
-    ? {
-        id: assigneeRaw.id,
-        name: `${assigneeRaw.firstName} ${assigneeRaw.lastName}`,
-        avatar: assigneeRaw.avatarUrl,
-        initials: `${assigneeRaw.firstName} ${assigneeRaw.lastName}`
-          .trim()
-          .toUpperCase()
-          .split(" ", 2)
-          .map((str) => str.charAt(0))
-          .join(""),
-      }
-    : null;
+  return (
+    goal?.value?.assignedTo && userStore.getUserById(goal.value.assignedTo)
+  );
 });
 
 function handleTitleChange() {
@@ -89,9 +55,11 @@ function handleTitleChange() {
   });
   titleRef.value.blur();
 }
+
 function handleSelectAssignee(selectedAssigneeId: string) {
   goalStore.patch(props.goalId, {
-    assignedTo: selectedAssigneeId,
+    assignedTo:
+      goal.value?.assignedTo == selectedAssigneeId ? "" : selectedAssigneeId,
   });
   state.assigneeMenu = false;
 }

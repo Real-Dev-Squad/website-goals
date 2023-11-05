@@ -7,12 +7,12 @@ export class User extends Model {
   static fields (): any {
     return {
       id: this.attr(null),
+      displayName: this.string(''),
       username: this.string(''),
       firstName: this.string(''),
       lastName: this.string(''),
-      githubDisplayName: this.string(''),
-      githubId: this.attr(null),
-      avatarUrl: this.string(null),
+      avatar: this.string(null),
+      initials: this.string(''),
 
       goals: this.hasMany(Goal, 'assignedTo')
     }
