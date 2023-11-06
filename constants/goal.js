@@ -7,15 +7,13 @@ export const GOAL_TYPE = {
 export const GOAL_STATUS = {
   COMPLETED: { type: "completed", text: "Completed", color: 'surface-variant' },
   ONGOING: { type: "ongoing", text: "Ongoing", color: 'success' },
-  PAUSED: { type: "paused", text: "Paused", color: 'warning' },
+  // PAUSED: { type: "paused", text: "Paused", color: 'warning' },
 };
 
-export const DEFAULT_GOAL = {
-  title: '',
-  type: GOAL_TYPE.SHORT_TERM.type,
-  status: GOAL_STATUS.ONGOING.type,
-  assignees: []
-}
+export const GOAL_STATUS_LIST = [
+  GOAL_STATUS.COMPLETED,
+  GOAL_STATUS.ONGOING,
+]
 
 export const ERROR_MESSAGE = {
   GOAL_ID_NOT_FOUND: 'Goal id not found'

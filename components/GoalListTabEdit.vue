@@ -22,7 +22,7 @@
         </v-text-field>
       </nuxt-link>
 
-      <v-text-field v-else v-model='state.title' @blur="handleTitleWritable(false)" @keyup.enter="handleTitleChange"
+      <v-text-field v-else v-model='state.title' @blur="handleTitleCancel" @keyup.enter="handleTitleChange"
         @keyup.esc="handleTitleCancel" hide-details autofocus>
       </v-text-field>
     </td>
@@ -88,8 +88,7 @@ function handleTitleChange() {
 
 function handleSelectAssignee(selectedAssigneeId: string) {
   goalStore.patch(props.goalId, {
-    assignedTo:
-      goal.value?.assignedTo == selectedAssigneeId ? "" : selectedAssigneeId,
+    assignedTo: selectedAssigneeId,
   });
 }
 </script>
