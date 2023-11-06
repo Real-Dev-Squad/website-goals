@@ -5,9 +5,10 @@
     <v-table v-else>
       <thead>
         <tr>
-          <th class="text-left">Title</th>
-          <th class="text-left">Status</th>
+          <th></th>
+          <th>Title</th>
           <th>Assignee</th>
+          <th>Progress</th>
         </tr>
       </thead>
       <tbody>
