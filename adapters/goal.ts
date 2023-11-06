@@ -12,7 +12,7 @@ const goalSiteConfig = {
 
 export const fetchGoals = async (): Promise<Goal[]> => {
   const goals: Goal[] = await axios
-    .get(`${API.GOAL_BASE_URL}/goal/`)
+    .get(`${API.GOAL_BASE_URL}/v1/goal/`)
     .then((res) => goalAdapter.transformGoalsFromApi(res.data.data))
     .catch((error) => {
       throw new Error(error)
@@ -24,7 +24,7 @@ export const fetchGoals = async (): Promise<Goal[]> => {
 export const addGoal = async (goal: PostGoal): Promise<Goal> => {
   const goalResponse = await axios
     .post(
-      `${API.GOAL_BASE_URL}/goal/`,
+      `${API.GOAL_BASE_URL}/v1/goal/`,
       {
         data: {
           type: 'Goal',
@@ -45,7 +45,7 @@ export const updateGoal = async (
   if (!goalId) throw Error("GoalId not defined");
   const goalResponse = await axios
     .patch(
-      `${API.GOAL_BASE_URL}/goal/${goalId}/`,
+      `${API.GOAL_BASE_URL}/v1/goal/${goalId}/`,
       {
         data: {
           id: goalId,

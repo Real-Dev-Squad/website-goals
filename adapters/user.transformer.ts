@@ -8,13 +8,15 @@ export const transformUsers = (users: any): User[] => {
 }
 
 export const transformUser = (user: any): User => {
+  const displayName = `${user.first_name} ${user.last_name}`;
+
   return {
     id: user.id,
+    displayName,
     username: user.username,
     firstName: user.first_name,
     lastName: user.last_name,
-    githubDisplayName: user.github_display_name,
-    githubId: user.github_id,
-    avatarUrl: user.picture?.url
+    avatar: user.picture?.url,
+    initials: `${user.first_name.charAt(0)} ${user.last_name?.charAt(0)}`.toUpperCase(),
   }
 }

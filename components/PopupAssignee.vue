@@ -1,50 +1,91 @@
 <template>
-  <v-autocomplete v-model="localAssignee" :items="users" :readonly="readOnly" color="blue-grey lighten-2"
-    item-title="name" item-value="id" hide-details menu autofocus>
-    <template v-slot:selection="{ item }">
-      <v-tooltip location="bottom">
-        <template #activator="{ props: tooltipProp }">
-          <v-avatar v-if="item.raw.avatar" v-bind="tooltipProp" size="25">
-            <v-img :src="item.raw.avatar" />
-          </v-avatar>
-          <v-avatar v-else v-bind="tooltipProp" color="indigo" size="25">
-            {{ item.raw.initials }}
-          </v-avatar>
-        </template>
-        <span>{{ item.raw.name }}</span>
-      </v-tooltip>
+  <v-menu v-model="state.isMenuOpen" :close-on-content-click="false" location="bottom">
+    <template v-slot:activator="{ props }">
+      <v-btn variant="plain" v-bind="props" icon>
+        <v-tooltip v-if="!assignee" text="Add Assignee">
+          <template v-slot:activator="{ props }">
+            <v-icon icon="mdi-account-plus-outline" v-bind="props" />
+          </template>
+        </v-tooltip>
+
+        <v-tooltip v-else :text="assignee.displayName">
+          <template v-slot:activator="{ props }">
+            <v-avatar v-if="assignee.avatar" v-bind="props">
+              <v-img :src="assignee.avatar" />
+            </v-avatar>
+            <v-avatar v-else color="indigo" v-bind="props">
+              {{ assignee.initials }}
+            </v-avatar>
+          </template>
+        </v-tooltip>
+      </v-btn>
     </template>
-    <template v-slot:item="{ props, item }">
-      <v-list-item v-bind="props" :title="item.title" @click="$emit('select-assignee', item.raw.id)">
-        <template v-slot:prepend="{}">
-          <v-avatar v-if="item.raw.avatar" v-bind="props" size="28" class="avatar">
-            <v-img :src="item.raw.avatar" />
-          </v-avatar>
-          <v-avatar v-else v-bind="props" size="28" class="avatar" color="indigo">
-            {{ item.raw.initials }}
-          </v-avatar>
-        </template>
-      </v-list-item>
-    </template>
-  </v-autocomplete>
+
+    <v-card class="card">
+      <v-text-field v-model="state.search" label="Search" hide-details autofocus @blur="state.search = ''"/>
+      <v-list class="autocomplete__list">
+        <v-list-item
+          v-for="user in filteredUsers"
+          :title="user.displayName"
+          class="autocomplete__list-item"
+          @click="() => handleNewAssigneeSelect(user)"
+        >
+          <template v-slot:prepend="{}">
+            <v-avatar
+              v-if="user.avatar"
+              v-bind="props"
+              size="28"
+              class="avatar"
+            >
+              <v-img :src="user.avatar" />
+            </v-avatar>
+            <v-avatar
+              v-else
+              v-bind="props"
+              size="28"
+              class="avatar"
+              color="indigo"
+            >
+              {{ user.initials }}
+            </v-avatar>
+          </template>
+        </v-list-item>
+      </v-list>
+    </v-card>
+  </v-menu>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { useUsersStore } from '~/store/users'
-const props = defineProps(['assigneeId', 'readOnly'])
-const userStore = useUsersStore()
-const assignee = props.assigneeId ? userStore.getUserById(props.assigneeId) : null
-const localAssignee = ref(assignee)
-const users = userStore.all().map(user => {
-  const name = `${user.firstName} ${user.lastName}`
-  return {
-    id: user.id,
-    name,
-    avatar: user.avatarUrl,
-    initials: name.trim().toUpperCase().split(' ', 2).map(str => str.charAt(0)).join('')
-  }
+import { ref } from "vue";
+import { useUsersStore } from "~/store/users";
+import { User } from "~/models/User";
+
+const props = defineProps(["assigneeId", "readOnly"]);
+const emit = defineEmits(['selectAssignee'])
+const userStore = useUsersStore();
+
+const users = userStore.all();
+const assignee = computed(() => userStore.getUserById(props.assigneeId));
+const state = reactive({
+  search: "",
+  isMenuOpen: false
 })
+const filteredUsers = computed(() => fuzzySearch(users, state.search))
+
+function fuzzySearch(users: User[] , searchText: string) {
+  if (!searchText) {      // No filter on user if searchText is empty
+    return users;
+  }
+
+  const searchRegex = new RegExp(searchText.split('').join('.*?'), 'i');
+  return users.filter(user => searchRegex.test(user.displayName));
+}
+
+function handleNewAssigneeSelect(user: User) {
+  emit('selectAssignee', user.id);
+  state.isMenuOpen = false;
+  state.search = '';
+}
 </script>
 
 <style scoped>
@@ -59,7 +100,18 @@ const users = userStore.all().map(user => {
   transform: scale(1.05);
 }
 
-.assignee__select-text {
-  max-width: 300px;
+.card {
+  width: 250px;
+  height: 500px;
+  overflow: visible;
+}
+
+.autocomplete__list {
+  height: 300px;
+}
+
+.autocomplete__list-item:hover {
+  background-color: rgb(218, 218, 218);
+  cursor: pointer;
 }
 </style>
