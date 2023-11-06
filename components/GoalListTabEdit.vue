@@ -88,7 +88,8 @@ function handleTitleChange() {
 
 function handleSelectAssignee(selectedAssigneeId: string) {
   goalStore.patch(props.goalId, {
-    assignedTo: selectedAssigneeId,
+    assignedTo:
+      goal.value?.assignedTo == selectedAssigneeId ? "" : selectedAssigneeId,
   });
 }
 </script>
