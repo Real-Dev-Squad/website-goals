@@ -1,7 +1,7 @@
 <template>
   <v-combobox
     v-model="form.status"
-    label="Status"
+    label="Filter"
     :items="options.status"
     item-value="type"
     item-title="text"
