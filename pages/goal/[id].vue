@@ -8,7 +8,7 @@
           </v-btn>
           <v-toolbar-title>Goal Form</v-toolbar-title>
         </v-toolbar>
-        <GoalForm :goal="goal" @goal-update="handleGoalUpdate"/>
+        <GoalForm v-if="goalResponse.data" :goal="goalResponse.data" @goal-update="handleGoalUpdate"/>
       </v-card>
     </v-dialog>
   </v-row>
@@ -26,7 +26,11 @@ const goalStore = useGoalsStore();
 const goalId = route.params.goalId
 if (typeof goalId != 'string') throw Error('Unsupported route param')
 
-const goal = computed(() => goalStore.getGoalDetailById(goalId))
+const goalResponse = computed(() => goalStore.getById(goalId))
+
+onMounted(() => {
+  goalStore.fetchById(goalId)
+})
 
 const closeGoalModal = () => {
   router.push('/')
