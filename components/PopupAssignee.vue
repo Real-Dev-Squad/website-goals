@@ -73,7 +73,7 @@ const state = reactive({
 const filteredUsers = computed(() => fuzzySearch(users, state.search))
 
 function fuzzySearch(users: User[] , searchText: string) {
-  if (!searchText || searchText == assignee.value?.displayName) {
+  if (!searchText) {      // No filter on user if searchText is empty
     return users;
   }
 

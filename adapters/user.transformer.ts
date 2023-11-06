@@ -17,10 +17,6 @@ export const transformUser = (user: any): User => {
     firstName: user.first_name,
     lastName: user.last_name,
     avatar: user.picture?.url,
-    initials: displayName.trim()
-      .toUpperCase()
-      .split(" ", 2)
-      .map((str) => str.charAt(0))
-      .join(""),
+    initials: `${user.first_name.charAt(0)} ${user.last_name?.charAt(0)}`.toUpperCase(),
   }
 }
