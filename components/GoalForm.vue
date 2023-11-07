@@ -14,7 +14,7 @@
           <PopupAssigneeVue @select-assignee="handleAssigneeChange" :assignee-id="state.assignedTo" />
         </v-col>
       </v-row>
-      <v-select menu v-model="state.status" :items="statusList" item-value="type" item-title="text" label="Status" />
+      <v-select v-model="state.status" :items="statusList" item-value="type" item-title="text" label="Status" />
       <v-btn block type="submit" color="primary"> Submit </v-btn>
     </v-form>
   </v-container>
