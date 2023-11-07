@@ -5,7 +5,7 @@ export const GOAL_TYPE = {
 }
 
 export const GOAL_STATUS = {
-  COMPLETED: { type: "completed", text: "Completed", color: 'surface-variant' },
+  COMPLETED: { type: "completed", text: "Completed", color: 'info' },
   ONGOING: { type: "ongoing", text: "Ongoing", color: 'success' },
   // PAUSED: { type: "paused", text: "Paused", color: 'warning' },
 };

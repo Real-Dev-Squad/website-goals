@@ -1,11 +1,10 @@
 <template>
   <tr v-if="goal">
     <td class="column__status">
-      <v-tooltip :text="goalStatus.text" location="left">
-        <template v-slot:activator="{ props }">
-          <v-btn size="10" v-bind="props" :color="goalStatus.color"></v-btn>
-        </template>
-      </v-tooltip>
+      <GoalTabStatusMenu 
+        :goalStatus="goal.status"
+        @status-change="handleStatusChange"
+      />
     </td>
 
     <td class="column__title">
@@ -42,21 +41,10 @@
 import { reactive } from "vue";
 import { goalRepo } from "~/models/Goal";
 import { useGoalsStore } from "~/store/goals";
-import { GOAL_STATUS } from "~/constants/goal";
 
 const props = defineProps(["goalId"]);
 const goalStore = useGoalsStore();
 const goal = computed(() => goalRepo.find(props.goalId));
-const goalStatus = computed(() => {
-  switch (goal.value?.status) {
-    case 'ongoing':
-      return GOAL_STATUS.ONGOING;
-    case 'completed':
-      return GOAL_STATUS.COMPLETED;
-    default:
-      throw Error('Goal status mismatch');
-  }
-})
 
 if (!goal.value) throw new Error("Goal not found");
 
@@ -85,6 +73,11 @@ function handleTitleChange() {
   });
   handleTitleWritable(false)
 }
+
+function handleStatusChange(status: string) {
+    goalStore.patch(props.goalId, { status })
+}
+
 
 function handleSelectAssignee(selectedAssigneeId: string) {
   goalStore.patch(props.goalId, {
