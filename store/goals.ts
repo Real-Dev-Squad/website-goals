@@ -64,6 +64,11 @@ export const useGoalsStore = defineStore({
 
       await goalAdapter.updateGoal(goalId, goal)
     },
+    async delete(goalId: string) {
+      goalRepo.destroy(goalId)
+
+      await goalAdapter.deleteGoal(goalId)
+    },
     async fetchById(goalId: string) {
       const goal = goalRepo.find(goalId)
 
