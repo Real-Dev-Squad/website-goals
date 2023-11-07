@@ -31,7 +31,6 @@ export default {
         status: [
           GOAL_STATUS.COMPLETED,
           GOAL_STATUS.ONGOING,
-          GOAL_STATUS.PAUSED,
         ],
       },
     };

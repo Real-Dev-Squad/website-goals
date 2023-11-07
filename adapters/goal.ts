@@ -21,6 +21,14 @@ export const fetchGoals = async (): Promise<Goal[]> => {
   return goals
 }
 
+export const fetchGoalById = async (goalId: string): Promise<Goal> => {
+  const goal: Goal = await axios
+  .get(`${API.GOAL_BASE_URL}/v1/goal/${goalId}/`)
+  .then((res) => goalAdapter.transformGoalFromApi(res.data.data))
+
+  return goal
+}
+
 export const addGoal = async (goal: PostGoal): Promise<Goal> => {
   const goalResponse = await axios
     .post(
