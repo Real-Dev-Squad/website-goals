@@ -5,10 +5,8 @@
         </template>
 
         <v-list>
-            <v-list-item title="Delete" @click="emit('deleteGoal')" class="menu__list">
-                <template v-slot:prepend>
-                    <v-icon icon="mdi-delete" />
-                </template>
+            <v-list-item @click="emit('deleteGoal')" class="menu__list">
+                <v-btn text="Delete" prepend-icon="mdi-delete" variant="plain"/>
             </v-list-item>
         </v-list>
     </v-menu>
@@ -18,4 +16,8 @@
 const emit = defineEmits(['deleteGoal'])
 </script>
 
-<style scoped></style>
+<style scoped>
+.menu__list {
+    padding: 0;
+}
+</style>

@@ -36,7 +36,7 @@
       </v-progress-circular>
     </td>
 
-    <td>
+    <td class="column__menu">
       <GoalTabMenu @delete-goal="handleDeleteGoal"/>
     </td>
   </tr>
