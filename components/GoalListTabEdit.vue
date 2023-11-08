@@ -9,11 +9,7 @@
     </td>
 
     <td class="column__title">
-      <GoalTabTitle
-        :title="goal.title"
-        :goalId="goal.id"
-        @title-change="handleTitleChange"
-      />
+      <GoalTabTitle :title="goal.title" :goalId="goal.id" @title-change="handleTitleChange" />
     </td>
 
     <td>
