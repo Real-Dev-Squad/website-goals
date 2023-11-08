@@ -34,5 +34,12 @@ export default defineNuxtConfig({
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
       ['useRepo', 'usePinaRepo']
     ]
+  },
+  runtimeConfig: {
+    public: {
+      goalsApi: process.env.NUXT_PUBLIC_GOAL_API,
+      rdsApi: process.env.NUXT_PUBLIC_RDS_API,
+      githubId: process.env.NUXT_PUBLIC_RDS_GITHUB_ID,
+    }
   }
 })
