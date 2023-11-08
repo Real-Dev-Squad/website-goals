@@ -9,6 +9,7 @@
           <th>Title</th>
           <th>Assignee</th>
           <th>Progress</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>

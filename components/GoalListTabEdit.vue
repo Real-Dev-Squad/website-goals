@@ -111,6 +111,10 @@ function handleDeleteGoal() {
   width: 650px;
 }
 
+.column__menu {
+  width: 50px;
+}
+
 .title--plain .v-field__input {
   cursor: pointer;
 }
