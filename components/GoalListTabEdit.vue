@@ -20,6 +20,10 @@
         {{ goal.percentageCompleted }}
       </v-progress-circular>
     </td>
+
+    <td class="column__menu">
+      <GoalTabMenu @delete-goal="handleDeleteGoal"/>
+    </td>
   </tr>
 </template>
 
@@ -54,6 +58,10 @@ function handleSelectAssignee(selectedAssigneeId: string) {
       goal.value?.assignedTo == selectedAssigneeId ? "" : selectedAssigneeId,
   });
 }
+
+function handleDeleteGoal() {
+  goalStore.delete(props.goalId)
+}
 </script>
 
 <style>
@@ -63,6 +71,10 @@ function handleSelectAssignee(selectedAssigneeId: string) {
 
 .column__title {
   width: 650px;
+}
+
+.column__menu {
+  width: 50px;
 }
 
 .title--plain .v-field__input {
