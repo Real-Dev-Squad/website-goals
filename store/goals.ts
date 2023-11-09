@@ -52,7 +52,12 @@ export const useGoalsStore = defineStore({
       const goalResponse = await goalAdapter.addGoal(goal)
 
       goalRepo.save(goalResponse)
-      this.recentlyCreated.data?.unshift(goalResponse.id)
+
+      if (!this.recentlyCreated.data) {
+        this.recentlyCreated.data = [goalResponse.id]
+      } else {
+        this.recentlyCreated.data.unshift(goalResponse.id)
+      }
     },
     async patch(goalId: string, goal: PostGoal) {
       const prevGoal = goalRepo.find(goalId)
@@ -63,6 +68,11 @@ export const useGoalsStore = defineStore({
       })
 
       await goalAdapter.updateGoal(goalId, goal)
+    },
+    async delete(goalId: string) {
+      goalRepo.destroy(goalId)
+
+      await goalAdapter.deleteGoal(goalId)
     },
     async fetchById(goalId: string) {
       const goal = goalRepo.find(goalId)

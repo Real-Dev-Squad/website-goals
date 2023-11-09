@@ -46,6 +46,14 @@ export const addGoal = async (goal: PostGoal): Promise<Goal> => {
   return goalResponse
 }
 
+export const deleteGoal = async (goalId: string): Promise<void> => {
+  await axios
+    .delete(
+      `${API.GOAL_BASE_URL}/v1/goal/${goalId}/`,
+      goalSiteConfig,
+    )
+}
+
 export const updateGoal = async (
   goalId: string,
   goal: PostGoal

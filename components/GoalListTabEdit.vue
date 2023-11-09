@@ -8,22 +8,7 @@
     </td>
 
     <td class="column__title">
-      <nuxt-link v-if="state.titleReadOnly" :to="`/goal/${goal.id}`">
-        <v-text-field v-model='state.title' class="title--plain" :readonly=true hide-details>
-          <template v-slot:append-inner>
-            <v-tooltip text="Edit Title" location="top">
-              <template v-slot:activator="{ props }">
-                <v-btn v-bind="props" icon='mdi-pencil' class="title__edit-btn" variant="plain" size="small"
-                  @click="() => handleTitleWritable(true)" />
-              </template>
-            </v-tooltip>
-          </template>
-        </v-text-field>
-      </nuxt-link>
-
-      <v-text-field v-else v-model='state.title' @blur="handleTitleCancel" @keyup.enter="handleTitleChange"
-        @keyup.esc="handleTitleCancel" hide-details autofocus>
-      </v-text-field>
+      <GoalTabTitle :title="goal.title" :goalId="goal.id" @title-change="handleTitleChange" />
     </td>
 
     <td>
@@ -34,11 +19,14 @@
         {{ goal.percentageCompleted }}
       </v-progress-circular>
     </td>
+
+    <td class="column__menu">
+      <GoalTabMenu @delete-goal="handleDeleteGoal"/>
+    </td>
   </tr>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
 import { goalRepo } from "~/models/Goal";
 import { useGoalsStore } from "~/store/goals";
 
@@ -48,30 +36,8 @@ const goal = computed(() => goalRepo.find(props.goalId));
 
 if (!goal.value) throw new Error("Goal not found");
 
-const state = reactive({
-  titleReadOnly: true,
-  title: goal.value.title,
-});
-
-function handleTitleWritable(isWritable: boolean) {
-  state.titleReadOnly = !isWritable
-}
-
-function handleTitleCancel() {
-  state.title = goal.value?.title || ''
-  handleTitleWritable(false)
-}
-
-function handleTitleChange() {
-  if (!state.title) {
-    handleTitleCancel();
-    return;
-  };
-
-  goalStore.patch(props.goalId, {
-    title: state.title,
-  });
-  handleTitleWritable(false)
+function handleTitleChange(title: string) {
+  goalStore.patch(props.goalId, { title });
 }
 
 function handleStatusChange(status: string) {
@@ -85,6 +51,10 @@ function handleSelectAssignee(selectedAssigneeId: string) {
       goal.value?.assignedTo == selectedAssigneeId ? "" : selectedAssigneeId,
   });
 }
+
+function handleDeleteGoal() {
+  goalStore.delete(props.goalId)
+}
 </script>
 
 <style>
@@ -94,6 +64,10 @@ function handleSelectAssignee(selectedAssigneeId: string) {
 
 .column__title {
   width: 650px;
+}
+
+.column__menu {
+  width: 50px;
 }
 
 .title--plain .v-field__input {

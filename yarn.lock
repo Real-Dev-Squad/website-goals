@@ -1830,6 +1830,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pinia/testing@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@pinia/testing@npm:0.1.3"
+  dependencies:
+    vue-demi: "npm:>=0.14.5"
+  peerDependencies:
+    pinia: ">=2.1.5"
+  checksum: f518e36bbfe1ac847147ddc96299b9a3e8926e7188c1af800aec6426be3d307667a38eadddb7582982e402036d947818ee3b24766e91aadabceffb1a793237fb
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -8320,6 +8331,7 @@ __metadata:
     "@nuxt/test-utils": "npm:^3.8.0"
     "@pinia-orm/nuxt": "npm:^1.7.0"
     "@pinia/nuxt": "npm:^0.5.1"
+    "@pinia/testing": "npm:^0.1.3"
     "@testing-library/jest-dom": "npm:^6.1.4"
     "@types/node": "npm:^20.8.10"
     "@types/webfontloader": "npm:^1.6.36"
