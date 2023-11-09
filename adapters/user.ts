@@ -7,7 +7,7 @@ export const fetchUsers = async (): Promise<User []> => {
   const config = getConfig();
 
   const users: User[] = await axios
-    .get(`${config.rdsApi}/members`)
+    .get(`${config.RDS_API}/members`)
     .then(res => transformUsers(res.data.members))
     .catch(error => {
       throw new Error(error)

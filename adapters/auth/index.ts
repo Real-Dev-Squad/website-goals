@@ -23,7 +23,7 @@ ErrorApiForbidden | ErrorApiUnauthorized | ErrorApiUnavailable | ErrorApiNotFoun
 export const getSelf = async (): Promise<GetSelfResponse> => {
   const config = getConfig();
   const response: GetSelfResponse = await axios
-    .get(`${config.rdsApi}/users/self/`, { withCredentials: true })
+    .get(`${config.RDS_API}/users/self/`, { withCredentials: true })
     .then(res => ({ data: transformSelfInfoFromApi(res.data) }))
     .catch((error) => {
       if (isAxiosError(error)) {

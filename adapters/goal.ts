@@ -14,7 +14,7 @@ export const fetchGoals = async (): Promise<Goal[]> => {
   const config = getConfig();
 
   const goals: Goal[] = await axios
-    .get(`${config.goalsApi}/v1/goal/`)
+    .get(`${config.GOALS_API}/v1/goal/`)
     .then((res) => goalAdapter.transformGoalsFromApi(res.data.data))
     .catch((error) => {
       throw new Error(error)
@@ -27,7 +27,7 @@ export const fetchGoalById = async (goalId: string): Promise<Goal> => {
   const config = getConfig();
 
   const goal: Goal = await axios
-  .get(`${config.goalsApi}/v1/goal/${goalId}/`)
+  .get(`${config.GOALS_API}/v1/goal/${goalId}/`)
   .then((res) => goalAdapter.transformGoalFromApi(res.data.data))
 
   return goal
@@ -38,7 +38,7 @@ export const addGoal = async (goal: PostGoal): Promise<Goal> => {
 
   const goalResponse = await axios
     .post(
-      `${config.goalsApi}/v1/goal/`,
+      `${config.GOALS_API}/v1/goal/`,
       {
         data: {
           type: 'Goal',
@@ -60,7 +60,7 @@ export const updateGoal = async (
   const config = getConfig();
   const goalResponse = await axios
     .patch(
-      `${config.goalsApi}/v1/goal/${goalId}/`,
+      `${config.GOALS_API}/v1/goal/${goalId}/`,
       {
         data: {
           id: goalId,
