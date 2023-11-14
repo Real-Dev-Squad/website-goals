@@ -12,20 +12,22 @@
 
       <v-spacer></v-spacer>
 
-      <button class="login" @click="redirectLogin()">
-        <span class="login__text">Sign In With GitHub</span>
-        <img class="login__image" src="~/assets/github.png" alt="GitHub Icon" height="15px" width="15px">
-      </button>
+      <nuxt-link :href="LOGIN">
+        <button class="login">
+          <span class="login__text">Sign In With GitHub</span>
+          <img class="login__image" src="~/assets/github.png" alt="GitHub Icon" height="15px" width="15px">
+        </button>
+      </nuxt-link>
     </v-container>
   </v-app-bar>
 </template>
 
 <script>
-import { LINKS } from '~/constants/links'
+import { getConfig } from '~/config'
 
 export default {
   name: 'AppNavBar',
-  data () {
+  data() {
     return {
       isClicked: false,
       LINKS: [
@@ -35,14 +37,14 @@ export default {
         { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
         { name: 'Status', link: 'https://status.realdevsquad.com/' }
       ],
-      LOGIN: LINKS.LOGIN
+      LOGIN: `https://github.com/login/oauth/authorize?client_id=${getConfig().githubId}`
     }
   },
   methods: {
-    toggleClicked (value) {
+    toggleClicked(value) {
       this.isClicked = !value
     },
-    redirectLogin () {
+    redirectLogin() {
       window.location.href = this.LOGIN
     }
   }

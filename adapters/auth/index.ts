@@ -10,7 +10,7 @@ import {
   type ErrorApiNotFound,
   type ErrorApiBase
 } from '~/interfaces/ErrorApi'
-import { API } from '~/constants/api'
+import { getConfig } from '~/config'
 
 type GetSelfResponse = ApiResponse<
 {
@@ -21,8 +21,9 @@ ErrorApiForbidden | ErrorApiUnauthorized | ErrorApiUnavailable | ErrorApiNotFoun
 >
 
 export const getSelf = async (): Promise<GetSelfResponse> => {
+  const config = getConfig();
   const response: GetSelfResponse = await axios
-    .get(`${API.RDS_BASE_URL}/users/self/`, { withCredentials: true })
+    .get(`${config.RDS_API}/users/self/`, { withCredentials: true })
     .then(res => ({ data: transformSelfInfoFromApi(res.data) }))
     .catch((error) => {
       if (isAxiosError(error)) {
