@@ -27,8 +27,8 @@ export const fetchGoalById = async (goalId: string): Promise<Goal> => {
   const config = getConfig();
 
   const goal: Goal = await axios
-  .get(`${config.GOALS_API}/v1/goal/${goalId}/`)
-  .then((res) => goalAdapter.transformGoalFromApi(res.data.data))
+    .get(`${config.GOALS_API}/v1/goal/${goalId}/`)
+    .then((res) => goalAdapter.transformGoalFromApi(res.data.data))
 
   return goal
 }
@@ -53,9 +53,10 @@ export const addGoal = async (goal: PostGoal): Promise<Goal> => {
 }
 
 export const deleteGoal = async (goalId: string): Promise<void> => {
+  const config = getConfig();
   await axios
     .delete(
-      `${API.GOAL_BASE_URL}/v1/goal/${goalId}/`,
+      `${config.GOALS_API}/v1/goal/${goalId}/`,
       goalSiteConfig,
     )
 }
