@@ -5,17 +5,17 @@ export class Goal extends Model {
 
   static fields (): any {
     return {
-      id: this.attr(null),
+      id: this.string(''),
       title: this.string(''),
       description: this.string(''),
-      createdAt: this.string(null),
-      createdBy: this.attr(null),
-      startsOn: this.string(''),
-      endsOn: this.string(''),
-      precentageCompleted: this.number(0),
-      status: this.string(null),
+      createdAt: this.string(''),
+      createdBy: this.string(''),
+      percentageCompleted: this.number(0),
+      endsOn: this.attr(null),
+      startsOn: this.attr(null),
+      status: this.string(''),
       assignedTo: this.attr(null),
-      assignedBy: this.string(null)
+      assignedBy: this.string('')
     }
   }
 
@@ -24,12 +24,12 @@ export class Goal extends Model {
   declare description: string
   declare createdAt: string
   declare createdBy: string
-  declare startsOn: string
-  declare endsOn: string
-  declare precentageCompleted: number
+  declare startsOn: string | null
+  declare endsOn: string | null
+  declare percentageCompleted: number
   declare status: string
-  declare assignedTo: string
-  declare assignedBy: string
+  declare assignedTo: string | null
+  declare assignedBy: string | null
 }
 
 export const goalRepo = useRepo(Goal)

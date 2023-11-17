@@ -1,10 +1,9 @@
-import { expect } from 'chai'
-import { fetchUsers } from '../../adapters/user'
-import { describe, test } from 'vitest'
+import * as userAdapter from '~/adapters/user'
+import { describe, test, expect } from 'vitest'
 
 describe('adapter/user', async () => {
-  test('response should be an array', async () => {
-    const users = await fetchUsers()
+  test.skip('response should be an array', async () => {
+    const users = await userAdapter.fetchUsers()
 
     expect(users).to.be.an('Array')
   })

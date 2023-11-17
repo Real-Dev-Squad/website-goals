@@ -1,34 +1,35 @@
 import { type PostGoal } from '~/interfaces/PostGoal'
 import { goalRepo } from '~/models/Goal'
 import * as goalAdapter from '~/adapters/goal'
+import { defineStore } from 'pinia'
 
 type GoalStoreState =
   | {
-    recentlyCreated: {
-      isLoading: true
-      isValid: false
-      data: null
+    byId: {
+      [key: string]: {
+        isLoading: boolean
+        isValid: boolean
+      }
     }
-  }
-  | {
     recentlyCreated: {
-      isLoading: false
+      isLoading: boolean
       isValid: boolean
       data: string[] | undefined
-    }
+    },
   }
 
 export const useGoalsStore = defineStore({
   id: 'goal-store',
   state: (): GoalStoreState => ({
+    byId: {},
     recentlyCreated: {
       isLoading: false,
       isValid: false,
       data: undefined
-    }
+    },
   }),
   actions: {
-    async fetchGoals () {
+    async fetchGoals() {
       if (this.recentlyCreated.isValid) return
 
       this.$patch({
@@ -47,13 +48,18 @@ export const useGoalsStore = defineStore({
         }
       })
     },
-    async add (goal: PostGoal) {
+    async add(goal: PostGoal) {
       const goalResponse = await goalAdapter.addGoal(goal)
 
       goalRepo.save(goalResponse)
-      this.recentlyCreated.data?.unshift(goalResponse.id)
+
+      if (!this.recentlyCreated.data) {
+        this.recentlyCreated.data = [goalResponse.id]
+      } else {
+        this.recentlyCreated.data.unshift(goalResponse.id)
+      }
     },
-    async patch (goalId: string, goal: PostGoal) {
+    async patch(goalId: string, goal: PostGoal) {
       const prevGoal = goalRepo.find(goalId)
       goalRepo.save({
         id: goalId,
@@ -62,15 +68,51 @@ export const useGoalsStore = defineStore({
       })
 
       await goalAdapter.updateGoal(goalId, goal)
-    }
+    },
+    async delete(goalId: string) {
+      goalRepo.destroy(goalId)
+
+      await goalAdapter.deleteGoal(goalId)
+    },
+    async fetchById(goalId: string) {
+      const goal = goalRepo.find(goalId)
+
+      if (!goal) {
+        this.byId = {
+          [goalId]: {
+            isLoading: true,
+            isValid: false
+          }
+        }
+
+        const goal = await goalAdapter.fetchGoalById(goalId)
+        goalRepo.save(goal)
+        this.byId = {
+          [goalId]: {
+            isLoading: false,
+            isValid: true,
+          }
+        }
+      } else {
+        this.byId = {
+          [goalId]: {
+            isLoading: false,
+            isValid: true,
+          }
+        }
+      }
+    },
   },
   getters: {
-    getGoalDetailById: () => {
+    getById: (state) => {
       return (goalId: string) => {
-        const goal = goalRepo.withAllRecursive().find(goalId)
-        if (goal == null) throw Error('Goal not found')
+        const goalState = state.byId[goalId];
 
-        return goal
+        return {
+          isLoading: goalState.isLoading,
+          isValid: goalState.isValid,
+          data: goalRepo.find(goalId)
+        }
       }
     }
   }

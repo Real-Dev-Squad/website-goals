@@ -1,9 +1,9 @@
 export interface User {
   id: string
+  displayName: string
   username: string
   firstName: string
   lastName: string
-  githubDisplayName?: string
-  githubId: string
-  avatarUrl: string
+  avatar: string
+  initials: string
 }
