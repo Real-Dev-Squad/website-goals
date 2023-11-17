@@ -27,6 +27,7 @@
         <v-list-item
           v-for="user in filteredUsers"
           :title="user.displayName"
+          :key="user.id"
           class="autocomplete__list-item"
           @click="() => handleNewAssigneeSelect(user)"
         >

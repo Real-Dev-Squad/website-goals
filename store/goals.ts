@@ -44,7 +44,7 @@ export const useGoalsStore = defineStore({
         recentlyCreated: {
           isLoading: false,
           isValid: true,
-          data: goals.map(goal => goal.id).reverse()
+          data: goals.map(goal => goal.id)
         }
       })
     },
