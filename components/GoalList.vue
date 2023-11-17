@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <GoalFilters />
+    <GoalListCreateGoal />
     <span v-if="recentlyCreated.isLoading">Loading...</span>
     <v-table v-else>
       <thead>
@@ -13,11 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <GoalListTabEdit
-          v-for="goalId in recentlyCreated.data"
-          :key="goalId"
-          :goal-id="goalId"
-        />
+        <GoalListTab v-for="goalId in recentlyCreated.data" :key="goalId" :goal-id="goalId" />
       </tbody>
     </v-table>
   </v-container>

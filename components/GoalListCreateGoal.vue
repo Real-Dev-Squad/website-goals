@@ -16,7 +16,6 @@ import { reactive, ref } from 'vue'
 import { useGoalsStore } from '~/store/goals'
 
 const goalStore = useGoalsStore()
-const emit = defineEmits(['onGoalTabPostBlur'])
 const form = reactive({
   title: ''
 })
