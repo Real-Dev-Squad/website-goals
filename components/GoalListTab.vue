@@ -1,13 +1,13 @@
 <template>
   <tr v-if="goal">
-    <td class="column__status">
+    <td>
       <GoalTabStatusMenu 
         :goalStatus="goal.status"
         @status-change="handleStatusChange"
       />
     </td>
 
-    <td class="column__title">
+    <td>
       <GoalTabTitle :title="goal.title" :goalId="goal.id" @title-change="handleTitleChange" />
     </td>
 
@@ -20,7 +20,7 @@
       </v-progress-circular>
     </td>
 
-    <td class="column__menu">
+    <td>
       <GoalTabMenu @delete-goal="handleDeleteGoal"/>
     </td>
   </tr>
@@ -58,18 +58,6 @@ function handleDeleteGoal() {
 </script>
 
 <style>
-.column__status {
-  width: 30px;
-}
-
-.column__title {
-  width: 650px;
-}
-
-.column__menu {
-  width: 50px;
-}
-
 .title--plain .v-field__input {
   cursor: pointer;
 }
