@@ -44,9 +44,8 @@ describe.only('adapters/user.transformer', () => {
                 username: 'pallabez'
             })
 
-            expect(user.displayName).toBe('Pallab ')
+            expect(user.displayName).toBe('Pallab')
             expect(user.initials).toBe('P')
         })
-        
     })
 })

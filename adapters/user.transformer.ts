@@ -8,7 +8,7 @@ export const transformUsers = (users: any): User[] => {
 }
 
 export const transformUser = (user: any): User => {
-  const displayName = user.first_name ? `${user.first_name} ${user.last_name || ''}` : user.username;
+  const displayName = user.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : user.username;
   const initials = getInitials(displayName);
 
   return {
