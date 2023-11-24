@@ -6,6 +6,7 @@
 ```
 volta install yarn
 ```
+## Setup
 - Install local dependencies
 ```
 yarn
@@ -31,7 +32,7 @@ It should look something like this -
 ```js
 NUXT_PUBLIC_GOAL_API='http://localhost:8000/api'
 ```
-- Reload the server
+- Restart the server
 
 ## Production Setup
 
