@@ -26,7 +26,7 @@ yarn dev
 ### With Local backend-goals
 Connect to local backend-goals
 - Go to .env
-- Replace `NUXT_PUBLIC_GOAL_API` value to `http://localhost:8000/api` (or url of whatever backend-goals you want to connect to) 
+- Set your `NUXT_PUBLIC_GOAL_API` value to `http://localhost:8000/api` (or a url of the backend-goals you want to connect to) 
 
 It should look something like this -
 ```js
