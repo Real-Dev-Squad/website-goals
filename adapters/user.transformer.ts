@@ -8,7 +8,8 @@ export const transformUsers = (users: any): User[] => {
 }
 
 export const transformUser = (user: any): User => {
-  const displayName = `${user.first_name} ${user.last_name}`;
+  const displayName = user.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : user.username;
+  const initials = getInitials(displayName);
 
   return {
     id: user.id,
@@ -17,6 +18,13 @@ export const transformUser = (user: any): User => {
     firstName: user.first_name,
     lastName: user.last_name,
     avatar: user.picture?.url,
-    initials: `${user.first_name.charAt(0)} ${user.last_name?.charAt(0)}`.toUpperCase(),
+    initials,
   }
+}
+
+function getInitials(displayName: string): string {
+  return displayName
+    .split(' ')
+    .map(name => name.charAt(0).toUpperCase())
+    .join('')
 }
