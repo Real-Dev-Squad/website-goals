@@ -31,5 +31,12 @@ It should look something like this -
 ```js
 NUXT_PUBLIC_GOAL_API='http://localhost:8000/api'
 ```
+- Reload the server
 
 ## Production Setup
+
+- Generate the static content 
+```
+yarn run generate
+```
+- The output is generated in `.output` directory
