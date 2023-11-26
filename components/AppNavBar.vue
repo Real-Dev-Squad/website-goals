@@ -37,7 +37,7 @@ export default {
         { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
         { name: 'Status', link: 'https://status.realdevsquad.com/' }
       ],
-      LOGIN: `https://github.com/login/oauth/authorize?client_id=${getConfig().githubId}`
+      LOGIN: `${getConfig().RDS_API}/auth/github/login`
     }
   },
   methods: {

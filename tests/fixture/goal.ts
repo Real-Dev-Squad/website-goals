@@ -10,5 +10,4 @@ export const GOAL_MOCK = {
     assignedBy: '',
     status: 'ongoing',
     assignedTo: null,
-
 }

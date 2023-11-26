@@ -39,7 +39,6 @@ export default defineNuxtConfig({
     public: {
       GOALS_API: process.env.NUXT_PUBLIC_GOAL_API,
       RDS_API: process.env.NUXT_PUBLIC_RDS_API,
-      GITHUB_ID: process.env.NUXT_PUBLIC_RDS_GITHUB_ID,
     }
   }
 })
