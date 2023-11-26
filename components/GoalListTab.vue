@@ -48,7 +48,7 @@ function handleStatusChange(status: string) {
 function handleSelectAssignee(selectedAssigneeId: string) {
   goalStore.patch(props.goalId, {
     assignedTo:
-      goal.value?.assignedTo == selectedAssigneeId ? "" : selectedAssigneeId,
+      goal.value?.assignedTo == selectedAssigneeId ? null : selectedAssigneeId,
   });
 }
 
