@@ -1,12 +1,8 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <v-sheet min-height="70vh" rounded="lg">
-          <GoalList />
-        </v-sheet>
-      </v-col>
-    </v-row>
+    <v-sheet min-height="70vh" rounded="lg">
+      <GoalList />
+    </v-sheet>
     <router-view />
   </v-container>
 </template>
