@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <GoalList />
+    <v-sheet min-height="70vh" rounded="lg">
+      <GoalList />
+    </v-sheet>
     <router-view />
   </v-container>
 </template>
