@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="flex-grow-0">
     <v-col cols="12" class="px-0 container">
       <v-text-field v-if="showGoalTabPost" v-model="form.title" hide-details label="Title"
         @keydown.enter.prevent="handleSubmit" autofocus @blur="showGoalTabPost = false" />

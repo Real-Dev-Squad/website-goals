@@ -1,5 +1,5 @@
 <template>
-  <tr v-if="goal">
+  <tr>
     <td class="column__status">
       <GoalTabStatusMenu 
         :goalStatus="goal.status"
@@ -27,14 +27,11 @@
 </template>
 
 <script lang="ts" setup>
-import { goalRepo } from "~/models/Goal";
 import { useGoalsStore } from "~/store/goals";
 
 const props = defineProps(["goalId"]);
 const goalStore = useGoalsStore();
-const goal = computed(() => goalRepo.find(props.goalId));
-
-if (!goal.value) throw new Error("Goal not found");
+const goal = computed(() => goalStore.getById(props.goalId).data)
 
 function handleTitleChange(title: string) {
   goalStore.patch(props.goalId, { title });
@@ -44,11 +41,10 @@ function handleStatusChange(status: string) {
     goalStore.patch(props.goalId, { status })
 }
 
-
 function handleSelectAssignee(selectedAssigneeId: string) {
   goalStore.patch(props.goalId, {
     assignedTo:
-      goal.value?.assignedTo == selectedAssigneeId ? null : selectedAssigneeId,
+      goal.value?.data?.assignedTo == selectedAssigneeId ? null : selectedAssigneeId,
   });
 }
 

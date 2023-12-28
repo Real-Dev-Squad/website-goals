@@ -10,17 +10,40 @@ const goalSiteConfig = {
   }
 }
 
-export const fetchGoals = async (): Promise<Goal[]> => {
+interface GoalListResponse {
+  result: Goal [],
+  meta: {
+    pagination: {
+      page: number,
+      pages: number,
+      count: number,
+    }
+  },
+  links: {
+    first: string,
+    last: string,
+    next: string,
+    prev: string,
+  }
+}
+
+export const fetchGoals = async (query: string): Promise<GoalListResponse> => {
   const config = getConfig();
 
-  const goals: Goal[] = await axios
-    .get(`${config.GOALS_API}/v1/goal/`)
-    .then((res) => goalAdapter.transformGoalsFromApi(res.data.data))
+  const response: GoalListResponse = await axios
+    .get(`${config.GOALS_API}/v1/goal/?${query}`)
+    .then((res) => {
+      return {
+        result: goalAdapter.transformGoalsFromApi(res.data.data),
+        meta: res.data.meta,
+        links: res.data.links,
+      }
+    })
     .catch((error) => {
       throw new Error(error)
     })
 
-  return goals
+  return response
 }
 
 export const fetchGoalById = async (goalId: string): Promise<Goal> => {

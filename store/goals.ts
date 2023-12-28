@@ -3,49 +3,83 @@ import { goalRepo } from '~/models/Goal'
 import * as goalAdapter from '~/adapters/goal'
 import { defineStore } from 'pinia'
 
-type GoalStoreState =
-  | {
-    byId: {
-      [key: string]: {
-        isLoading: boolean
-        isValid: boolean
-      }
-    }
-    recentlyCreated: {
+export interface Filters {
+  [key: string]: string,
+}
+
+interface Query {
+  data: {
+    filters: Filters;
+    pagination: {
+      page: number;
+      maxPage: number;
+    };
+    result: string[];
+  }
+  isLoading: boolean,
+  isValid: boolean,
+}
+
+interface GoalStoreState {
+  byId: {
+    [key: string]: {
       isLoading: boolean
       isValid: boolean
-      data: string[] | undefined
-    },
+    }
   }
+  queries: {
+    [key: string]: Query;
+  },
+  areQueriesValid: Boolean,
+}
 
 export const useGoalsStore = defineStore({
   id: 'goal-store',
   state: (): GoalStoreState => ({
     byId: {},
-    recentlyCreated: {
-      isLoading: false,
-      isValid: false,
-      data: undefined
-    },
+    queries: {},
+    areQueriesValid: false,
   }),
   actions: {
-    async fetchGoals() {
-      if (this.recentlyCreated.isValid) return
+    async fetchGoals({ filters, page }: any) {
+      const query = getQuery({ filters, page });
 
+      if (this.queries[query]?.isValid) return
       this.$patch({
-        recentlyCreated: {
-          isLoading: true
+        queries: {
+          ...this.queries,
+          [query]: {
+            isLoading: true,
+            isValid: false,
+            data: {
+              result: [],
+              filters: filters,
+              pagination: { },
+            }
+          }
         }
       })
-      const goals = await goalAdapter.fetchGoals()
+      const goalsResponse = await goalAdapter.fetchGoals(query)
+      const goals = goalsResponse.result
       goalRepo.save(goals)
 
       this.$patch({
-        recentlyCreated: {
-          isLoading: false,
-          isValid: true,
-          data: goals.map(goal => goal.id)
-        }
+        areQueriesValid: true,
+        queries: {
+          ...this.queries,
+          [query]: {
+            isLoading: false,
+            isValid: true,
+            data: {
+              result: goals.map(goal => goal.id),
+              filters: filters,
+              pagination: {
+                page,
+                maxPage: goalsResponse.meta.pagination.pages,
+              },
+            }
+          }
+        },
       })
     },
     async add(goal: PostGoal) {
@@ -53,11 +87,7 @@ export const useGoalsStore = defineStore({
 
       goalRepo.save(goalResponse)
 
-      if (!this.recentlyCreated.data) {
-        this.recentlyCreated.data = [goalResponse.id]
-      } else {
-        this.recentlyCreated.data.unshift(goalResponse.id)
-      }
+      this.queries = {}
     },
     async patch(goalId: string, goal: PostGoal) {
       const prevGoal = goalRepo.find(goalId)
@@ -73,6 +103,9 @@ export const useGoalsStore = defineStore({
       goalRepo.destroy(goalId)
 
       await goalAdapter.deleteGoal(goalId)
+
+      this.areQueriesValid = false
+      this.queries = {}
     },
     async fetchById(goalId: string) {
       const goal = goalRepo.find(goalId)
@@ -106,14 +139,42 @@ export const useGoalsStore = defineStore({
   getters: {
     getById: (state) => {
       return (goalId: string) => {
-        const goalState = state.byId[goalId];
+        const data = goalRepo.find(goalId)
 
+        if (!data) throw new Error("Goal not found");
+        
         return {
-          isLoading: goalState.isLoading,
-          isValid: goalState.isValid,
-          data: goalRepo.find(goalId)
+          isLoading: false,
+          isValid: true,
+          data,
         }
+      }
+    },
+    getByQuery: (state) => {
+      return ({ filters, page }: { filters: Filters, page: number }) => {
+        const query = getQuery({ filters, page });
+
+        if (!state.queries[query]) return {
+          isValid: false,
+          isLoading: false,
+          data: undefined,
+        }
+        return state.queries[query]
       }
     }
   }
 })
+
+export function getQuery({ filters, page }: { filters: Filters, page: number }) {
+  let queryObj = {
+    ...filters,
+    'page[number]': page,
+  }
+
+  let query =
+    Object.entries(queryObj)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&')
+
+  return query;
+}
