@@ -3,6 +3,7 @@ import * as goalAdapter from './goal.transformer'
 import { type Goal } from '~/interfaces/Goal'
 import { type PostGoal } from '~/interfaces/PostGoal'
 import { getConfig } from '~/config/index'
+import type { Filters } from '~/store/goals'
 
 const goalSiteConfig = {
   headers: {
@@ -10,7 +11,7 @@ const goalSiteConfig = {
   }
 }
 
-interface GoalListResponse {
+export interface GoalListResponse {
   result: Goal [],
   meta: {
     pagination: {
@@ -27,11 +28,31 @@ interface GoalListResponse {
   }
 }
 
-export const fetchGoals = async (query: string): Promise<GoalListResponse> => {
+export interface GetGoalQuery {
+  page: number
+  filters: Filters
+}
+
+export function getQueryString({ filters, page }: GetGoalQuery) {
+  let queryObj = {
+    ...filters,
+    'page[number]': page,
+  }
+
+  let query =
+    Object.entries(queryObj)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&')
+
+  return query;
+}
+
+export const fetchGoals = async (query: GetGoalQuery): Promise<GoalListResponse> => {
   const config = getConfig();
+  const queryString = getQueryString(query);
 
   const response: GoalListResponse = await axios
-    .get(`${config.GOALS_API}/v1/goal/?${query}`)
+    .get(`${config.GOALS_API}/v1/goal/?${queryString}`)
     .then((res) => {
       return {
         result: goalAdapter.transformGoalsFromApi(res.data.data),

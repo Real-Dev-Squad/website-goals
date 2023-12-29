@@ -12,33 +12,30 @@
         </tr>
       </thead>
       <tbody>
-        <template v-if="!goal.isLoading">
-          <GoalListTab v-for="goalId in goal.data?.result" :key="goalId" :goal-id="goalId" />
+        <template v-if="goalList">
+          <GoalListTab v-for="goal in goalList.result" :key="goal.id" :goal="goal" />
         </template>
       </tbody>
     </v-table>
-    <v-pagination v-if="state.maxPage" :length="goal.data?.pagination.maxPage || state.maxPage" v-model="state.page"></v-pagination>  
+    <v-pagination v-if="maxPage" :length="goalList?.meta.pagination.pages || maxPage" v-model="state.page"></v-pagination>  
   </v-container>
 </template>
 
 <script lang="ts" setup>
+import { useGoalListQuery } from '~/store/goals';
 const state = reactive({
   page: 1,
   filters: {},
-  maxPage: null as number | null,
 })
+const maxPage = ref(0);
 
-const goal = useGoalListQuery({ filters: state.filters, page: state.page });
+const { data: goalList } = useGoalListQuery(state);
 
-watch(goal, (newValue, oldValue) => {
-  const newGoal = toRaw(newValue)
-
-  console.log(newGoal, newGoal.data, newGoal.data?.pagination)
-  if (newGoal.data?.pagination.maxPage) {
-    state.maxPage = newGoal.data.pagination.maxPage
+watch(goalList, (goalList) => {
+  if (goalList?.meta.pagination.pages) {
+    maxPage.value = goalList.meta.pagination.pages;
   }
 })
-
 </script>
 
 <style scoped>

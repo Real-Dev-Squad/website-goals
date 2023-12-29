@@ -2,17 +2,17 @@
   <tr>
     <td class="column__status">
       <GoalTabStatusMenu 
-        :goalStatus="goal.status"
+        :goalStatus="props.goal.status"
         @status-change="handleStatusChange"
       />
     </td>
 
     <td class="column__title">
-      <GoalTabTitle :title="goal.title" :goalId="goal.id" @title-change="handleTitleChange" />
+      <GoalTabTitle :title="props.goal.title" :goalId="goal.id" @title-change="handleTitleChange" />
     </td>
 
     <td>
-      <popup-assignee :assignee-id="goal.assignedTo" @select-assignee="handleSelectAssignee" :readonly="false" />
+      <popup-assignee :assignee-id="props.goal.assignedTo" @select-assignee="handleSelectAssignee" :readonly="false" />
     </td>
     <td>
       <v-progress-circular :rotate="360" :size="40" :width="1" color="teal">
@@ -27,29 +27,27 @@
 </template>
 
 <script lang="ts" setup>
-import { useGoalsStore } from "~/store/goals";
+import { useUpdateGoalMutation, useDeleteGoalMutation } from '~/store/goals';
 
-const props = defineProps(["goalId"]);
-const goalStore = useGoalsStore();
-const goal = computed(() => goalStore.getById(props.goalId).data)
+const props = defineProps(["goal"]);
+
+const { mutate: updateGoal } = useUpdateGoalMutation();
+const { mutate: deleteGoal } = useDeleteGoalMutation();
 
 function handleTitleChange(title: string) {
-  goalStore.patch(props.goalId, { title });
+  updateGoal({ goalId: props.goal.id, goal: { title } });
 }
 
 function handleStatusChange(status: string) {
-    goalStore.patch(props.goalId, { status })
+  updateGoal({ goalId: props.goal.id, goal: { status } });
 }
 
 function handleSelectAssignee(selectedAssigneeId: string) {
-  goalStore.patch(props.goalId, {
-    assignedTo:
-      goal.value?.data?.assignedTo == selectedAssigneeId ? null : selectedAssigneeId,
-  });
+  updateGoal({ goalId: props.goal.id, goal: { assignedTo: selectedAssigneeId } });
 }
 
 function handleDeleteGoal() {
-  goalStore.delete(props.goalId)
+  deleteGoal({ goalId: props.goal.id });
 }
 </script>
 

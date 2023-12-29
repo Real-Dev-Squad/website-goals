@@ -21,15 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import { Goal } from "~/models/Goal";
 import PopupAssigneeVue from "./PopupAssignee.vue";
 import { GOAL_STATUS_LIST } from "~/constants/goal";
 
 const emit = defineEmits(['goalUpdate'])
-const props = defineProps({
-  goal: Goal,
-  header: String,
-})
+const props = defineProps([
+  'goal',
+  'header',
+])
 
 const statusList = GOAL_STATUS_LIST
 const state = reactive({ 

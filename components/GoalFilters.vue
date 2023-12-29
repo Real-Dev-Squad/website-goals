@@ -13,7 +13,7 @@
 <script>
 import { GOAL_STATUS } from "~/constants/goal";
 
-import { useGoalsStore } from "~/store/goals";
+
 
 export default {
   name: "GoalTab",
@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     print: (value) => {
-      const goalStore = useGoalsStore();
       // goalStore.fetchGoals({ status: value.type });
       // console.log({ status: value.type });
     },
