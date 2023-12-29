@@ -91,8 +91,19 @@ export const useDeleteGoalMutation = () => {
   const queryClient = useQueryClient()
   const response = useMutation({
     mutationFn: ({ goalId } : { goalId: string }) => goalAdapter.deleteGoal(goalId),
-    onMutate: () => {
-      queryClient.invalidateQueries({ queryKey: ['Goals'] });
+    onMutate: ({ goalId }) => {
+      queryClient.setQueriesData({ queryKey: ['goals', 'list']}, (list: any) => {
+        const newList = list.result.filter((goal: Goal) => goal.id != goalId)
+
+        return {
+          ...list,
+          result: newList,  
+        }
+      })
+    },
+    onSettled: (goalId) => {
+      queryClient.invalidateQueries({ queryKey: ['goals', 'list'] });
+      queryClient.invalidateQueries({ queryKey: ['goals', 'details', goalId] });
     }
   })
 

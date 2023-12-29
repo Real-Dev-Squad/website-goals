@@ -8,6 +8,14 @@
 </template>
 
 <script lang="ts" setup>
+import { useUsersStore } from '~/store/users';
+
+
+const userStore = useUsersStore();
+
+onMounted(() => {
+  userStore.fetchUsers()
+})
 </script>
 
 <script lang="ts">
