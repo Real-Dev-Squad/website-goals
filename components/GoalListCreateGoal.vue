@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="flex-grow-0">
     <v-col cols="12" class="px-0 container">
       <v-text-field v-if="showGoalTabPost" v-model="form.title" hide-details label="Title"
         @keydown.enter.prevent="handleSubmit" autofocus @blur="showGoalTabPost = false" />
@@ -13,9 +13,10 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { useGoalsStore } from '~/store/goals'
+import { useAddGoalMutation } from '~/store/goals'
 
-const goalStore = useGoalsStore()
+const { mutate: addGoal }= useAddGoalMutation();
+
 const form = reactive({
   title: ''
 })
@@ -24,8 +25,10 @@ const showGoalTabPost = ref(false)
 const handleSubmit = () => {
   if (!form.title) return
 
-  goalStore.add({
-    title: form.title
+  addGoal({
+    goal: {
+      title: form.title,
+    }
   })
   form.title = ''
 }

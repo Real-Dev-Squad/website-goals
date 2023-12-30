@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-sheet min-height="70vh" rounded="lg">
+    <v-sheet rounded="lg">
       <GoalList />
     </v-sheet>
     <router-view />
@@ -8,13 +8,12 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { useUsersStore } from '~/store/users'
-import { useGoalsStore } from '~/store/goals'
-const goalStore = useGoalsStore()
-const userStore = useUsersStore()
+import { useUsersStore } from '~/store/users';
+
+
+const userStore = useUsersStore();
+
 onMounted(() => {
-  goalStore.fetchGoals()
   userStore.fetchUsers()
 })
 </script>

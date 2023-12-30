@@ -1,119 +1,128 @@
-import { type PostGoal } from '~/interfaces/PostGoal'
-import { goalRepo } from '~/models/Goal'
 import * as goalAdapter from '~/adapters/goal'
-import { defineStore } from 'pinia'
+import { type GetGoalQuery } from '~/adapters/goal'
+import type { PostGoal } from '~/interfaces/PostGoal'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import type { Goal } from '~/interfaces/Goal'
 
-type GoalStoreState =
-  | {
-    byId: {
-      [key: string]: {
-        isLoading: boolean
-        isValid: boolean
-      }
+export interface Filters {
+  [key: string]: string,
+}
+
+export const useGoalListQuery = (query: GetGoalQuery, options = {}) => {
+  const response = useQuery({
+    queryFn: () => goalAdapter.fetchGoals(query),
+    queryKey: ['goals', 'list', query],
+  })
+
+  return response
+}
+
+export const useGoalByIdQuery= ({ id }: { id: string }) => {
+  const response = useQuery({
+    queryFn: () => goalAdapter.fetchGoalById(id),
+    queryKey: ['goals', 'detail', id],
+  })
+
+  return response
+}
+
+export const useAddGoalMutation = () => {
+  const queryClient = useQueryClient()
+  const response = useMutation({
+    mutationFn: ({ goal }: { goal: PostGoal }) => goalAdapter.addGoal(goal),
+    onMutate: ({ goal }) => {
+      queryClient.setQueryData(['goals', 'list', { page: 1, filters: {} }], (prev: goalAdapter.GoalListResponse) => {
+        const newResponse = {
+          ...prev,
+          result: [
+            createTempGoal(goal),
+            ...prev.result,
+          ]
+        }
+        return newResponse
+      })
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['goals', 'list'] });
     }
-    recentlyCreated: {
-      isLoading: boolean
-      isValid: boolean
-      data: string[] | undefined
-    },
-  }
+  })
 
-export const useGoalsStore = defineStore({
-  id: 'goal-store',
-  state: (): GoalStoreState => ({
-    byId: {},
-    recentlyCreated: {
-      isLoading: false,
-      isValid: false,
-      data: undefined
-    },
-  }),
-  actions: {
-    async fetchGoals() {
-      if (this.recentlyCreated.isValid) return
+  return response;
+};
 
-      this.$patch({
-        recentlyCreated: {
-          isLoading: true
+export const useUpdateGoalMutation = () => {
+  const queryClient = useQueryClient()
+  const response = useMutation({
+    mutationFn: ({ goalId, goal } : { goalId: string, goal: PostGoal }) => goalAdapter.updateGoal(goalId, goal),
+    onMutate: ({ goalId, goal }) => {
+      queryClient.setQueryData(['goals', 'detail', goalId], (prev: Goal) => {
+        return {
+          ...prev,
+          ...goal,
         }
       })
-      const goals = await goalAdapter.fetchGoals()
-      goalRepo.save(goals)
 
-      this.$patch({
-        recentlyCreated: {
-          isLoading: false,
-          isValid: true,
-          data: goals.map(goal => goal.id)
-        }
+      queryClient.setQueriesData({ queryKey: ['goals', 'list'] }, (prev: any) => {
+        const newList = {
+          ...prev,
+          result: prev.result.map((oldGoal: Goal) => {
+            if (oldGoal.id === goalId) {
+              return {
+                ...oldGoal,
+                ...goal,
+              }
+            }
+            return oldGoal
+          })
+        } as goalAdapter.GoalListResponse
+        return newList
       })
     },
-    async add(goal: PostGoal) {
-      const goalResponse = await goalAdapter.addGoal(goal)
+    onSettled: (goal) => {
+      queryClient.invalidateQueries({ queryKey: ['goals', 'list'] });
+      if (goal) queryClient.invalidateQueries({ queryKey: ['goals', 'detail', goal.id] });
+    }
+  })
 
-      goalRepo.save(goalResponse)
+  return response
+}
 
-      if (!this.recentlyCreated.data) {
-        this.recentlyCreated.data = [goalResponse.id]
-      } else {
-        this.recentlyCreated.data.unshift(goalResponse.id)
-      }
-    },
-    async patch(goalId: string, goal: PostGoal) {
-      const prevGoal = goalRepo.find(goalId)
-      goalRepo.save({
-        id: goalId,
-        ...prevGoal,
-        ...goal
-      })
-
-      await goalAdapter.updateGoal(goalId, goal)
-    },
-    async delete(goalId: string) {
-      goalRepo.destroy(goalId)
-
-      await goalAdapter.deleteGoal(goalId)
-    },
-    async fetchById(goalId: string) {
-      const goal = goalRepo.find(goalId)
-
-      if (!goal) {
-        this.byId = {
-          [goalId]: {
-            isLoading: true,
-            isValid: false
-          }
-        }
-
-        const goal = await goalAdapter.fetchGoalById(goalId)
-        goalRepo.save(goal)
-        this.byId = {
-          [goalId]: {
-            isLoading: false,
-            isValid: true,
-          }
-        }
-      } else {
-        this.byId = {
-          [goalId]: {
-            isLoading: false,
-            isValid: true,
-          }
-        }
-      }
-    },
-  },
-  getters: {
-    getById: (state) => {
-      return (goalId: string) => {
-        const goalState = state.byId[goalId];
+export const useDeleteGoalMutation = () => {
+  const queryClient = useQueryClient()
+  const response = useMutation({
+    mutationFn: ({ goalId } : { goalId: string }) => goalAdapter.deleteGoal(goalId),
+    onMutate: ({ goalId }) => {
+      queryClient.setQueriesData({ queryKey: ['goals', 'list']}, (list: any) => {
+        const newList = list.result.filter((goal: Goal) => goal.id != goalId)
 
         return {
-          isLoading: goalState.isLoading,
-          isValid: goalState.isValid,
-          data: goalRepo.find(goalId)
+          ...list,
+          result: newList,  
         }
-      }
+      })
+    },
+    onSettled: (goalId) => {
+      queryClient.invalidateQueries({ queryKey: ['goals', 'list'] });
+      queryClient.invalidateQueries({ queryKey: ['goals', 'details', goalId] });
     }
-  }
-})
+  })
+
+  return response
+}
+
+function createTempGoal (goal: PostGoal) {
+  return {
+    id: `temp:${Date.now()}`,
+    status: 'ongoing',
+    createdAt: new Date().toISOString(),
+    assignedTo: '',
+    description: '',
+    title: '',
+    percentageCompleted: 0,
+    startsOn: undefined,
+    endsOn: undefined,
+    assignedBy: '',
+    createdBy: '',
+    ...goal,
+  } as Goal
+}

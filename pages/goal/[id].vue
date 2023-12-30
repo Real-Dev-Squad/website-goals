@@ -8,38 +8,35 @@
           </v-btn>
           <v-toolbar-title>Goal Form</v-toolbar-title>
         </v-toolbar>
-        <GoalForm v-if="goalResponse.data" :goal="goalResponse.data" @goal-update="handleGoalUpdate"/>
+        <GoalForm v-if="!isLoading" :goal="goal" @goal-update="handleFormSubmit"/>
       </v-card>
     </v-dialog>
   </v-row>
 </template>
 
 <script setup lang="ts">
-import type { Goal } from '~/models/Goal';
-import { useGoalsStore } from '~/store/goals';
+import type { PostGoal } from '~/interfaces/PostGoal';
+import { useGoalByIdQuery, useUpdateGoalMutation } from '~/store/goals';
 
 const router = useRouter()
 const route = useRoute();
 const show = ref(true);
-const goalStore = useGoalsStore();
 
 const goalId = route.params.goalId
 if (typeof goalId != 'string') throw Error('Unsupported route param')
 
-const goalResponse = computed(() => goalStore.getById(goalId))
-
-onMounted(() => {
-  goalStore.fetchById(goalId)
-})
-
-const closeGoalModal = () => {
+function closeGoalModal() {
   router.push('/')
-};
-
-function handleGoalUpdate(goal: Goal) {
-  if (typeof goalId != 'string') throw Error('Unsupported route param')
-
-  goalStore.patch(goalId, goal)
 }
 
+const { data: goal, isLoading } = useGoalByIdQuery({ id: goalId });
+const { mutate: updateGoal } = useUpdateGoalMutation();
+function handleFormSubmit(goal: PostGoal) {
+  if (typeof goalId != 'string') throw Error('Unsupported goalId')
+  
+  updateGoal({
+    goal: goal,
+    goalId,
+  })
+}
 </script>

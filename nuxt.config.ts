@@ -40,5 +40,10 @@ export default defineNuxtConfig({
       GOALS_API: process.env.NUXT_PUBLIC_GOAL_API,
       RDS_API: process.env.NUXT_PUBLIC_RDS_API,
     }
+  },
+  imports: {
+    dirs: [
+      'composables',
+    ]
   }
 })

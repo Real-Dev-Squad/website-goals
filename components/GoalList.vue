@@ -1,8 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="d-flex flex-column goal-list">
     <GoalListCreateGoal />
-    <span v-if="recentlyCreated.isLoading">Loading...</span>
-    <v-table v-else>
+    <v-table class="goal-table">
       <thead>
         <tr>
           <th></th>
@@ -13,18 +12,38 @@
         </tr>
       </thead>
       <tbody>
-        <GoalListTab v-for="goalId in recentlyCreated.data" :key="goalId" :goal-id="goalId" />
+        <template v-if="goalList">
+          <GoalListTab v-for="goal in goalList.result" :key="goal.id" :goal="goal" />
+        </template>
       </tbody>
     </v-table>
+    <v-pagination v-if="maxPage" :length="goalList?.meta.pagination.pages || maxPage" v-model="state.page"></v-pagination>  
   </v-container>
 </template>
 
 <script lang="ts" setup>
-import { useGoalsStore } from "~/store/goals";
-import { storeToRefs } from "pinia";
+import { useGoalListQuery } from '~/store/goals';
+const state = reactive({
+  page: 1,
+  filters: {},
+})
+const maxPage = ref(0);
 
-const goalStore = useGoalsStore();
-const { recentlyCreated } = storeToRefs(goalStore);
+const { data: goalList } = useGoalListQuery(state);
+
+watch(goalList, (goalList) => {
+  if (goalList?.meta.pagination.pages) {
+    maxPage.value = goalList.meta.pagination.pages;
+  }
+})
 </script>
 
-<style scoped></style>
+<style scoped>
+.goal-list {
+  height: 830px;
+}
+
+.goal-table {
+  flex: 1;
+}
+</style>
