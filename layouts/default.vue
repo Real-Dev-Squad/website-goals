@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-layout>
-      <AppNavBar />
+      <AppNavBar :user="auth.user" :isUserLoading="auth.isLoading"/>
       <AppSideBar />
       <v-main>
         <slot />
@@ -10,10 +10,10 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  name: 'DefaultLayout'
-}
+<script setup lang="ts">
+import { useAuthStore } from '~/store/auth';
+
+const auth = useAuthStore();
 </script>
 
 <style>
