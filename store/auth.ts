@@ -1,97 +1,45 @@
-import { defineStore } from 'pinia'
 import * as authAdapter from '~/adapters/auth'
-import { type AuthState } from '~/interfaces/AuthState'
-import { type ErrorApiBase } from '~/interfaces/ErrorApi'
-import { userRepo } from '~/models/User'
+import { getConfig } from '~/config'
 
-type AuthStoreState =
-  | {
-    kind: 'UNAUTHENTICATED'
-    isLoading: boolean
-    error: null
-    authInfo: null
+export const useAuthStore = defineStore('auth', () => {
+  const config = getConfig()
+  const user = ref()
+  const token = useCookie(`goals_token_${config.ENV}`, {
+    maxAge: 60 * 60 * 24 * 30, // 30 days 
+    sameSite: 'lax'
+  })
+
+  const setToken = (newToken: string) => {
+    token.value = newToken
   }
-  | {
-    kind: 'ERRORED'
-    isLoading: false
-    error: ErrorApiBase
-    authInfo: null
+
+  const setUser = (user: any) => {
+    user.value = user
   }
-  | {
-    kind: 'AUTHENTICATED'
-    isLoading: false
-    error: null
-    authInfo: {
-      userId: string
-      status: string
-      roles: {
-        archived?: boolean
-        member?: boolean
-      }
+
+  const signin = async () => {
+    try {
+      const [selfData, credentials] = await Promise.all([authAdapter.getSelf(), authAdapter.getGoalApiCredentials()])
+
+      user.value = selfData
+      token.value = credentials.token.access
+    } catch (error) {
+      user.value = undefined
+      token.value = undefined
     }
   }
 
-export const useAuthStore = defineStore({
-  id: 'auth-store',
-  state: (): AuthStoreState => ({
-    kind: 'UNAUTHENTICATED',
-    isLoading: false,
-    error: null,
-    authInfo: null
-  }),
-  actions: {
-    async fetchSelf () {
-      if (this.isLoading) return
+  const signout = () => {
+    token.value = undefined
+    user.value = undefined
+  }
 
-      this.isLoading = true
-
-      try {
-        const { data, error } = await authAdapter.getSelf()
-        if (error != null) {
-          this.$patch({
-            kind: 'ERRORED',
-            error,
-            isLoading: false,
-            authInfo: null
-          })
-        } else if (data != null) {
-          this.$patch({
-            kind: 'AUTHENTICATED',
-            authInfo: data.info,
-            isLoading: false,
-            error: null
-          })
-          userRepo.save(data.user)
-        }
-      } catch (e) {
-        console.error(e)
-      }
-    }
-  },
-  getters: {
-    getAuthState (state): AuthState {
-      if (state.kind === 'UNAUTHENTICATED') {
-        return {
-          kind: 'UNAUTHENTICATED',
-          isLoading: state.isLoading
-        }
-      } else if (state.kind === 'ERRORED') {
-        return {
-          kind: 'UNAUTHENTICATED',
-          isLoading: false,
-          error: state.error
-        }
-      } else {
-        const user = userRepo.find(state.authInfo.userId)
-        if (user == null) throw new Error('User not found in repository')
-
-        return {
-          kind: 'AUTHENTICATED',
-          isLoading: false,
-          roles: state.authInfo.roles,
-          user
-        }
-      }
-    }
+  return {
+    user,
+    token,
+    setToken,
+    setUser,
+    signin,
+    signout,
   }
 })
