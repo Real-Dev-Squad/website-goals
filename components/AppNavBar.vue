@@ -11,20 +11,21 @@
       </ul>
 
       <v-spacer></v-spacer>
+      <template v-if="isUserLoading">
+        Loading...
+      </template>
 
-      <template v-if="!isUserLoading">
+      <template v-else>
         <v-menu v-if="!!props.user">
           <template v-slot:activator="{ props: activator }">
             <div v-bind="activator" class="user-detail">
               <span class="username">
                 Hello, {{ props.user.firstName || props.user.username }}
               </span>
-              <v-avatar v-if="props.user.avatar" v-bind="activator" size="28" class="avatar">
-                <v-img :src="props.user.avatar" />
-              </v-avatar>
-              <v-avatar v-else v-bind="activator" size="28" class="avatar" color="indigo">
-                {{ props.user.initials }}
-              </v-avatar>
+              <AppAvatar
+                :avatar="props.user.avatar"
+                :initials="props.user.initials"
+              />
             </div>
           </template>
         </v-menu>
