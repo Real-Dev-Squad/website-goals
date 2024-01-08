@@ -1,9 +1,15 @@
 export interface SelfInfo {
-  userId: string
+  id: string
+  displayName: string
+  username: string
+  firstName: string
+  lastName: string
+  avatar: string
+  initials: string
   roles: {
-    member: boolean
-    archived: boolean
-  }
-  status: string
-  incompleteUserDetails: boolean
+    archived: boolean | undefined;
+    member: boolean | undefined;
+  };
+  status: string | undefined;
+  incompleteUserDetails: boolean | undefined;
 }

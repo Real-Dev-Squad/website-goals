@@ -1,29 +1,30 @@
-import { type User } from '~/interfaces/User'
 import { type SelfInfo } from './auth.type'
+import { transformUser } from '~/adapters/user.transformer'
 
-export const transformSelfInfoFromApi = (userInfo: any): { info: SelfInfo, user: User } => {
-  const info = {
-    userId: userInfo?.id,
+export const transformSelfInfoFromApi = (userInfo: any): SelfInfo => {
+  return {
+    ...transformUser(userInfo),
+    status: userInfo?.status,
+    incompleteUserDetails: userInfo?.incompleteUserDetails,
     roles: {
       archived: userInfo?.roles?.archived,
-      member: userInfo?.roles?.member
+      member: userInfo?.roles?.member,
     },
-    status: userInfo?.status,
-    incompleteUserDetails: userInfo?.incompleteUserDetails
   }
+}
 
-  const user = {
-    id: userInfo?.id,
-    username: userInfo?.username,
-    firstName: userInfo?.first_name,
-    lastName: userInfo?.last_name,
-    githubId: userInfo?.github_id,
-    githubDisplayName: userInfo?.github_display_name,
-    avatarUrl: userInfo?.picture?.url
-  }
-
+export const transformGoalTokenFromApi = (response: any): {
+  token: {
+    exp: number,
+    access: string,
+  },
+  id: string,
+} => {
   return {
-    info,
-    user
+    token: {
+      exp: response?.user?.token?.exp,
+      access: response?.user?.token?.access,
+    },
+    id: response?.user?.id,
   }
 }

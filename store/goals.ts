@@ -12,6 +12,7 @@ export const useGoalListQuery = (query: GetGoalQuery, options = {}) => {
   const response = useQuery({
     queryFn: () => goalAdapter.fetchGoals(query),
     queryKey: ['goals', 'list', query],
+    staleTime: 1000 * 60,
   })
 
   return response

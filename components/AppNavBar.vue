@@ -11,44 +11,63 @@
       </ul>
 
       <v-spacer></v-spacer>
+      <template v-if="isUserLoading">
+        Loading...
+      </template>
 
-      <nuxt-link :href="LOGIN">
-        <button class="login">
-          <span class="login__text">Sign In With GitHub</span>
-          <img class="login__image" src="~/assets/github.png" alt="GitHub Icon" height="15px" width="15px">
-        </button>
-      </nuxt-link>
+      <template v-else>
+        <v-menu v-if="!!props.user">
+          <template v-slot:activator="{ props: activator }">
+            <div v-bind="activator" class="user-detail">
+              <span class="username">
+                Hello, {{ props.user.firstName || props.user.username }}
+              </span>
+              <AppAvatar
+                :avatar="props.user.avatar"
+                :initials="props.user.initials"
+              />
+            </div>
+          </template>
+        </v-menu>
+
+        <nuxt-link v-else :href="LOGIN">
+          <button class="login">
+            <span class="login__text">Sign In With GitHub</span>
+            <img class="login__image" src="~/assets/github.png" alt="GitHub Icon" height="15px" width="15px">
+          </button>
+        </nuxt-link>
+      </template>
     </v-container>
   </v-app-bar>
 </template>
 
-<script>
+<script setup lang="ts">
 import { getConfig } from '~/config'
+import type { SelfInfo } from '~/adapters/auth/auth.type';
+import type { PropType } from 'nuxt/dist/app/compat/capi';
 
-export default {
-  name: 'AppNavBar',
-  data() {
-    return {
-      isClicked: false,
-      LINKS: [
-        { name: 'Welcome', link: 'https://welcome.realdevsquad.com' },
-        { name: 'Events', link: 'https://www.realdevsquad.com/events.html' },
-        { name: 'Members', link: 'https://members.realdevsquad.com/' },
-        { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
-        { name: 'Status', link: 'https://status.realdevsquad.com/' }
-      ],
-      LOGIN: `${getConfig().RDS_API}/auth/github/login`
-    }
-  },
-  methods: {
-    toggleClicked(value) {
-      this.isClicked = !value
-    },
-    redirectLogin() {
-      window.location.href = this.LOGIN
-    }
-  }
+const props = defineProps({
+  user: Object as PropType<SelfInfo | null>,
+  isUserLoading: Boolean,
+})
+
+const isClicked = ref(false);
+const LINKS = [
+  { name: 'Welcome', link: 'https://welcome.realdevsquad.com' },
+  { name: 'Events', link: 'https://www.realdevsquad.com/events.html' },
+  { name: 'Members', link: 'https://members.realdevsquad.com/' },
+  { name: 'Crypto', link: 'https://crypto.realdevsquad.com/' },
+  { name: 'Status', link: 'https://status.realdevsquad.com/' }
+]
+const LOGIN = `${getConfig().RDS_API}/auth/github/login`;
+
+function toggleClicked(value: boolean) {
+  isClicked.value = !value
 }
+function redirectLogin() {
+  window.location.href = LOGIN
+}
+
 </script>
 
 <style scoped>
@@ -94,5 +113,15 @@ export default {
 
 .login__image {
   margin-left: 6px;
+}
+
+.user-detail {
+  cursor: pointer;
+}
+
+.username {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 5px;
 }
 </style>

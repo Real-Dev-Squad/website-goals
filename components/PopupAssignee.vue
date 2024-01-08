@@ -10,12 +10,11 @@
 
         <v-tooltip v-else :text="assignee.displayName">
           <template v-slot:activator="{ props }">
-            <v-avatar v-if="assignee.avatar" v-bind="props">
-              <v-img :src="assignee.avatar" />
-            </v-avatar>
-            <v-avatar v-else color="indigo" v-bind="props">
-              {{ assignee.initials }}
-            </v-avatar>
+            <AppAvatar
+              v-bind="props"
+              :avatar="assignee.avatar"
+              :initials="assignee.initials"
+            />
           </template>
         </v-tooltip>
       </v-btn>

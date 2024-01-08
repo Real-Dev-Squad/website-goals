@@ -1,5 +1,4 @@
 import { Model, useRepo } from 'pinia-orm'
-import { Goal } from '~/models/Goal'
 
 export class User extends Model {
   static entity = 'users'
@@ -13,8 +12,6 @@ export class User extends Model {
       lastName: this.string(''),
       avatar: this.string(null),
       initials: this.string(''),
-
-      goals: this.hasMany(Goal, 'assignedTo')
     }
   }
 
