@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 7
+  version: 6
   cacheKey: 9
 
 "@aashutoshrathi/word-wrap@npm:^1.2.3":
@@ -5705,9 +5705,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A~2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.3#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A~2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.3#~builtin<compat/fsevents>":
   version: 2.3.3
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"
   dependencies:
     node-gyp: "npm:latest"
   conditions: os=darwin
@@ -5794,14 +5794,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-func-name@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "get-func-name@npm:2.0.0"
-  checksum: e56bed23b2160cf3aeedb2677ca019334543dd49790c1976e44d168b5f83283747b1a41675706bc114b7a1563da978dbdf6d2b5e9282534dbdeaa2c1184cae6a
-  languageName: node
-  linkType: hard
-
-"get-func-name@npm:^2.0.2":
+"get-func-name@npm:^2.0.0, get-func-name@npm:^2.0.2":
   version: 2.0.2
   resolution: "get-func-name@npm:2.0.2"
   checksum: 6926926a03b5424ebb23360a842f4bd8fcde7e9238f4ee08d8786b7fc8c38ce842b17fb2c260b9b2bdf0aea6fef69c2d306144379c5000db2500cf5db59ef343
@@ -8368,39 +8361,39 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nuxt-app@workspace:."
   dependencies:
-    "@mdi/font": "npm:^7.3.67"
-    "@nuxt/test-utils": "npm:^3.8.0"
-    "@pinia-orm/nuxt": "npm:^1.7.0"
-    "@pinia/nuxt": "npm:^0.5.1"
-    "@pinia/testing": "npm:^0.1.3"
-    "@tanstack/vue-query": "npm:^5.15.0"
-    "@testing-library/jest-dom": "npm:^6.1.4"
-    "@types/node": "npm:^20.8.10"
-    "@types/webfontloader": "npm:^1.6.36"
-    "@typescript-eslint/eslint-plugin": "npm:^6.9.1"
-    "@vitest/coverage-c8": "npm:^0.33.0"
-    "@vue/test-utils": "npm:^2.4.1"
-    axios: "npm:^1.6.0"
-    eslint: "npm:^8.53.0"
-    eslint-config-standard-with-typescript: "npm:^39.1.1"
-    eslint-plugin-import: "npm:^2.29.0"
-    eslint-plugin-n: "npm:^16.2.0"
-    eslint-plugin-promise: "npm:^6.1.1"
-    eslint-plugin-vue: "npm:^9.18.1"
-    jsdom: "npm:^22.1.0"
-    local-ssl-proxy: "npm:^2.0.5"
-    msw: "npm:^1.2.5"
-    nuxt: "npm:^3.8.0"
-    nuxt-icon: "npm:^0.6.1"
-    pinia: "npm:^2.1.7"
-    pinia-orm: "npm:^1.7.2"
-    sass: "npm:^1.69.5"
-    typescript: "npm:5.2.2"
-    vite-plugin-vuetify: "npm:^1.0.2"
-    vitest: "npm:^0.34.6"
-    vue-tsc: "npm:^1.8.22"
-    vuetify: "npm:^3.3.23"
-    webfontloader: "npm:^1.6.28"
+    "@mdi/font": ^7.3.67
+    "@nuxt/test-utils": ^3.8.0
+    "@pinia-orm/nuxt": ^1.7.0
+    "@pinia/nuxt": ^0.5.1
+    "@pinia/testing": ^0.1.3
+    "@tanstack/vue-query": ^5.15.0
+    "@testing-library/jest-dom": ^6.1.4
+    "@types/node": ^20.8.10
+    "@types/webfontloader": ^1.6.36
+    "@typescript-eslint/eslint-plugin": ^6.9.1
+    "@vitest/coverage-c8": ^0.33.0
+    "@vue/test-utils": ^2.4.1
+    axios: ^1.6.0
+    eslint: ^8.53.0
+    eslint-config-standard-with-typescript: ^39.1.1
+    eslint-plugin-import: ^2.29.0
+    eslint-plugin-n: ^16.2.0
+    eslint-plugin-promise: ^6.1.1
+    eslint-plugin-vue: ^9.18.1
+    jsdom: ^22.1.0
+    local-ssl-proxy: ^2.0.5
+    msw: ^1.2.5
+    nuxt: ^3.8.0
+    nuxt-icon: ^0.6.1
+    pinia: ^2.1.7
+    pinia-orm: ^1.7.2
+    sass: ^1.69.5
+    typescript: 5.2.2
+    vite-plugin-vuetify: ^1.0.2
+    vitest: ^0.34.6
+    vue-tsc: ^1.8.22
+    vuetify: ^3.3.23
+    webfontloader: ^1.6.28
   languageName: unknown
   linkType: soft
 
@@ -9737,16 +9730,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.1.7#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.1.7#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#~builtin<compat/resolve>":
   version: 1.22.4
-  resolution: "resolve@patch:resolve@npm%3A1.22.4#optional!builtin<compat/resolve>::version=1.22.4&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.4#~builtin<compat/resolve>::version=1.22.4&hash=c3c19d"
   dependencies:
     is-core-module: "npm:^2.13.0"
     path-parse: "npm:^1.0.7"
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: b2a242cd2f994e4e712a5b2b40eb4f0b426ca2eb94d22b58c76d0ef6f6bcc530f4e41fe2f82f6eddeb2659c2bfda7f75b71ccf6b459ecee783ab9fb5a64aaa68
+  checksum: 8/c45f2545fdc4d21883861b032789e20aa67a2f2692f68da320cc84d5724cd02f2923766c5354b3210897e88f1a7b3d6d2c7c22faeead8eed7078e4c783a444bc
   languageName: node
   linkType: hard
 
@@ -10924,13 +10917,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@5.2.2#~builtin<compat/typescript>":
   version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=77c9e2"
+  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: b52454ea2b8ba479dd655c4e55ae57c1cec4af21c83c3aa9ab280879a53f3ef4314587b0cfe5e6dd0a082aca4409fef70d0763e762cd0a3e8b38ef70d1dbad67
+  checksum: 8/0f4da2f15e6f1245e49db15801dbee52f2bbfb267e1c39225afdab5afee1a72839cd86000e65ee9d7e4dfaff12239d28beaf5ee431357fcced15fb08583d72ca
   languageName: node
   linkType: hard
 
